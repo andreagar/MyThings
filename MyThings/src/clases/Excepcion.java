@@ -9,7 +9,7 @@ public class Excepcion extends Exception{
 
 public String Informar(){
 		
-		return "Ya estaba dado de alta.";
+		return "El usuario ya estaba dado de alta.";
 	}
 	
 	public String NoDatos(){
