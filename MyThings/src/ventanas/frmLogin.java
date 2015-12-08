@@ -27,6 +27,7 @@ public class frmLogin extends JFrame implements ActionListener{
 	private JPasswordField passwordField;
 	private JButton btnLogIn;
 	private JPasswordField txtPassword;
+	private JButton btnRegistrarme;
 
 
 	/**
@@ -63,7 +64,7 @@ public class frmLogin extends JFrame implements ActionListener{
 		btnLogIn = new JButton("Log in");
 //		btnLogIn.setMnemonic('L');
 		btnLogIn.setMnemonic(KeyEvent.VK_ENTER);
-		btnLogIn.setBounds(377, 304, 89, 23);
+		btnLogIn.setBounds(207, 179, 89, 23);
 		btnLogIn.setActionCommand("login");
 		btnLogIn.addActionListener(this);
 		contentPane.add(btnLogIn);
@@ -74,8 +75,17 @@ public class frmLogin extends JFrame implements ActionListener{
 		txtPassword.setBounds(171, 137, 150, 17);
 		contentPane.add(txtPassword);
 		txtPassword.setColumns(10);
+		
+		btnRegistrarme = new JButton("Registrarme");
+		btnRegistrarme.setBounds(338, 305, 126, 23);
+		btnRegistrarme.setActionCommand("Registrarme");
+		btnRegistrarme.addActionListener(this);
+		
+		contentPane.add(btnRegistrarme);
 	}
 
+	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -83,13 +93,15 @@ public class frmLogin extends JFrame implements ActionListener{
 		switch (e.getActionCommand())
 		{
 		case "login": 
-		//	if(persona.Login(txtUsuario.getText(), txtPassword.getText()))
+			if(persona.Login(txtUsuario.getText(), txtPassword.getText())
 			{
 				frmPrincipal objPrincipal = new frmPrincipal();
 				objPrincipal.setVisible(true);
 				frmLogin.this.dispose();
 			}			
 			break;
+			case "Registrarme":
+				break;
 		}
 	}
 }

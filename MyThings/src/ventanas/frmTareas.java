@@ -57,21 +57,25 @@ public class frmTareas extends JFrame implements ActionListener {
 		btnAgregar = new JButton("Agregar");
 		btnAgregar.setBounds(389, 81, 89, 23);
 		btnAgregar.setActionCommand("Agregar");
+		btnAgregar.addActionListener(this);
 		contentPane.add(btnAgregar);
 		
 		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(387, 124, 89, 23);
 		btnEliminar.setActionCommand("Eliminar");
+		btnEliminar.addActionListener(this);
 		contentPane.add(btnEliminar);
 		
 		btnModificar = new JButton("Modificar");
 		btnModificar.setBounds(389, 166, 89, 23);
 		btnModificar.setActionCommand("Modificar");
+		btnModificar.addActionListener(this);
 		contentPane.add(btnModificar);
 		
 		btnAtras = new JButton("Atr\u00E1s");
 		btnAtras.setBounds(389, 335, 89, 23);
 		btnAtras.setActionCommand("Atras");
+		btnAtras.addActionListener(this);
 		contentPane.add(btnAtras);
 		
 	}

@@ -22,6 +22,7 @@ public class frmPrincipal extends JFrame implements ActionListener {
 	private PanelConImagen contentPane;
 	private JButton btnTareas;
 	private JButton btnContactos;
+	private JButton btnCerrarSesion;
 
 	/**
 	 * Create the frame.
@@ -58,9 +59,10 @@ public class frmPrincipal extends JFrame implements ActionListener {
 		btnContactos.addActionListener(this);
 		contentPane.add(btnContactos);
 		
-		JButton btnCerrarSesion = new JButton("Cerrar sesi\u00F3n");
+		btnCerrarSesion = new JButton("Cerrar sesi\u00F3n");
 		btnCerrarSesion.setBounds(178, 335, 116, 23);
 		btnCerrarSesion.setActionCommand("CerrarSesion");
+		btnCerrarSesion.addActionListener(this);
 		contentPane.add(btnCerrarSesion);
 		
 	}
