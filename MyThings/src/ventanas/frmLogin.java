@@ -26,7 +26,7 @@ public class frmLogin extends JFrame implements ActionListener{
 	private JTextField txtUsuario;
 	private JPasswordField passwordField;
 	private JButton btnLogIn;
-	private JTextField txtPassword;
+	private JPasswordField txtPassword;
 
 
 	/**
@@ -68,12 +68,12 @@ public class frmLogin extends JFrame implements ActionListener{
 		btnLogIn.addActionListener(this);
 		contentPane.add(btnLogIn);
 		
-		txtPassword = new JTextField();
-		txtPassword.setBounds(171, 137, 150, 20);
+		setContentPane(contentPane);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(171, 137, 150, 17);
 		contentPane.add(txtPassword);
 		txtPassword.setColumns(10);
-		
-		setContentPane(contentPane);
 	}
 
 	@Override
