@@ -5,6 +5,7 @@ public class clsMain {
 	/**
 	 * 
 	 * @param args
+	 * Llama a la ventana del Log In para inicializar el programa
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

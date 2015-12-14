@@ -10,6 +10,9 @@ import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import clases.GestorUsuarios;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -89,19 +92,21 @@ public class frmLogin extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		//clsGestorPersonas persona = new clsGestorPersonas();
+		GestorUsuarios usuario = new GestorUsuarios();
 		switch (e.getActionCommand())
 		{
 		case "login": 
-			if(persona.Login(txtUsuario.getText(), txtPassword.getText())
-			{
+			if(usuario.Login(txtUsuario.getText(), txtPassword.getText())) {
 				frmPrincipal objPrincipal = new frmPrincipal();
 				objPrincipal.setVisible(true);
 				frmLogin.this.dispose();
 			}			
 			break;
-			case "Registrarme":
-				break;
+		case "Registrarme":
+			frmAltaUsuario altaUsuario = new frmAltaUsuario();
+			altaUsuario.setVisible(true);
+			frmLogin.this.dispose();
+			break;
 		}
 	}
 }

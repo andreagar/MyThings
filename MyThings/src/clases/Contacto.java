@@ -8,6 +8,7 @@ public class Contacto {
 	private int num_m;
 	private String email;
 	private Image foto;
+	
 	/**
 	 * @return the nombre
 	 */
