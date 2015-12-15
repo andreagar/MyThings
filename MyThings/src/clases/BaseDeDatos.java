@@ -62,7 +62,23 @@ public class BaseDeDatos {
 		return statement;
 	}
 
+	// ------------------------------------
+	// CREACIÓN TABLAS
+	// ------------------------------------
+		
+	/** Crea una tabla de los usuarios de la aplicación en una base de datos, si no existía ya.
+	 * Debe haberse inicializado la conexión correctamente.
+	*/
 	
-	
-	// AQUI CREAR LAS TABLAS DE LA BD (FIJARNOS EN LA PRACTICA)
+	public static void crearTablaBD() {
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table tabla_usuarios " +
+				"(nomLogIn string, nombreReal String, apellidos string" +
+				", password string)");
+		} catch (SQLException e) {
+			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
+			// e.printStackTrace();  
+		}
+	}
 }
