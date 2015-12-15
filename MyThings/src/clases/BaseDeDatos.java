@@ -74,7 +74,7 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table tabla_usuarios " +
-				"(nomLogIn string, nombreReal String, apellidos string" +
+				"(nomLogIn string, nombreReal string, apellidos string" +
 				", password string)");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
