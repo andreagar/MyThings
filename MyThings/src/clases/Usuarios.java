@@ -56,34 +56,8 @@ public class Usuarios implements Serializable{
 		this.password = password;
 	}
 	
-//	//PARA QUE NO SE REPITA (LOS Q CREA AUTOMATICAMENTE)
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = 1;
-//		result = prime * result + ((nomLogIn == null) ? 0 : nomLogIn.hashCode());
-//		return result;
-//	}
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Usuarios other = (Usuarios) obj;
-//		if (nomLogIn == null) {
-//			if (other.nomLogIn != null)
-//				return false;
-//		} else if (!nomLogIn.equals(other.nomLogIn))
-//			return false;
-//		return true;
-//	}
 	
-
 	//LOS QUE UTILIZAMOS CON JAVIER CERRO
-	
 	public int hashCode(){
 		return this.getNomLogIn().hashCode();
 	}

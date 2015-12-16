@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import clases.GestorUsuarios;
+import clases.MiExcepcion;
 
 import java.awt.FlowLayout;
 
@@ -18,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
+import java.awt.Font;
 
 public class frmAltaUsuario extends JFrame implements ActionListener{
 
@@ -26,14 +28,14 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	private PanelConImagen contentPane;
-	private JTextField txtNombre;
-	private JLabel lblDni;
+	private JTextField txtNomLogIn;
+	private JLabel lblNomReal;
 	private JButton btnGuardar;
-	private JTextField txtDni;
+	private JTextField txtNomReal;
 	private JLabel lblApellidos;
-	private JLabel lblContrasea;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JLabel lblPassword;
+	private JTextField txtApellidos;
+	private JTextField txtPassword;
 
 
 	/**
@@ -51,29 +53,29 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		contentPane.setLayout(sl_contentPane);
 		contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
-		JLabel lblNombre = new JLabel("Nombre usuario:");
-		contentPane.add(lblNombre);
+		JLabel lblNomLogIn = new JLabel("Nombre usuario:");
+		contentPane.add(lblNomLogIn);
 		
-		txtNombre = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNombre, 3, SpringLayout.NORTH, txtNombre);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, -52, SpringLayout.WEST, txtNombre);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 184, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtNombre, -189, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, 303, SpringLayout.WEST, contentPane);
-		contentPane.add(txtNombre);
-		txtNombre.setColumns(10);
+		txtNomLogIn = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNomLogIn, 3, SpringLayout.NORTH, txtNomLogIn);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNomLogIn, -52, SpringLayout.WEST, txtNomLogIn);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtNomLogIn, 184, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtNomLogIn, -189, SpringLayout.SOUTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtNomLogIn, 303, SpringLayout.WEST, contentPane);
+		contentPane.add(txtNomLogIn);
+		txtNomLogIn.setColumns(10);
 		
-		lblDni = new JLabel("Nombre:");
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblDni, 0, SpringLayout.WEST, lblNombre);
-		contentPane.add(lblDni);
+		lblNomReal = new JLabel("Nombre:");
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNomReal, 0, SpringLayout.WEST, lblNomLogIn);
+		contentPane.add(lblNomReal);
 		
-		txtDni = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtDni, 12, SpringLayout.SOUTH, txtNombre);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtDni, 90, SpringLayout.EAST, lblDni);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtDni, -115, SpringLayout.EAST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDni, 3, SpringLayout.NORTH, txtDni);
-		contentPane.add(txtDni);
-		txtDni.setColumns(10);
+		txtNomReal = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtNomReal, 12, SpringLayout.SOUTH, txtNomLogIn);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtNomReal, 90, SpringLayout.EAST, lblNomReal);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtNomReal, -115, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNomReal, 3, SpringLayout.NORTH, txtNomReal);
+		contentPane.add(txtNomReal);
+		txtNomReal.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnGuardar, -10, SpringLayout.SOUTH, contentPane);
@@ -82,34 +84,35 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
 		
-		JLabel lblAltaDeUsuario = new JLabel("Alta de usuario");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAltaDeUsuario, 24, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblAltaDeUsuario, 172, SpringLayout.WEST, contentPane);
+		JLabel lblAltaDeUsuario = new JLabel("ALTA DE USUARIO");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAltaDeUsuario, 20, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblAltaDeUsuario, 133, SpringLayout.WEST, contentPane);
+		lblAltaDeUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		contentPane.add(lblAltaDeUsuario);
 		
 		lblApellidos = new JLabel("Apellidos:");
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblApellidos, 0, SpringLayout.WEST, lblNombre);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblApellidos, 0, SpringLayout.WEST, lblNomLogIn);
 		contentPane.add(lblApellidos);
 		
-		lblContrasea = new JLabel("Contrase\u00F1a:");
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblContrasea, 0, SpringLayout.WEST, lblNombre);
-		contentPane.add(lblContrasea);
+		lblPassword = new JLabel("Contrase\u00F1a:");
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblPassword, 0, SpringLayout.WEST, lblNomLogIn);
+		contentPane.add(lblPassword);
 		
-		textField = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.WEST, textField, 85, SpringLayout.EAST, lblApellidos);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textField, -115, SpringLayout.EAST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblApellidos, 3, SpringLayout.NORTH, textField);
-		textField.setColumns(10);
-		contentPane.add(textField);
+		txtApellidos = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtApellidos, 85, SpringLayout.EAST, lblApellidos);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtApellidos, -115, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblApellidos, 3, SpringLayout.NORTH, txtApellidos);
+		txtApellidos.setColumns(10);
+		contentPane.add(txtApellidos);
 		
-		textField_1 = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblContrasea, 3, SpringLayout.NORTH, textField_1);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textField_1, 168, SpringLayout.NORTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, textField, -9, SpringLayout.NORTH, textField_1);
-		sl_contentPane.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, txtNombre);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, txtNombre);
-		textField_1.setColumns(10);
-		contentPane.add(textField_1);
+		txtPassword = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblPassword, 3, SpringLayout.NORTH, txtPassword);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtPassword, 168, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtApellidos, -9, SpringLayout.NORTH, txtPassword);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtPassword, 0, SpringLayout.WEST, txtNomLogIn);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtPassword, 0, SpringLayout.EAST, txtNomLogIn);
+		txtPassword.setColumns(10);
+		contentPane.add(txtPassword);
 	}
 
 
@@ -117,21 +120,20 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		GestorUsuarios emp = new GestorUsuarios();
-		switch (e.getActionCommand())
-		{
-		case "guardar": 
-			
-			try {
-				emp.AñadirUsuario(txtNombre.getText(), txtDni.getText(), txtEmail.getText(), txtContraseña.getText() );
-			} catch (MiExcepcion e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(this,e1.Informar());
+		switch (e.getActionCommand()) {
+		
+			case "guardar": 
+				try {
+					emp.AñadirUsuario(txtNomLogIn.getText(), txtNomReal.getText(), txtApellidos.getText(), txtPassword.getText());
+				} catch (MiExcepcion e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(this,e1.YaExiste());
+				}
+							
+				frmLogin objLogin = new frmLogin();
+				objLogin.setVisible(true);
+				break;
 			}
-						
-			frmLogin objLogin = new frmLogin();
-			objLogin.setVisible(true);
-			break;
-		}
-		frmAltaUsuario.this.dispose();
+			frmAltaUsuario.this.dispose();
 	}
 }

@@ -83,7 +83,6 @@ public class frmLogin extends JFrame implements ActionListener{
 		btnRegistrarme.setBounds(338, 305, 126, 23);
 		btnRegistrarme.setActionCommand("Registrarme");
 		btnRegistrarme.addActionListener(this);
-		
 		contentPane.add(btnRegistrarme);
 	}
 
@@ -93,20 +92,20 @@ public class frmLogin extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		GestorUsuarios usuario = new GestorUsuarios();
-		switch (e.getActionCommand())
-		{
-		case "login": 
-			if(usuario.Login(txtUsuario.getText(), txtPassword.getText())) {
-				frmPrincipal objPrincipal = new frmPrincipal();
-				objPrincipal.setVisible(true);
+		switch (e.getActionCommand()) {
+			case "login": 
+				if(usuario.Login(txtUsuario.getText(), txtPassword.getText())) {
+					frmPrincipal objPrincipal = new frmPrincipal();
+					objPrincipal.setVisible(true);
+					frmLogin.this.dispose();
+				}		
+				break;
+			
+			case "Registrarme":
+				frmAltaUsuario altaUsuario = new frmAltaUsuario();
+				altaUsuario.setVisible(true);
 				frmLogin.this.dispose();
-			}			
-			break;
-		case "Registrarme":
-			frmAltaUsuario altaUsuario = new frmAltaUsuario();
-			altaUsuario.setVisible(true);
-			frmLogin.this.dispose();
-			break;
+				break;
 		}
 	}
 }

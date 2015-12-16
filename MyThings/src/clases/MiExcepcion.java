@@ -9,7 +9,7 @@ public class MiExcepcion extends Exception{
 
 	public String YaExiste(){
 		
-		return "El usuario ya estaba dado de alta.";
+		return "El usuario ya está dado de alta.";
 	}
 	
 	public String NoDatos(){
