@@ -13,7 +13,7 @@ public class Usuarios implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String nomLogIn; //nombre que utilizará para entrar en la aplicación (no se pueden repetir)
+	private String nomLogIn; //clave primaria
 	private String nombreReal; //nombre real
 	private String apellidos;
 	private String password;

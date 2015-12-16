@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
 
 /** Métodos útiles para base de datos.
  * Clase con métodos estáticos para gestionar una sola base de datos
@@ -66,11 +68,10 @@ public class BaseDeDatos {
 	// CREACIÓN TABLAS
 	// ------------------------------------
 		
-	/** Crea una tabla de los usuarios de la aplicación en una base de datos, si no existía ya.
+	/** Crea una tabla de los usuarios de la aplicación en una base de datos (si no existía ya).
 	 * Debe haberse inicializado la conexión correctamente.
 	*/
-	
-	public static void crearTablaBD() {
+	public static void crearTablaUsuario() {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table tabla_usuarios " +
@@ -81,4 +82,56 @@ public class BaseDeDatos {
 			// e.printStackTrace();  
 		}
 	}
+	
+	/** Añade un usuario a la BD.
+	*/
+	public static void insertUsuario( String nomLogIn, String nomReal, String apellidos, String password ) {
+		String sent = "insert into tabla_usuarios values('nomLogIn', 'nomReal', 'apellidos', 'password')";
+		try {
+			statement.executeUpdate(sent);
+		} catch (SQLException e) {
+			System.out.println( "ERROR EN SENTENCIA SQL: " + sent);
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	/** Crea una tabla de las tareas de un usuario en una base de datos (si no existía ya).
+	 * Debe haberse inicializado la conexión correctamente.
+	*/
+	public static void crearTablaTareas() {
+		//de la de contacto no estoy muy segura de que esté bien!!!!!
+		//y de lo de references tampoco!!!!
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table tabla_tareas " +
+				"(nomLogIn string references tabla_usuarios (nomLogIn),id int, fecha_i date, fecha_f date, importancia int, localizacion string, tiempo_v int" +
+				", descripcion string, invitado contacto)");
+		} catch (SQLException e) {
+			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
+			// e.printStackTrace();  
+		}
+	
+	}	
+	
+	/** Crea una tabla de los contactos de un usuario en una base de datos (si no existía ya).
+	 * Debe haberse inicializado la conexión correctamente.
+	*/
+	public static void crearTablaContactos() {
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table fichero_multimedia " +
+				"(nombre string, apellidos string, num_m int, email string, foto image)");
+		} catch (SQLException e) {
+			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
+			// e.printStackTrace();  
+		}
+	}
+	
+	
+
+	
+	
+	
 }

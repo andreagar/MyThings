@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Tareas {
 
+	private int id; //clave primaria
 	private Date fecha_i;
 	private Date fecha_f;
 	private int importancia;
@@ -11,6 +12,13 @@ public class Tareas {
 	private int tiempo_v;
 	private String descripcion;
 	private ArrayList<Contacto> invitado;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	/**
 	 * @return the fecha_i
 	 */
@@ -95,6 +103,5 @@ public class Tareas {
 	public void setInvitado(ArrayList<Contacto> invitado) {
 		this.invitado = invitado;
 	}
-	
 	
 }

@@ -6,7 +6,7 @@ public class Contacto {
 	private String nombre;
 	private String apellidos;
 	private int num_m;
-	private String email;
+	private String email; //clave primaria
 	private Image foto;
 	
 	/**

@@ -52,24 +52,26 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblNombre = new JLabel("Nombre usuario:");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNombre, 81, SpringLayout.NORTH, contentPane);
 		contentPane.add(lblNombre);
 		
 		txtNombre = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblNombre, 3, SpringLayout.NORTH, txtNombre);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, -52, SpringLayout.WEST, txtNombre);
 		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 184, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtNombre, -189, SpringLayout.SOUTH, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, -53, SpringLayout.WEST, txtNombre);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, 303, SpringLayout.WEST, contentPane);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		lblDni = new JLabel("Nombre:");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDni, 113, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblDni, 0, SpringLayout.WEST, lblNombre);
 		contentPane.add(lblDni);
 		
 		txtDni = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, txtDni, -3, SpringLayout.NORTH, lblDni);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtDni, 0, SpringLayout.EAST, txtNombre);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtDni, 12, SpringLayout.SOUTH, txtNombre);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtDni, 90, SpringLayout.EAST, lblDni);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtDni, -115, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDni, 3, SpringLayout.NORTH, txtDni);
 		contentPane.add(txtDni);
 		txtDni.setColumns(10);
 		
@@ -86,7 +88,6 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		contentPane.add(lblAltaDeUsuario);
 		
 		lblApellidos = new JLabel("Apellidos:");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblApellidos, 18, SpringLayout.SOUTH, lblDni);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblApellidos, 0, SpringLayout.WEST, lblNombre);
 		contentPane.add(lblApellidos);
 		
@@ -95,15 +96,18 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		contentPane.add(lblContrasea);
 		
 		textField = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, textField, 0, SpringLayout.SOUTH, lblApellidos);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textField, 0, SpringLayout.EAST, txtNombre);
+		sl_contentPane.putConstraint(SpringLayout.WEST, textField, 85, SpringLayout.EAST, lblApellidos);
+		sl_contentPane.putConstraint(SpringLayout.EAST, textField, -115, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblApellidos, 3, SpringLayout.NORTH, textField);
 		textField.setColumns(10);
 		contentPane.add(textField);
 		
 		textField_1 = new JTextField();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblContrasea, 3, SpringLayout.NORTH, textField_1);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textField_1, 11, SpringLayout.SOUTH, textField);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, textField_1, 168, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, textField, -9, SpringLayout.NORTH, textField_1);
 		sl_contentPane.putConstraint(SpringLayout.WEST, textField_1, 0, SpringLayout.WEST, txtNombre);
+		sl_contentPane.putConstraint(SpringLayout.EAST, textField_1, 0, SpringLayout.EAST, txtNombre);
 		textField_1.setColumns(10);
 		contentPane.add(textField_1);
 	}
