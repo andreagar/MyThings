@@ -97,15 +97,14 @@ public class frmLogin extends JFrame implements ActionListener{
 				if(usuario.Login(txtUsuario.getText(), txtPassword.getText())) {
 					frmPrincipal objPrincipal = new frmPrincipal();
 					objPrincipal.setVisible(true);
-					frmLogin.this.dispose();
 				}		
 				break;
 			
 			case "Registrarme":
 				frmAltaUsuario altaUsuario = new frmAltaUsuario();
 				altaUsuario.setVisible(true);
-				frmLogin.this.dispose();
 				break;
 		}
+		frmLogin.this.dispose();
 	}
 }

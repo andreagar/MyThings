@@ -51,7 +51,7 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		SpringLayout sl_contentPane = new SpringLayout();
 		contentPane.setLayout(sl_contentPane);
-		contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
+		//contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblNomLogIn = new JLabel("Nombre usuario:");
 		contentPane.add(lblNomLogIn);

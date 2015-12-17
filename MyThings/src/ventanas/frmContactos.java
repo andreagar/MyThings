@@ -90,7 +90,8 @@ public class frmContactos extends JFrame implements ActionListener {
 	switch (e.getActionCommand())
 	{
 	case "Agregar": 
-		
+		frmAltaContacto objAltaContacto = new frmAltaContacto();
+		objAltaContacto.setVisible(true);
 		break;
 	case "Eliminar": 
 		
