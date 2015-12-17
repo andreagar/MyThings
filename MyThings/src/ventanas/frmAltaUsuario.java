@@ -36,6 +36,7 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 	private JLabel lblPassword;
 	private JTextField txtApellidos;
 	private JTextField txtPassword;
+	private JButton btnCancelar;
 
 
 	/**
@@ -113,6 +114,13 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		sl_contentPane.putConstraint(SpringLayout.EAST, txtPassword, 0, SpringLayout.EAST, txtNomLogIn);
 		txtPassword.setColumns(10);
 		contentPane.add(txtPassword);
+		
+		btnCancelar = new JButton("Cancelar");
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnCancelar, 0, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnCancelar, 0, SpringLayout.SOUTH, btnGuardar);
+		btnGuardar.setActionCommand("cancelar");
+		btnGuardar.addActionListener(this);
+		contentPane.add(btnCancelar);
 	}
 
 
@@ -133,6 +141,9 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 				frmLogin objLogin = new frmLogin();
 				objLogin.setVisible(true);
 				break;
+			case "cancelar":
+				frmLogin objfrmLogin = new frmLogin();
+				objfrmLogin.setVisible(true);
 			}
 			frmAltaUsuario.this.dispose();
 	}
