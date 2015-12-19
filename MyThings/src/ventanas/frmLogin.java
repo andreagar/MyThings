@@ -12,8 +12,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import clases.GestorUsuarios;
+import clases.MiExcepcion;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
@@ -38,6 +40,7 @@ public class frmLogin extends JFrame implements ActionListener{
 	 */
 	public frmLogin() {
 		setResizable(false);
+		this.setTitle("MyThings v1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 379);
 		contentPane = new PanelConImagen();
@@ -93,11 +96,12 @@ public class frmLogin extends JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		GestorUsuarios usuario = new GestorUsuarios();
 		switch (e.getActionCommand()) {
-			case "login": 
+			
+			case "login":				
 				if(usuario.Login(txtUsuario.getText(), txtPassword.getText())) {
 					frmPrincipal objPrincipal = new frmPrincipal();
 					objPrincipal.setVisible(true);
-				}		
+				}
 				break;
 			
 			case "Registrarme":

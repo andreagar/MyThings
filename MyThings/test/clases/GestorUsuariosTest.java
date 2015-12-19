@@ -23,7 +23,6 @@ public class GestorUsuariosTest {
 //	    assertEquals(tamanyo, lr2.getSize());
 //	}
 //
-//
 //	@After
 //	public void tearDown(){
 //		lr2.clear();

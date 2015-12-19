@@ -81,10 +81,15 @@ public class BaseDeDatos {
 		}
 	}
 	
-	/** Añade un usuario a la BD.
-	*/
+	/**Añadir un nuevo usuario a la BD.
+	 */
 	public static void insertUsuario( String nomLogIn, String nomReal, String apellidos, String password ) {
-		String sent = "insert into tabla_usuarios values('nomLogIn', 'nomReal', 'apellidos', 'password')";
+		
+		String sent = "insert into tabla_usuarios values(" +
+				"'" + nomLogIn + "', " +
+				"'" + nomReal + "', " +
+				"'" + apellidos + "', " +
+				"'" + password + "')";
 		try {
 			statement.executeUpdate(sent);
 		} catch (SQLException e) {
@@ -92,7 +97,6 @@ public class BaseDeDatos {
 			e.printStackTrace();
 		}
 	}
-	
 	
 	
 	/** Crea una tabla de las tareas de un usuario en una base de datos (si no existía ya).

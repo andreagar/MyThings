@@ -57,15 +57,15 @@ public class Usuarios implements Serializable{
 	}
 	
 	
-	//LOS QUE UTILIZAMOS CON JAVIER CERRO
-	public int hashCode(){
-		return this.getNomLogIn().hashCode();
-	}
-	
-	public boolean equals(Object o){
-		Usuarios a = (Usuarios) o;
-		return this.getNomLogIn().equals(a.getNomLogIn());
-	}
+//	//LOS QUE UTILIZAMOS CON JAVIER CERRO
+//	public int hashCode(){
+//		return this.getNomLogIn().hashCode();
+//	}
+//	
+//	public boolean equals(Object o){
+//		Usuarios a = (Usuarios) o;
+//		return this.getNomLogIn().equals(a.getNomLogIn());
+//	}
 	
 
 }

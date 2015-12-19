@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import clases.BaseDeDatos;
 import clases.GestorUsuarios;
 import clases.MiExcepcion;
 
@@ -23,8 +24,7 @@ import java.awt.Font;
 
 public class frmAltaUsuario extends JFrame implements ActionListener{
 
-	/**
-	 * 
+	/**Ventana para dar de alta a un nuevo usuario a la BD.
 	 */
 	private static final long serialVersionUID = 1L;
 	private PanelConImagen contentPane;
@@ -44,7 +44,7 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 	 */
 	public frmAltaUsuario() {
 		setResizable(false);
-		this.setTitle("Beat v1.0");
+		this.setTitle("MyThings v1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 434, 325);
 		contentPane = new PanelConImagen();
@@ -127,20 +127,22 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		GestorUsuarios emp = new GestorUsuarios();
+		GestorUsuarios usuario = new GestorUsuarios();
 		switch (e.getActionCommand()) {
 		
 			case "guardar": 
-				try {
-					emp.AñadirUsuario(txtNomLogIn.getText(), txtNomReal.getText(), txtApellidos.getText(), txtPassword.getText());
-				} catch (MiExcepcion e1) {
-					// TODO Auto-generated catch block
+				try{
+					if (usuario.AñadirUsuario(txtNomLogIn.getText(), txtNomReal.getText(), txtApellidos.getText(), txtPassword.getText())){
+						frmPrincipal objLogin = new frmPrincipal();
+						objLogin.setVisible(true);
+					}
+				}catch (MiExcepcion e1){
 					JOptionPane.showMessageDialog(this,e1.YaExiste());
 				}
-							
-				frmLogin objLogin = new frmLogin();
-				objLogin.setVisible(true);
+//				frmLogin objLogin = new frmLogin();
+//				objLogin.setVisible(true);
 				break;
+				
 			case "cancelar":
 				frmLogin objfrmLogin = new frmLogin();
 				objfrmLogin.setVisible(true);
