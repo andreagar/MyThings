@@ -121,7 +121,10 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		contentPane.add(txtLocalizacion);
 		txtLocalizacion.setColumns(10);
 		
-		JComboBox Importancia = new JComboBox();
+		String[] nivelesImportancia = {"Alta", "Media", "Baja"};
+		JComboBox Importancia = new JComboBox(nivelesImportancia);
+		Importancia.setSelectedIndex(1);
+		Importancia.addActionListener(this);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, Importancia, 0, SpringLayout.SOUTH, lblImportancia);
 		sl_contentPane.putConstraint(SpringLayout.EAST, Importancia, 0, SpringLayout.EAST, TiempoViaje);
 		contentPane.add(Importancia);
