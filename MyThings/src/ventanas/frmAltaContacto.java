@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,6 +20,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Font;
 
 public class frmAltaContacto extends JFrame implements ActionListener{
@@ -33,11 +36,28 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 	private JButton btnGuardar;
 	private JTextField txtApellidos;
 	private JLabel lblNum_m;
+	JButton btnSubirFoto;
 	private JLabel lblEmail;
 	private JTextField txtMovil;
 	private JTextField txtEmail;
+	private static String ultimaCarpeta = null;
+	private static String ficheros;
+	private static String path;
+	private static String ultimoPatronFicheros = null;
 
-
+	private static File pedirCarpeta() {
+		String carp = ultimaCarpeta; 
+		if (ultimaCarpeta==null) carp = System.getProperty("user.dir");
+		File dirActual = new File( carp );
+		JFileChooser chooser = new JFileChooser( dirActual );
+		chooser.setFileSelectionMode( JFileChooser.FILES_ONLY );
+		int returnVal = chooser.showOpenDialog( null );
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			return chooser.getSelectedFile();
+		} else 
+			return null;
+	}
+	
 	/**
 	 * Create the frame.
 	 */
@@ -118,6 +138,13 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblFoto, 18, SpringLayout.SOUTH, lblEmail);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblFoto, 0, SpringLayout.WEST, lblNombre);
 		contentPane.add(lblFoto);
+		
+		btnSubirFoto = new JButton("Subir foto");
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnSubirFoto, 0, SpringLayout.WEST, txtNombre);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnSubirFoto, 0, SpringLayout.SOUTH, lblFoto);
+		btnSubirFoto.setActionCommand("foto");
+		btnSubirFoto.addActionListener(this);
+		contentPane.add(btnSubirFoto);
 	}
 
 
@@ -138,6 +165,22 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 				frmLogin objLogin = new frmLogin();
 				objLogin.setVisible(true);
 				break;
+			case "foto":
+				File fPath = pedirCarpeta();
+				if (fPath==null) return;
+				path = fPath.getAbsolutePath();
+				ultimaCarpeta = path;
+				if (ultimoPatronFicheros==null)  // Paso 6
+					ficheros = JOptionPane.showInputDialog( null,
+							"Nombre de ficheros a elegir (* para cualquier cadena)",
+							"Selección de ficheros dentro de la carpeta", JOptionPane.QUESTION_MESSAGE );
+				else
+					ficheros = JOptionPane.showInputDialog( null,
+							"Nombre de ficheros a elegir (* para cualquier cadena)",
+							ultimoPatronFicheros );
+				ultimoPatronFicheros = ficheros;
+				//listaRepVideos.add( path, ficheros, true );
+				//lCanciones.repaint(); ME PARECE QUE ESTO NO HACE FALTA
 			}
 			frmAltaContacto.this.dispose();
 	}
