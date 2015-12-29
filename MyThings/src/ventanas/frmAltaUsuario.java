@@ -118,8 +118,8 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		btnCancelar = new JButton("Cancelar");
 		sl_contentPane.putConstraint(SpringLayout.WEST, btnCancelar, 0, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnCancelar, 0, SpringLayout.SOUTH, btnGuardar);
-		btnGuardar.setActionCommand("cancelar");
-		btnGuardar.addActionListener(this);
+		btnCancelar.setActionCommand("cancelar");
+		btnCancelar.addActionListener(this);
 		contentPane.add(btnCancelar);
 	}
 
@@ -144,8 +144,9 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 				break;
 				
 			case "cancelar":
-				frmLogin objfrmLogin = new frmLogin();
-				objfrmLogin.setVisible(true);
+				frmLogin objLogin = new frmLogin();
+				objLogin.setVisible(true);
+				break;
 			}
 			frmAltaUsuario.this.dispose();
 	}
