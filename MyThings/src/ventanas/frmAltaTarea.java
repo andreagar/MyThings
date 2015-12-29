@@ -109,7 +109,10 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblImportancia, 0, SpringLayout.WEST, lblDescripcin);
 		contentPane.add(lblImportancia);
 		
-		JComboBox TiempoViaje = new JComboBox();
+		String[] tiempo = {null, "15", "30", "45", "60"};
+		JComboBox TiempoViaje = new JComboBox(tiempo);
+		TiempoViaje.setSelectedIndex(1);
+		TiempoViaje.addActionListener(this);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, TiempoViaje, -3, SpringLayout.NORTH, lblTiempoDeViaje);
 		sl_contentPane.putConstraint(SpringLayout.WEST, TiempoViaje, 24, SpringLayout.EAST, lblTiempoDeViaje);
 		sl_contentPane.putConstraint(SpringLayout.EAST, TiempoViaje, 52, SpringLayout.EAST, lblTiempoDeViaje);
@@ -139,8 +142,6 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		
 			case "guardar": 
 					
-				frmLogin objLogin = new frmLogin();
-				objLogin.setVisible(true);
 				break;
 			}
 			frmAltaTarea.this.dispose();

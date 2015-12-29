@@ -87,7 +87,8 @@ public class frmTareas extends JFrame implements ActionListener {
 	switch (e.getActionCommand())
 	{
 	case "Agregar": 
-		
+		frmAltaTarea objAltaTarea = new frmAltaTarea();
+		objAltaTarea.setVisible(true);
 		break;
 	case "Eliminar": 
 		
