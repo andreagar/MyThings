@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import clases.GestorUsuarios;
+import clases.GestorTareas;
 import clases.MiExcepcion;
 
 import java.awt.FlowLayout;
@@ -137,7 +137,7 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		GestorUsuarios emp = new GestorUsuarios();
+		GestorTareas tareas = new GestorTareas();
 		switch (e.getActionCommand()) {
 		
 			case "guardar": 

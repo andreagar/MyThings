@@ -7,7 +7,7 @@ public class Usuarios implements Serializable{
 	/**
 	 * Clase para los usuarios registrados en la aplicación
 	 * @param nomLogIn		El nombre con el que se registró el usuario y no puede haber dos usuarios con el mismo
-	 * @param nombreReal 	El nombre real del usuario (y varios pueden tener el mismo)
+	 * @param nombreReal 	El nombre real del usuario (y otros usuarios pueden tener el mismo)
 	 * @param apellidos		Apellidos del usuario
 	 */
 	
@@ -18,10 +18,7 @@ public class Usuarios implements Serializable{
 	private String apellidos;
 	private String password;
 	
-	public Usuarios(){
-		
-	}
-	
+	public Usuarios(){}
 	
 	public Usuarios(String nomLogIn, String nombreReal, String apellidos, String password) {
 		super();
@@ -55,17 +52,5 @@ public class Usuarios implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-//	//LOS QUE UTILIZAMOS CON JAVIER CERRO
-//	public int hashCode(){
-//		return this.getNomLogIn().hashCode();
-//	}
-//	
-//	public boolean equals(Object o){
-//		Usuarios a = (Usuarios) o;
-//		return this.getNomLogIn().equals(a.getNomLogIn());
-//	}
-	
 
 }

@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Date;
+
+import javax.swing.JOptionPane;
 
 /** Métodos útiles para base de datos.
  * Clase con métodos estáticos para gestionar una sola base de datos
@@ -12,10 +16,6 @@ import java.sql.Statement;
  */
 public class BaseDeDatos {
 
-	// ------------------------------------
-	// VALIDO PARA CUALQUIER BASE DE DATOS
-	// ------------------------------------
-	
 	private static Connection connection = null;
 	private static Statement statement = null;
 
@@ -24,21 +24,24 @@ public class BaseDeDatos {
 	 * @param nombreBD	Nombre de fichero de la base de datos
 	 * @return	Conexión con la base de datos indicada. Si hay algún error, se devuelve null
 	 */
-	public static Connection initBD( String nombreBD ) {
+	public static Connection conexion( String nombreBD ) {
 		try {
 		    Class.forName("org.sqlite.JDBC");
 		    connection = DriverManager.getConnection("jdbc:sqlite:" + nombreBD );
 			statement = connection.createStatement();
 			statement.setQueryTimeout(30);  // poner timeout 30 msg
-		    return connection;
+			System.out.println( "Perfecta conexión con la BD!! Se ha podido conectar con " + nombreBD );
+			return connection;
 		} catch (ClassNotFoundException | SQLException e) {
+			JOptionPane.showMessageDialog( null, "Error de conexión!! No se ha podido conectar con " + nombreBD , "ERROR", JOptionPane.ERROR_MESSAGE );
+			System.out.println( "Error de conexión!! No se ha podido conectar con " + nombreBD );
 			return null;
 		}
 	}
 	
 	/** Cierra la conexión con la Base de Datos
 	 */
-	public static void close() {
+	public static void finConexion() {
 		try {
 			statement.close();
 			connection.close();
@@ -47,7 +50,7 @@ public class BaseDeDatos {
 		}
 	}
 	
-	/** Devuelve la conexión si ha sido establecida previamente (#initBD()).
+	/** Devuelve la conexión si ha sido establecida previamente (#conexion()).
 	 * @return	Conexión con la BD, null si no se ha establecido correctamente.
 	 */
 	public static Connection getConnection() {
@@ -62,6 +65,7 @@ public class BaseDeDatos {
 		return statement;
 	}
 
+	
 	// ------------------------------------
 	// CREACIÓN TABLAS
 	// ------------------------------------
@@ -75,8 +79,10 @@ public class BaseDeDatos {
 			statement.executeUpdate("create table tabla_usuarios " +
 				"(nomLogIn string, nombreReal string, apellidos string" +
 				", password string)");
+			System.out.println("La tabla_usuario se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
+			System.out.println("La tabla_usuario ya existe.");
 			// e.printStackTrace();  
 		}
 	}
@@ -114,8 +120,30 @@ public class BaseDeDatos {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
 			// e.printStackTrace();  
 		}
-	
 	}	
+	
+	
+	/**Añadir una nueva tarea a la BD.
+	 */
+	public static void insertTarea( int id, Date fecha_i, Date fecha_f, String importancia, String localizacion,
+			int tiempo, String descripcion, Contacto invitado) {
+		
+		String sent = "insert into tabla_tareas values(" +
+				"'" + id + "', " +
+				"'" + fecha_i + "', " +
+				"'" + fecha_f + "', " +
+				"'" + importancia + "', " +
+				"'" + localizacion + "', " +
+				"'" + tiempo + "', " +
+				"'" + descripcion + "', " +
+				"'" + invitado + "')";
+		try {
+			statement.executeUpdate(sent);
+		} catch (SQLException e) {
+			System.out.println( "ERROR EN SENTENCIA SQL: " + sent);
+			e.printStackTrace();
+		}
+	}
 	
 	/** Crea una tabla de los contactos de un usuario en una base de datos (si no existía ya).
 	 * Debe haberse inicializado la conexión correctamente.
@@ -130,10 +158,4 @@ public class BaseDeDatos {
 			// e.printStackTrace();  
 		}
 	}
-	
-	
-
-	
-	
-	
 }

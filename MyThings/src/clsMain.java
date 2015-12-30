@@ -10,7 +10,7 @@ public class clsMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		BaseDeDatos.initBD( "MyThings.BD" ); //inicializar conexión con la BD
+		BaseDeDatos.conexion("MyThings.BD"); //inicializar conexión con la BD		
 		BaseDeDatos.crearTablaUsuario();
 		
 		frmLogin menu = new frmLogin();
