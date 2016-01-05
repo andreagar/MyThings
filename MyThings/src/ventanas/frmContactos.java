@@ -25,7 +25,7 @@ public class frmContactos extends JFrame implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private PanelConImagen contentPane;
-	private JButton btnAgregar;
+	private JButton btnAgregarPer;
 	private JButton btnEliminar;
 	private JButton btnModificar;
 	private JButton btnAtras;
@@ -49,28 +49,28 @@ public class frmContactos extends JFrame implements ActionListener {
 		//contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblTitulo = new JLabel("CONTACTOS");
-		lblTitulo.setBounds(214, 11, 89, 27);
+		lblTitulo.setBounds(176, 11, 136, 27);
 		lblTitulo.setFont(new Font("Serif", Font.PLAIN, 20));
 		contentPane.add(lblTitulo);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 59, 352, 299);
+		scrollPane.setBounds(10, 59, 327, 299);
 		contentPane.add(scrollPane);
 		
-		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(389, 70, 89, 23);
-		btnAgregar.setActionCommand("Agregar");
-		btnAgregar.addActionListener(this);
-		contentPane.add(btnAgregar);
+		btnAgregarPer = new JButton("Agregar Personal");
+		btnAgregarPer.setBounds(347, 70, 131, 23);
+		btnAgregarPer.setActionCommand("Agregar");
+		btnAgregarPer.addActionListener(this);
+		contentPane.add(btnAgregarPer);
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(389, 113, 89, 23);
+		btnEliminar.setBounds(347, 202, 131, 23);
 		btnEliminar.setActionCommand("Eliminar");
 		btnEliminar.addActionListener(this);
 		contentPane.add(btnEliminar);
 		
 		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(389, 151, 89, 23);
+		btnModificar.setBounds(347, 158, 131, 23);
 		btnModificar.setActionCommand("Modificar");
 		btnModificar.addActionListener(this);
 		contentPane.add(btnModificar);
@@ -81,6 +81,11 @@ public class frmContactos extends JFrame implements ActionListener {
 		btnAtras.addActionListener(this);
 		contentPane.add(btnAtras);
 		
+		JButton btnAgregarL = new JButton("Agregar Laboral");
+		btnAgregarL.setActionCommand("Agregar");
+		btnAgregarL.setBounds(347, 114, 131, 23);
+		contentPane.add(btnAgregarL);
+		
 	}
 
 
@@ -89,13 +94,19 @@ public class frmContactos extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 	switch (e.getActionCommand())
 	{
-	case "Agregar": 
-		frmAltaContacto objAltaContacto = new frmAltaContacto();
-		objAltaContacto.setVisible(true);
+	case "Agregar Personal": 
+		frmAltaContPersonal objAltaContPersonal = new frmAltaContPersonal();
+		objAltaContPersonal.setVisible(true);
 		break;
-	case "Eliminar": 
 		
+	case "Agregar Laboral": 
+		frmAltaContLaboral objAltaContLaboral = new frmAltaContLaboral();
+		objAltaContLaboral.setVisible(true);
 		break;
+		
+	case "Eliminar": 
+		break;
+		
 	case "Modificar":
 		
 		break;	

@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import clases.GestorUsuarios;
+import clases.GestorContactos;
 import clases.MiExcepcion;
 
 import java.awt.FlowLayout;
@@ -24,7 +24,7 @@ import javax.swing.JFileChooser;
 
 import java.awt.Font;
 
-public class frmAltaContacto extends JFrame implements ActionListener{
+public class frmAltaContPersonal extends JFrame implements ActionListener{
 
 	/**
 	 * 
@@ -44,6 +44,12 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 	private static String ficheros;
 	private static String path;
 	private static String ultimoPatronFicheros = null;
+	private JLabel lblDomicilio;
+	private JTextField textDomicilio;
+	private JLabel lblTelfonoCasa;
+	private JLabel lblFechaNacimiento;
+	private JTextField textTfno_dom;
+	private JTextField textFecha_n;
 
 	private static File pedirCarpeta() {
 		String carp = ultimaCarpeta; 
@@ -61,7 +67,7 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public frmAltaContacto() {
+	public frmAltaContPersonal() {
 		setResizable(false);
 		this.setTitle("Beat v1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,25 +80,25 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 		//contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblNombre = new JLabel("Nombre:");
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblNombre, -286, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblNombre, 10, SpringLayout.WEST, contentPane);
 		contentPane.add(lblNombre);
 		
 		txtNombre = new JTextField();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, txtNombre, -3, SpringLayout.NORTH, lblNombre);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 17, SpringLayout.EAST, lblNombre);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, -214, SpringLayout.EAST, contentPane);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
 		lblApellidos = new JLabel("Apellidos:");
-		sl_contentPane.putConstraint(SpringLayout.WEST, lblApellidos, 91, SpringLayout.WEST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblNombre, -18, SpringLayout.NORTH, lblApellidos);
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblApellidos, 0, SpringLayout.WEST, lblNombre);
 		contentPane.add(lblApellidos);
 		
 		txtApellidos = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtNombre, 0, SpringLayout.WEST, txtApellidos);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtNombre, -5, SpringLayout.EAST, txtApellidos);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtApellidos, 167, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtApellidos, -115, SpringLayout.EAST, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, txtApellidos, -3, SpringLayout.NORTH, lblApellidos);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtApellidos, 12, SpringLayout.EAST, lblApellidos);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtApellidos, -214, SpringLayout.EAST, contentPane);
 		contentPane.add(txtApellidos);
 		txtApellidos.setColumns(10);
 		
@@ -103,7 +109,7 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
 		
-		JLabel lblAltaDeUsuario = new JLabel("ALTA DE USUARIO");
+		JLabel lblAltaDeUsuario = new JLabel("CONTACTO PERSONAL");
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblAltaDeUsuario, 20, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblAltaDeUsuario, 133, SpringLayout.WEST, contentPane);
 		lblAltaDeUsuario.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -122,41 +128,77 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 		
 		txtMovil = new JTextField();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, txtMovil, -3, SpringLayout.NORTH, lblNum_m);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtMovil, 0, SpringLayout.WEST, txtNombre);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtMovil, 0, SpringLayout.EAST, txtApellidos);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtMovil, 30, SpringLayout.EAST, lblNum_m);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtMovil, -214, SpringLayout.EAST, contentPane);
 		txtMovil.setColumns(10);
 		contentPane.add(txtMovil);
 		
 		txtEmail = new JTextField();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, txtEmail, -3, SpringLayout.NORTH, lblEmail);
-		sl_contentPane.putConstraint(SpringLayout.WEST, txtEmail, 48, SpringLayout.EAST, lblEmail);
-		sl_contentPane.putConstraint(SpringLayout.EAST, txtEmail, 0, SpringLayout.EAST, txtApellidos);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtEmail, 30, SpringLayout.EAST, lblEmail);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtEmail, -214, SpringLayout.EAST, contentPane);
 		txtEmail.setColumns(10);
 		contentPane.add(txtEmail);
 		
 		JLabel lblFoto = new JLabel("Foto:");
-		sl_contentPane.putConstraint(SpringLayout.NORTH, lblFoto, 18, SpringLayout.SOUTH, lblEmail);
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblFoto, 0, SpringLayout.WEST, lblNombre);
 		contentPane.add(lblFoto);
 		
 		btnSubirFoto = new JButton("Subir foto");
-		sl_contentPane.putConstraint(SpringLayout.WEST, btnSubirFoto, 0, SpringLayout.WEST, txtNombre);
-		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnSubirFoto, 0, SpringLayout.SOUTH, lblFoto);
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnSubirFoto, 32, SpringLayout.EAST, lblFoto);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblFoto, 4, SpringLayout.NORTH, btnSubirFoto);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, btnSubirFoto, 17, SpringLayout.SOUTH, txtEmail);
 		btnSubirFoto.setActionCommand("foto");
 		btnSubirFoto.addActionListener(this);
 		contentPane.add(btnSubirFoto);
+		
+		lblDomicilio = new JLabel("Domicilio: ");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDomicilio, 0, SpringLayout.NORTH, lblNombre);
+		contentPane.add(lblDomicilio);
+		
+		textDomicilio = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.WEST, textDomicilio, 264, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, textDomicilio, -10, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblDomicilio, -6, SpringLayout.WEST, textDomicilio);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, textDomicilio, -3, SpringLayout.NORTH, lblNombre);
+		textDomicilio.setColumns(10);
+		contentPane.add(textDomicilio);
+		
+		lblTelfonoCasa = new JLabel("Tel\u00E9fono casa: ");
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblTelfonoCasa, 6, SpringLayout.EAST, txtApellidos);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblTelfonoCasa, 0, SpringLayout.SOUTH, txtApellidos);
+		contentPane.add(lblTelfonoCasa);
+		
+		lblFechaNacimiento = new JLabel("Fecha nacimiento: ");
+		sl_contentPane.putConstraint(SpringLayout.WEST, lblFechaNacimiento, 6, SpringLayout.EAST, txtMovil);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblFechaNacimiento, 0, SpringLayout.SOUTH, txtMovil);
+		contentPane.add(lblFechaNacimiento);
+		
+		textTfno_dom = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, textTfno_dom, -3, SpringLayout.NORTH, lblApellidos);
+		sl_contentPane.putConstraint(SpringLayout.WEST, textTfno_dom, 0, SpringLayout.EAST, lblTelfonoCasa);
+		sl_contentPane.putConstraint(SpringLayout.EAST, textTfno_dom, 0, SpringLayout.EAST, btnGuardar);
+		textTfno_dom.setColumns(10);
+		contentPane.add(textTfno_dom);
+		
+		textFecha_n = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, textFecha_n, -3, SpringLayout.NORTH, lblFechaNacimiento);
+		sl_contentPane.putConstraint(SpringLayout.WEST, textFecha_n, 6, SpringLayout.EAST, lblFechaNacimiento);
+		sl_contentPane.putConstraint(SpringLayout.EAST, textFecha_n, 0, SpringLayout.EAST, btnGuardar);
+		textFecha_n.setColumns(10);
+		contentPane.add(textFecha_n);
 	}
 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		GestorUsuarios emp = new GestorUsuarios();
+		GestorContactos contacto = new GestorContactos();
 		switch (e.getActionCommand()) {
 		
-			case "guardar": 
+			case "guardar": //modificar
 				try {
-					emp.AñadirUsuario(txtNombre.getText(), txtApellidos.getText(), txtMovil.getText(), txtEmail.getText());
+					contacto.AñadirContactoPersonal(txtNombre.getText(), txtApellidos.getText(), txtMovil.getText(), txtEmail.getText());
 				} catch (MiExcepcion e1) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(this,e1.YaExiste());
@@ -182,6 +224,6 @@ public class frmAltaContacto extends JFrame implements ActionListener{
 				//listaRepVideos.add( path, ficheros, true );
 				//lCanciones.repaint(); ME PARECE QUE ESTO NO HACE FALTA
 			}
-			frmAltaContacto.this.dispose();
+			frmAltaContPersonal.this.dispose();
 	}
 }

@@ -66,10 +66,12 @@ public class BaseDeDatos {
 	}
 
 	
+	// ------------------------------------ CREACIÓN TABLAS ------------------------------------
+
 	// ------------------------------------
-	// CREACIÓN TABLAS
+	// USUARIO
 	// ------------------------------------
-		
+	
 	/** Crea una tabla de los usuarios de la aplicación en una base de datos (si no existía ya).
 	 * Debe haberse inicializado la conexión correctamente.
 	*/
@@ -78,7 +80,7 @@ public class BaseDeDatos {
 		try {
 			statement.executeUpdate("create table tabla_usuarios " +
 				"(nomLogIn string, nombreReal string, apellidos string" +
-				", password string)");
+				", password string, primary key (nomLogIn))");
 			System.out.println("La tabla_usuario se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
@@ -86,6 +88,7 @@ public class BaseDeDatos {
 			// e.printStackTrace();  
 		}
 	}
+	
 	
 	/**Añadir un nuevo usuario a la BD.
 	 */
@@ -105,6 +108,10 @@ public class BaseDeDatos {
 	}
 	
 	
+	// ------------------------------------
+	// TAREAS
+	// ------------------------------------
+	
 	/** Crea una tabla de las tareas de un usuario en una base de datos (si no existía ya).
 	 * Debe haberse inicializado la conexión correctamente.
 	*/
@@ -122,7 +129,7 @@ public class BaseDeDatos {
 		}
 	}	
 	
-	
+		
 	/**Añadir una nueva tarea a la BD.
 	 */
 	public static void insertTarea( int id, Date fecha_i, Date fecha_f, String importancia, String localizacion,
@@ -145,17 +152,91 @@ public class BaseDeDatos {
 		}
 	}
 	
-	/** Crea una tabla de los contactos de un usuario en una base de datos (si no existía ya).
+	
+	// ------------------------------------
+	// CONTACTOS
+	// ------------------------------------
+	
+	/** Crea una tabla de los contactos PERSONALES de un usuario en una base de datos (si no existía ya).
 	 * Debe haberse inicializado la conexión correctamente.
 	*/
-	public static void crearTablaContactos() {
+	public static void crearTablaContactosPersonal() { //falta la foto
 		if (statement==null) return;
 		try {
-			statement.executeUpdate("create table fichero_multimedia " +
-				"(nombre string, apellidos string, num_m int, email string, foto image)");
+			statement.executeUpdate("create table tabla_contPersonal " +
+				"(nombre string, apell string, email string" +
+				", movil string, domicilio string, tfno_domicilio string" +
+				", fecha_n string, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
+			System.out.println("La tabla_contPersonal se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
+			System.out.println("La tabla_contPersonal ya existe.");
 			// e.printStackTrace();  
+		}
+	}
+	
+	
+	/**Añadir una nuevo contacto PERSONAL a la BD.
+	 */
+	public static void insertContactoPersonal (String nombre, String apell, String email, String movil, String domicilio,
+			String tfno_domicilio, String fecha_n, String nomLogIn) { //falta la foto
+		
+		String sent = "insert into tabla_contPersonal values(" +
+				"'" + nombre + "', " +
+				"'" + apell + "', " +
+				"'" + email + "', " +
+				"'" + movil + "', " +
+				"'" + domicilio + "', " +
+				"'" + tfno_domicilio + "', " +
+				"'" + fecha_n + "', " +
+				"'" + nomLogIn + "')";
+		try {
+			statement.executeUpdate(sent);
+		} catch (SQLException e) {
+			System.out.println( "ERROR EN SENTENCIA SQL: " + sent);
+			e.printStackTrace();
+		}
+	}
+	
+	
+	/** Crea una tabla de los contactos LABORALES de un usuario en una base de datos (si no existía ya).
+	 * Debe haberse inicializado la conexión correctamente.
+	*/
+	public static void crearTablaContactosLaboral() { //falta la foto
+		if (statement==null) return;
+		try {
+			statement.executeUpdate("create table tabla_contLaboral " +
+					"(nombre string, apell string, email string" +
+					", movil string, empresa string, cargo string" +
+					", tfno_empresa string, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
+			System.out.println("La tabla_contLaboral se ha creado.");
+		} catch (SQLException e) {
+			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
+			System.out.println("La tabla_contLaboral ya existe.");
+			// e.printStackTrace();  
+		}
+	}
+	
+	
+	/**Añadir una nuevo contacto LABORAL a la BD.
+	 */
+	public static void insertContactoLaboral (String nombre, String apell, String email, String movil, String empresa,
+			String cargo, String tfno_empresa, String nomLogIn) { //falta la foto
+		
+		String sent = "insert into tabla_contLaboral values(" +
+				"'" + nombre + "', " +
+				"'" + apell + "', " +
+				"'" + email + "', " +
+				"'" + movil + "', " +
+				"'" + empresa + "', " +
+				"'" + cargo + "', " +
+				"'" + tfno_empresa + "', " +
+				"'" + nomLogIn + "')";
+		try {
+			statement.executeUpdate(sent);
+		} catch (SQLException e) {
+			System.out.println( "ERROR EN SENTENCIA SQL: " + sent);
+			e.printStackTrace();
 		}
 	}
 }

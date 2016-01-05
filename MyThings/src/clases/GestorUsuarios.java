@@ -53,8 +53,8 @@ public class GestorUsuarios {
 	
 	
 	/**Añadir un nuevo usuario a la BD
-	 * Primero comprobar si existe el usuario, si existe lo añadimos a la BD
-	 * Si no existe, devolveremos un false que hará que salga un mensaje de error.
+	 * Primero comprobar si existe el usuario, si no existe lo añadimos a la BD
+	 * Si existe, devolveremos un false que hará que salga un mensaje de error.
 	 */
 	public boolean AñadirUsuario (String nomLI, String nombreR, String apell, String password) throws MiExcepcion{
 		
@@ -69,7 +69,7 @@ public class GestorUsuarios {
 			
 			if(consulta.next()){ //Si al hacer la consulta encuentra un registro identico, asigna 'false' a NoExiste
 				NoExiste = false;
-				System.out.println("El usuario ya existen.");
+				System.out.println("El usuario ya existe.");
 			} else {
 				BaseDeDatos.insertUsuario(nomLI, nombreR, apell, password);
 				System.out.println("Usuario añadido.");
