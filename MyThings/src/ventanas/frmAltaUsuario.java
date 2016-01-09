@@ -135,7 +135,9 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 					if (usuario.AñadirUsuario(txtNomLogIn.getText(), txtNomReal.getText(), txtApellidos.getText(), txtPassword.getText())){
 						frmPrincipal objLogin = new frmPrincipal();
 						objLogin.setVisible(true);
+						frmAltaUsuario.this.dispose();
 					}
+					
 				}catch (MiExcepcion e1){
 					JOptionPane.showMessageDialog(this,e1.YaExiste());
 				}
@@ -146,8 +148,9 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 			case "cancelar":
 				frmLogin objLogin = new frmLogin();
 				objLogin.setVisible(true);
+				frmAltaUsuario.this.dispose();
 				break;
 			}
-			frmAltaUsuario.this.dispose();
+			//frmAltaUsuario.this.dispose();
 	}
 }

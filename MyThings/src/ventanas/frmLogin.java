@@ -68,7 +68,7 @@ public class frmLogin extends JFrame implements ActionListener{
 		contentPane.add(lblInicioDeSesin);
 		
 		btnLogIn = new JButton("Log in");
-//		btnLogIn.setMnemonic('L');
+	//	btnLogIn.setMnemonic('L');
 		btnLogIn.setMnemonic(KeyEvent.VK_ENTER);
 		btnLogIn.setBounds(207, 179, 89, 23);
 		btnLogIn.setActionCommand("login");
@@ -98,17 +98,24 @@ public class frmLogin extends JFrame implements ActionListener{
 		switch (e.getActionCommand()) {
 			
 			case "login":				
-				if(usuario.Login(txtUsuario.getText(), txtPassword.getText())) {
+				try {
+					if(usuario.Login(txtUsuario.getText(), txtPassword.getText())) {
 					frmPrincipal objPrincipal = new frmPrincipal();
 					objPrincipal.setVisible(true);
+					frmLogin.this.dispose();
+					}
+				}catch(MiExcepcion e1){
+						JOptionPane.showMessageDialog(this,e1.NoExiste());
 				}
+				
 				break;
-			
+				
 			case "Registrarme":
 				frmAltaUsuario altaUsuario = new frmAltaUsuario();
 				altaUsuario.setVisible(true);
+				frmLogin.this.dispose();
 				break;
 		}
-		frmLogin.this.dispose();
+		
 	}
 }

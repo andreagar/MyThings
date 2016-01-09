@@ -21,7 +21,7 @@ public class GestorUsuarios {
 	 * Comprobamos de si/no existe el usuario, para saberlo hacemos una consulta con el nombre de usuario y password.
 	 * Si no existe, devolveremos un false que hará que salga un mensaje de que ese usuario no está registrado.
 	 */
-	public boolean Login (String usuario, String password){
+	public boolean Login (String usuario, String password) throws MiExcepcion{
 		
 		boolean entrar = false;
 		

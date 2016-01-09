@@ -109,16 +109,16 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblImportancia, 0, SpringLayout.WEST, lblDescripcin);
 		contentPane.add(lblImportancia);
 		
-		String[] tiempo = {null, "15", "30", "45", "60"};
+		String[] tiempo = {"0", "15", "30", "45", "60"};
 		JComboBox TiempoViaje = new JComboBox(tiempo);
-		TiempoViaje.setSelectedIndex(1);
+		sl_contentPane.putConstraint(SpringLayout.WEST, TiempoViaje, 18, SpringLayout.EAST, lblTiempoDeViaje);
+		TiempoViaje.setSelectedIndex(0);
 		TiempoViaje.addActionListener(this);
 		sl_contentPane.putConstraint(SpringLayout.NORTH, TiempoViaje, -3, SpringLayout.NORTH, lblTiempoDeViaje);
-		sl_contentPane.putConstraint(SpringLayout.WEST, TiempoViaje, 24, SpringLayout.EAST, lblTiempoDeViaje);
-		sl_contentPane.putConstraint(SpringLayout.EAST, TiempoViaje, 52, SpringLayout.EAST, lblTiempoDeViaje);
 		contentPane.add(TiempoViaje);
 		
 		txtLocalizacion = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.EAST, TiempoViaje, 0, SpringLayout.EAST, txtLocalizacion);
 		sl_contentPane.putConstraint(SpringLayout.WEST, txtLocalizacion, 0, SpringLayout.WEST, txtDescripcion);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtLocalizacion, 0, SpringLayout.SOUTH, lblLocalizacin);
 		contentPane.add(txtLocalizacion);
@@ -126,10 +126,11 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		
 		String[] nivelesImportancia = {"Alta", "Media", "Baja"};
 		JComboBox Importancia = new JComboBox(nivelesImportancia);
+		sl_contentPane.putConstraint(SpringLayout.WEST, Importancia, 17, SpringLayout.EAST, lblImportancia);
+		sl_contentPane.putConstraint(SpringLayout.EAST, Importancia, 0, SpringLayout.EAST, TiempoViaje);
 		Importancia.setSelectedIndex(1);
 		Importancia.addActionListener(this);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, Importancia, 0, SpringLayout.SOUTH, lblImportancia);
-		sl_contentPane.putConstraint(SpringLayout.EAST, Importancia, 0, SpringLayout.EAST, TiempoViaje);
 		contentPane.add(Importancia);
 	}
 
@@ -138,12 +139,14 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		GestorTareas tareas = new GestorTareas();
+		
 		switch (e.getActionCommand()) {
 		
 			case "guardar": 
-					
+					tareas.AñadirTarea(id, fecha_i, fecha_f, importancia, localizacion, tiempo, descripcion, invitado, password);
+				frmAltaTarea.this.dispose();
 				break;
 			}
-			frmAltaTarea.this.dispose();
+			
 	}
 }

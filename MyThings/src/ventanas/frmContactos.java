@@ -113,6 +113,7 @@ public class frmContactos extends JFrame implements ActionListener {
 	case "Atras":
 		frmPrincipal objPrincipal = new frmPrincipal();
 		objPrincipal.setVisible(true);
+		break;
 	}
 	frmContactos.this.dispose();
 	}
