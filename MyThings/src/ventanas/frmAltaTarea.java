@@ -32,7 +32,12 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	private PanelConImagen contentPane;
 	private JButton btnGuardar;
+	private JDateChooser FechaInicio;
+	private JDateChooser FechaFin;
 	private JTextField txtLocalizacion;
+	private JComboBox Importancia;
+	private JTextPane txtDescripcion;
+	private JComboBox TiempoViaje;
 
 
 	/**
@@ -77,19 +82,19 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblFechaFin, 0, SpringLayout.WEST, lblDescripcin);
 		contentPane.add(lblFechaFin);
 		
-		JTextPane txtDescripcion = new JTextPane();
+		txtDescripcion = new JTextPane();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, txtDescripcion, 16, SpringLayout.SOUTH, lblAltaDeUsuario);
 		sl_contentPane.putConstraint(SpringLayout.WEST, txtDescripcion, 11, SpringLayout.EAST, lblDescripcin);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, txtDescripcion, 15, SpringLayout.SOUTH, lblDescripcin);
 		sl_contentPane.putConstraint(SpringLayout.EAST, txtDescripcion, 251, SpringLayout.EAST, lblDescripcin);
 		contentPane.add(txtDescripcion);
 		
-		JDateChooser FechaInicio = new JDateChooser();
+		FechaInicio = new JDateChooser();
 		sl_contentPane.putConstraint(SpringLayout.WEST, FechaInicio, 0, SpringLayout.WEST, txtDescripcion);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, FechaInicio, 0, SpringLayout.SOUTH, lblFechaInicio);
 		contentPane.add(FechaInicio);
 		
-		JDateChooser FechaFin = new JDateChooser();
+		FechaFin = new JDateChooser();
 		sl_contentPane.putConstraint(SpringLayout.WEST, FechaFin, 0, SpringLayout.WEST, txtDescripcion);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, FechaFin, 0, SpringLayout.SOUTH, lblFechaFin);
 		contentPane.add(FechaFin);
@@ -110,7 +115,7 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		contentPane.add(lblImportancia);
 		
 		String[] tiempo = {"0", "15", "30", "45", "60"};
-		JComboBox TiempoViaje = new JComboBox(tiempo);
+		TiempoViaje = new JComboBox(tiempo);
 		sl_contentPane.putConstraint(SpringLayout.WEST, TiempoViaje, 18, SpringLayout.EAST, lblTiempoDeViaje);
 		TiempoViaje.setSelectedIndex(0);
 		TiempoViaje.addActionListener(this);
@@ -125,7 +130,7 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		txtLocalizacion.setColumns(10);
 		
 		String[] nivelesImportancia = {"Alta", "Media", "Baja"};
-		JComboBox Importancia = new JComboBox(nivelesImportancia);
+		Importancia = new JComboBox(nivelesImportancia);
 		sl_contentPane.putConstraint(SpringLayout.WEST, Importancia, 17, SpringLayout.EAST, lblImportancia);
 		sl_contentPane.putConstraint(SpringLayout.EAST, Importancia, 0, SpringLayout.EAST, TiempoViaje);
 		Importancia.setSelectedIndex(1);
@@ -143,7 +148,7 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		switch (e.getActionCommand()) {
 		
 			case "guardar": 
-					tareas.AñadirTarea(id, fecha_i, fecha_f, importancia, localizacion, tiempo, descripcion, invitado, password);
+					tareas.AñadirTarea(id,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , String.valueOf(TiempoViaje.getSelectedItem()), txtDescripcion.getText(), invitado, password);
 				frmAltaTarea.this.dispose();
 				break;
 			}
