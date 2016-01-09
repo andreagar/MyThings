@@ -34,7 +34,7 @@ public class frmPrincipal extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 494, 397);
 		contentPane = new PanelConImagen();
-		this.setTitle("Beat v1.0");
+		this.setTitle("MyThings v1.0");
 		contentPane.setForeground(Color.WHITE);
 		contentPane.setBackground(SystemColor.menu);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
