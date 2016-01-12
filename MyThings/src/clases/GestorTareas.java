@@ -39,8 +39,9 @@ public class GestorTareas {
 		BaseDeDatos.getConnection();
 		Statement stmt = BaseDeDatos.getStatement();
 		ArrayList array = new ArrayList();
+		ResultSet consulta = null;
 		try{
-		ResultSet consulta = stmt.executeQuery("select * from tabla_tareas where "
+		consulta = stmt.executeQuery("select * from tabla_tareas where "
 				+ "nomLogIn='"+usuario+"' ");
 		ResultSetMetaData rsmd = consulta.getMetaData();
 		int columnas = rsmd.getColumnCount();

@@ -126,7 +126,6 @@ public class BaseDeDatos {
 			// e.printStackTrace();  
 		}
 	}	
-	
 		
 	/**Añadir una nueva tarea a la BD.
 	 */
