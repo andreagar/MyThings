@@ -150,7 +150,7 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		
 			case "guardar": 
 				int id = new Random().nextInt(99999999);
-					tareas.AñadirTarea(id ,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , String.valueOf(TiempoViaje.getSelectedItem()), txtDescripcion.getText());
+					tareas.AñadirTarea(id ,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , (int) TiempoViaje.getSelectedItem(), txtDescripcion.getText());
 				frmAltaTarea.this.dispose();
 				break;
 			}
