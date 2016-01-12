@@ -28,4 +28,9 @@ public class GestorTareas {
 	public void EliminarTarea(){
 		
 	}
+
+	public ArrayList<Tareas> ArrayTareas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
