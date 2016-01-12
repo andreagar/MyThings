@@ -3,11 +3,14 @@ package clases;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
+
+import ventanas.frmLogin;
 
 /** Métodos útiles para base de datos.
  * Clase con métodos estáticos para gestionar una sola base de datos
@@ -119,8 +122,8 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table tabla_tareas " +
-				"(nomLogIn string references tabla_usuarios (nomLogIn),id int, fecha_i date, fecha_f date, importancia int, localizacion string, tiempo_v int" +
-				", descripcion string)");
+				"(id int, fecha_i date, fecha_f date, importancia string, localizacion string, tiempo_v int" +
+				", descripcion string, nomLogIn string references tabla_usuarios (nomLogIn))");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
 			// e.printStackTrace();  
@@ -130,7 +133,7 @@ public class BaseDeDatos {
 	/**Añadir una nueva tarea a la BD.
 	 */
 	public static void insertTarea( int id, Date fecha_i, Date fecha_f, String importancia, String localizacion,
-			int tiempo, String descripcion) {
+			int tiempo, String descripcion, String usuario) {
 		
 		String sent = "insert into tabla_tareas values(" +
 				"'" + id + "', " +
@@ -139,7 +142,8 @@ public class BaseDeDatos {
 				"'" + importancia + "', " +
 				"'" + localizacion + "', " +
 				"'" + tiempo + "', " +
-				"'" + descripcion + "')";
+				"'" + descripcion + "', " +
+				"'" + usuario + "')";
 		try {
 			statement.executeUpdate(sent);
 		} catch (SQLException e) {
@@ -148,7 +152,20 @@ public class BaseDeDatos {
 		}
 	}
 	
-	
+	public static ResultSet SeleccionarTareas(){
+		
+		String usuario = frmLogin.txtUsuario.getText();
+		BaseDeDatos.getConnection();
+		Statement stmt = BaseDeDatos.getStatement();
+		ResultSet consulta = null;
+		try{
+			consulta = stmt.executeQuery("select * from tabla_tareas where "
+					+ "nomLogIn='"+usuario+"'");
+		}catch (SQLException e){
+		}
+		
+		return consulta;
+	}
 	// ------------------------------------
 	// CONTACTOS
 	// ------------------------------------
