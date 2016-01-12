@@ -7,7 +7,7 @@ public class Tareas {
 	private int id; //clave primaria
 	private Date fecha_i;
 	private Date fecha_f;
-	private int importancia;
+	private String importancia;
 	private String localizacion;
 	private int tiempo_v;
 	private String descripcion;
@@ -46,13 +46,13 @@ public class Tareas {
 	/**
 	 * @return the importancia
 	 */
-	public int getImportancia() {
+	public String getImportancia() {
 		return importancia;
 	}
 	/**
 	 * @param importancia the importancia to set
 	 */
-	public void setImportancia(int importancia) {
+	public void setImportancia(String importancia) {
 		this.importancia = importancia;
 	}
 	/**

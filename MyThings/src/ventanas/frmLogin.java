@@ -28,7 +28,7 @@ public class frmLogin extends JFrame implements ActionListener{
 
 	private PanelConImagen contentPane;
 	
-	private JTextField txtUsuario;
+	public static JTextField txtUsuario;
 	private JPasswordField passwordField;
 	private JButton btnLogIn;
 	private JPasswordField txtPassword;

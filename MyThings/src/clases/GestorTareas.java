@@ -1,10 +1,15 @@
 package clases;
 
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+
+import ventanas.frmAltaUsuario;
+import ventanas.frmLogin;
 
 public class GestorTareas {
 
@@ -30,7 +35,32 @@ public class GestorTareas {
 	}
 
 	public ArrayList<Tareas> ArrayTareas() {
-		// TODO Auto-generated method stub
-		return null;
+		String usuario = frmLogin.txtUsuario.getText();  //hemos cambiado txtNomLogIn a static
+		BaseDeDatos.getConnection();
+		Statement stmt = BaseDeDatos.getStatement();
+		ArrayList array = new ArrayList();
+		try{
+		ResultSet consulta = stmt.executeQuery("select * from tabla_tareas where "
+				+ "nomLogIn='"+usuario+"' ");
+		ResultSetMetaData rsmd = consulta.getMetaData();
+		int columnas = rsmd.getColumnCount();
+		
+		while(consulta.next()){
+			HashMap fila = new HashMap();
+			array.add(fila);
+			
+			for (int i=1;i<=columnas; i++){
+				fila.put(rsmd.getColumnName(i), consulta.getObject(i));
+			}
+			
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+	}
+		
+		return array;
+		
+		
+	
 	}
 }
