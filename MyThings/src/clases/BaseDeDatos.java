@@ -1,10 +1,10 @@
 package clases;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.JOptionPane;
@@ -116,13 +116,11 @@ public class BaseDeDatos {
 	 * Debe haberse inicializado la conexión correctamente.
 	*/
 	public static void crearTablaTareas() {
-		//de la de contacto no estoy muy segura de que esté bien!!!!!
-		//y de lo de references tampoco!!!!
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table tabla_tareas " +
 				"(nomLogIn string references tabla_usuarios (nomLogIn),id int, fecha_i date, fecha_f date, importancia int, localizacion string, tiempo_v int" +
-				", descripcion string, invitado contacto)");
+				", descripcion string)");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
 			// e.printStackTrace();  
@@ -164,7 +162,7 @@ public class BaseDeDatos {
 		try {
 			statement.executeUpdate("create table tabla_contPersonal " +
 				"(nombre string, apell string, email string" +
-				", movil string, domicilio string, tfno_domicilio string" +
+				", movil string, imagen blob, domicilio string, tfno_domicilio string" +
 				", fecha_n string, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
 			System.out.println("La tabla_contPersonal se ha creado.");
 		} catch (SQLException e) {
@@ -177,14 +175,15 @@ public class BaseDeDatos {
 	
 	/**Añadir una nuevo contacto PERSONAL a la BD.
 	 */
-	public static void insertContactoPersonal (String nombre, String apell, String email, String movil, String domicilio,
-			String tfno_domicilio, String fecha_n, String nomLogIn) { //falta la foto
+	public static void insertContactoPersonal (String nombre, String apell, String email, String movil, Blob imagen, 
+			String domicilio, String tfno_domicilio, String fecha_n, String nomLogIn) {
 		
 		String sent = "insert into tabla_contPersonal values(" +
 				"'" + nombre + "', " +
 				"'" + apell + "', " +
 				"'" + email + "', " +
 				"'" + movil + "', " +
+				"'" + imagen + "', " +
 				"'" + domicilio + "', " +
 				"'" + tfno_domicilio + "', " +
 				"'" + fecha_n + "', " +
@@ -206,7 +205,7 @@ public class BaseDeDatos {
 		try {
 			statement.executeUpdate("create table tabla_contLaboral " +
 					"(nombre string, apell string, email string" +
-					", movil string, empresa string, cargo string" +
+					", movil string, imagen blob, empresa string, cargo string" +
 					", tfno_empresa string, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
 			System.out.println("La tabla_contLaboral se ha creado.");
 		} catch (SQLException e) {
@@ -219,14 +218,15 @@ public class BaseDeDatos {
 	
 	/**Añadir una nuevo contacto LABORAL a la BD.
 	 */
-	public static void insertContactoLaboral (String nombre, String apell, String email, String movil, String empresa,
-			String cargo, String tfno_empresa, String nomLogIn) { //falta la foto
+	public static void insertContactoLaboral (String nombre, String apell, String email, String movil, Blob imagen, String empresa,
+			String cargo, String tfno_empresa, String nomLogIn) {
 		
 		String sent = "insert into tabla_contLaboral values(" +
 				"'" + nombre + "', " +
 				"'" + apell + "', " +
 				"'" + email + "', " +
 				"'" + movil + "', " +
+				"'" + imagen + "', " +
 				"'" + empresa + "', " +
 				"'" + cargo + "', " +
 				"'" + tfno_empresa + "', " +
