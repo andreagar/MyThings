@@ -133,7 +133,7 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 			case "guardar": 
 				try{
 					if (usuario.AñadirUsuario(txtNomLogIn.getText(), txtNomReal.getText(), txtApellidos.getText(), txtPassword.getText())){
-						frmPrincipal objLogin = new frmPrincipal();
+						frmLogin objLogin = new frmLogin();
 						objLogin.setVisible(true);
 						frmAltaUsuario.this.dispose();
 					}

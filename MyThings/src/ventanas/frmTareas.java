@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -13,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
 
-import LN.clsEmpleado;
 import clases.GestorTareas;
 import clases.Tareas;
 
@@ -121,7 +122,7 @@ public class frmTareas extends JFrame implements ActionListener {
 		listaTareas = new ArrayList<Tareas>();
 		listaTareas = tareas.ArrayTareas(); //DE ESTA FORMA NO ME DA NULL.POINTER.EXCEPTION, PERO LA LISTA ME SALE VACIA
 		
-		TablaDiscosModel tcm=new TablaDiscosModel(listaTareas);
+		TablaTareasModel tcm=new TablaTareasModel(listaTareas);
 //********************************************************************************************************************		
 		table = new JTable(tcm);
 		table.setPreferredScrollableViewportSize(new Dimension(500, 70));
@@ -131,16 +132,16 @@ public class frmTareas extends JFrame implements ActionListener {
 		tcm.fireTableDataChanged();
 	}
 	
-	class TablaDiscosModel extends AbstractTableModel
+	class TablaTareasModel extends AbstractTableModel
     {
         /**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;
-		private String[] columnNames = {"Nombre", "DNI", "Email", "Password"};
+		private String[] columnNames = {"Fecha Inicio", "Fecha Fin", "Importancia", "Localización", "Tiempo viaje", "Descripcion"};
         Object[][] data;
         
-        public TablaDiscosModel(ArrayList<Tareas> m)
+        public TablaTareasModel(ArrayList<Tareas> m)
         {
         	
         	super();
@@ -155,10 +156,16 @@ public class frmTareas extends JFrame implements ActionListener {
     		for (Tareas entry : listaTareas)
     		{
     		    //System.out.println(entry.getKey() + "/" + entry.getValue());
-    			Object[]a={new String(entry.getNombre()),
-    					   new String(entry.getDni()),
-    					   new String(entry.getEmail()),
-    					   new String(entry.getPassword())};
+    			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
+    			String fechai = fecha.format(entry.getFecha_i());
+    			String fechaf = fecha.format(entry.getFecha_f());
+    			String tiempo = Integer.toString(entry.getTiempo_v());
+    			Object[]a={new String(fechai),
+    					   new String(fechaf),
+    					   new String(entry.getImportancia()),
+    					   new String(entry.getLocalizacion()),
+    					   new String(tiempo),
+    					   new String(entry.getDescripcion())};
     			data[cont]=a;
     			cont++;
     		}
@@ -178,10 +185,16 @@ public class frmTareas extends JFrame implements ActionListener {
     		for (Tareas entry : listaTareas)
     		{
     		    //System.out.println(entry.getKey() + "/" + entry.getValue());
-    			Object[]a={new String(entry.getNombre()),
- 					   new String(entry.getDni()),
- 					   new String(entry.getEmail()),
- 					   new String(entry.getPassword())};
+    			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
+    			String fechai = fecha.format(entry.getFecha_i());
+    			String fechaf = fecha.format(entry.getFecha_f());
+    			String tiempo = Integer.toString(entry.getTiempo_v());
+    			Object[]a={new String(fechai),
+    					   new String(fechaf),
+    					   new String(entry.getImportancia()),
+    					   new String(entry.getLocalizacion()),
+    					   new String(tiempo),
+    					   new String(entry.getDescripcion())};
     			data[cont]=a;
     			cont++;
     		}
