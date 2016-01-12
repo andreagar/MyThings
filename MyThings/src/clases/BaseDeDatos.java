@@ -133,7 +133,7 @@ public class BaseDeDatos {
 	/**Añadir una nueva tarea a la BD.
 	 */
 	public static void insertTarea( int id, Date fecha_i, Date fecha_f, String importancia, String localizacion,
-			int tiempo, String descripcion, Contacto invitado) {
+			int tiempo, String descripcion) {
 		
 		String sent = "insert into tabla_tareas values(" +
 				"'" + id + "', " +
@@ -142,8 +142,7 @@ public class BaseDeDatos {
 				"'" + importancia + "', " +
 				"'" + localizacion + "', " +
 				"'" + tiempo + "', " +
-				"'" + descripcion + "', " +
-				"'" + invitado + "')";
+				"'" + descripcion + "')";
 		try {
 			statement.executeUpdate(sent);
 		} catch (SQLException e) {
