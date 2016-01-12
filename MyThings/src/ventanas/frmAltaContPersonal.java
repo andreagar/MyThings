@@ -45,11 +45,11 @@ public class frmAltaContPersonal extends JFrame implements ActionListener{
 	private static String path;
 	private static String ultimoPatronFicheros = null;
 	private JLabel lblDomicilio;
-	private JTextField textDomicilio;
+	private JTextField txtDomicilio;
 	private JLabel lblTelfonoCasa;
 	private JLabel lblFechaNacimiento;
-	private JTextField textTfno_dom;
-	private JTextField textFecha_n;
+	private JTextField txtTfno_dom;
+	private JTextField txtFecha_n;
 
 	private static File pedirCarpeta() {
 		String carp = ultimaCarpeta; 
@@ -156,13 +156,13 @@ public class frmAltaContPersonal extends JFrame implements ActionListener{
 		sl_contentPane.putConstraint(SpringLayout.NORTH, lblDomicilio, 0, SpringLayout.NORTH, lblNombre);
 		contentPane.add(lblDomicilio);
 		
-		textDomicilio = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.WEST, textDomicilio, 264, SpringLayout.WEST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textDomicilio, -10, SpringLayout.EAST, contentPane);
-		sl_contentPane.putConstraint(SpringLayout.EAST, lblDomicilio, -6, SpringLayout.WEST, textDomicilio);
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textDomicilio, -3, SpringLayout.NORTH, lblNombre);
-		textDomicilio.setColumns(10);
-		contentPane.add(textDomicilio);
+		txtDomicilio = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtDomicilio, 264, SpringLayout.WEST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtDomicilio, -10, SpringLayout.EAST, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.EAST, lblDomicilio, -6, SpringLayout.WEST, txtDomicilio);
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtDomicilio, -3, SpringLayout.NORTH, lblNombre);
+		txtDomicilio.setColumns(10);
+		contentPane.add(txtDomicilio);
 		
 		lblTelfonoCasa = new JLabel("Tel\u00E9fono casa: ");
 		sl_contentPane.putConstraint(SpringLayout.WEST, lblTelfonoCasa, 6, SpringLayout.EAST, txtApellidos);
@@ -174,19 +174,19 @@ public class frmAltaContPersonal extends JFrame implements ActionListener{
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, lblFechaNacimiento, 0, SpringLayout.SOUTH, txtMovil);
 		contentPane.add(lblFechaNacimiento);
 		
-		textTfno_dom = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textTfno_dom, -3, SpringLayout.NORTH, lblApellidos);
-		sl_contentPane.putConstraint(SpringLayout.WEST, textTfno_dom, 0, SpringLayout.EAST, lblTelfonoCasa);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textTfno_dom, 0, SpringLayout.EAST, btnGuardar);
-		textTfno_dom.setColumns(10);
-		contentPane.add(textTfno_dom);
+		txtTfno_dom = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtTfno_dom, -3, SpringLayout.NORTH, lblApellidos);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtTfno_dom, 0, SpringLayout.EAST, lblTelfonoCasa);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtTfno_dom, 0, SpringLayout.EAST, btnGuardar);
+		txtTfno_dom.setColumns(10);
+		contentPane.add(txtTfno_dom);
 		
-		textFecha_n = new JTextField();
-		sl_contentPane.putConstraint(SpringLayout.NORTH, textFecha_n, -3, SpringLayout.NORTH, lblFechaNacimiento);
-		sl_contentPane.putConstraint(SpringLayout.WEST, textFecha_n, 6, SpringLayout.EAST, lblFechaNacimiento);
-		sl_contentPane.putConstraint(SpringLayout.EAST, textFecha_n, 0, SpringLayout.EAST, btnGuardar);
-		textFecha_n.setColumns(10);
-		contentPane.add(textFecha_n);
+		txtFecha_n = new JTextField();
+		sl_contentPane.putConstraint(SpringLayout.NORTH, txtFecha_n, -3, SpringLayout.NORTH, lblFechaNacimiento);
+		sl_contentPane.putConstraint(SpringLayout.WEST, txtFecha_n, 6, SpringLayout.EAST, lblFechaNacimiento);
+		sl_contentPane.putConstraint(SpringLayout.EAST, txtFecha_n, 0, SpringLayout.EAST, btnGuardar);
+		txtFecha_n.setColumns(10);
+		contentPane.add(txtFecha_n);
 	}
 
 
@@ -196,9 +196,10 @@ public class frmAltaContPersonal extends JFrame implements ActionListener{
 		GestorContactos contacto = new GestorContactos();
 		switch (e.getActionCommand()) {
 		
-			case "guardar": //modificar
+			case "guardar":
 				try {
-					contacto.AÒadirContactoPersonal(txtNombre.getText(), txtApellidos.getText(), txtMovil.getText(), txtEmail.getText());
+					contacto.AÒadirContactoPersonal(txtNombre.getText(), txtApellidos.getText(), txtMovil.getText(), txtEmail.getText(),
+							txtDomicilio.getText(), txtTfno_dom.getText(), txtFecha_n.getText(), );
 				} catch (MiExcepcion e1) {
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(this,e1.YaExiste());
@@ -212,7 +213,7 @@ public class frmAltaContPersonal extends JFrame implements ActionListener{
 				if (fPath==null) return;
 				path = fPath.getAbsolutePath();
 				ultimaCarpeta = path;
-				if (ultimoPatronFicheros==null)  // Paso 6
+				if (ultimoPatronFicheros==null)
 					ficheros = JOptionPane.showInputDialog( null,
 							"Nombre de ficheros a elegir (* para cualquier cadena)",
 							"Selecci√≥n de ficheros dentro de la carpeta", JOptionPane.QUESTION_MESSAGE );
