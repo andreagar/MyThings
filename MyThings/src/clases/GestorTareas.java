@@ -15,8 +15,8 @@ public class GestorTareas {
 	/**Añadir una nueva tarea a la BD
 	 */
 	public void AñadirTarea (int id, Date fecha_i, Date fecha_f, String importancia, String localizacion,
-			int tiempo, String descripcion, Contacto invitado, String password) {
-		BaseDeDatos.insertTarea(id, fecha_i, fecha_f, importancia, localizacion, tiempo, descripcion, invitado);
+			int tiempo, String descripcion) {
+		BaseDeDatos.insertTarea(id, fecha_i, fecha_f, importancia, localizacion, tiempo, descripcion);
 	}
 	
 	
