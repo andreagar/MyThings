@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -148,7 +149,15 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		switch (e.getActionCommand()) {
 		
 			case "guardar": 
-					tareas.AñadirTarea(id,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , String.valueOf(TiempoViaje.getSelectedItem()), txtDescripcion.getText(), invitado, password);
+				int opcion = TiempoViaje.getSelectedIndex();
+				int opc = 0; //no me deja hacer un cast de TIEMPOVIAJE ni con int ni con Integer, asi que...
+			if(opcion==0) opc=0;
+			if(opcion==1) opc=15;
+			if(opcion==2) opc=30;
+			if(opcion==3) opc=45;
+			if(opcion==4) opc=60;
+				int id = new Random().nextInt(99999999);
+					tareas.AñadirTarea(id ,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , opc, txtDescripcion.getText());
 				frmAltaTarea.this.dispose();
 				break;
 			}
