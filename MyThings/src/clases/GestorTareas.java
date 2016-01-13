@@ -26,7 +26,7 @@ public class GestorTareas {
 	/**Añadir una nueva tarea a la BD
 	 */
 
-	public boolean AñadirTarea (int id, Date fecha_i, Date fecha_f, String importancia, String localizacion,
+	public boolean AñadirTarea (int id, String fecha_i, String fecha_f, String importancia, String localizacion,
 			int tiempo, String descripcion, String usuario) {
 		
 		boolean NoExiste = true; //NO está en la BD
@@ -95,8 +95,8 @@ public class GestorTareas {
 //				System.out.println(consulta.getString("nomLogIn"));
 				
 					tarea.setId(consulta.getInt("id"));
-					tarea.setFecha_i(consulta.getDate("fecha_i"));
-					tarea.setFecha_f(consulta.getDate("fecha_f") );
+					tarea.setFecha_i(consulta.getString("fecha_i"));
+					tarea.setFecha_f(consulta.getString("fecha_f"));
 					tarea.setImportancia(consulta.getString("importancia")); 
 					tarea.setLocalizacion(consulta.getString("localizacion"));
 					tarea.setTiempo_v((consulta.getInt("tiempo_v")));

@@ -159,12 +159,12 @@ public class frmTareas extends JFrame implements ActionListener {
     		for (Tareas entry : listaTareas) {
     			
     		    //System.out.println(entry.getKey() + "/" + entry.getValue());
-    			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
-    			String fechai = fecha.format(entry.getFecha_i());
-    			String fechaf = fecha.format(entry.getFecha_f());
+//    			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
+//    			String fechai = fecha.format(entry.getFecha_i());
+//    			String fechaf = fecha.format(entry.getFecha_f());
     			String tiempo = Integer.toString(entry.getTiempo_v());
-    			Object[]a={new String(fechai),
-    					   new String(fechaf),
+    			Object[]a={new String(entry.getFecha_i()),
+    					   new String(entry.getFecha_f()),
     					   new String(entry.getImportancia()),
     					   new String(entry.getLocalizacion()),
     					   new String(tiempo),
@@ -187,12 +187,12 @@ public class frmTareas extends JFrame implements ActionListener {
     		for (Tareas entry : listaTareas)
     		{
     		    //System.out.println(entry.getKey() + "/" + entry.getValue());
-    			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
-    			String fechai = fecha.format(entry.getFecha_i());
-    			String fechaf = fecha.format(entry.getFecha_f());
+//    			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
+//    			String fechai = fecha.format(entry.getFecha_i());
+//    			String fechaf = fecha.format(entry.getFecha_f());
     			String tiempo = Integer.toString(entry.getTiempo_v());
-    			Object[]a={new String(fechai),
-    					   new String(fechaf),
+    			Object[]a={new String(entry.getFecha_i()),
+    					   new String(entry.getFecha_f()),
     					   new String(entry.getImportancia()),
     					   new String(entry.getLocalizacion()),
     					   new String(tiempo),

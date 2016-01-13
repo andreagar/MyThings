@@ -122,7 +122,7 @@ public class BaseDeDatos {
 		if (statement==null) return;
 		try {
 			statement.executeUpdate("create table tabla_tareas " +
-				"(id int, fecha_i date, fecha_f date, importancia string, localizacion string, tiempo_v int" +
+				"(id int, fecha_i string, fecha_f string, importancia string, localizacion string, tiempo_v int" +
 				", descripcion string, nomLogIn string)");
 			System.out.println("La tabla_tareas se ha creado.");
 		} catch (SQLException e) {
@@ -134,7 +134,7 @@ public class BaseDeDatos {
 		
 	/**Añadir una nueva tarea a la BD.
 	 */
-	public static void insertTarea( int id, Date fecha_i, Date fecha_f, String importancia, String localizacion,
+	public static void insertTarea( int id, String fecha_i, String fecha_f, String importancia, String localizacion,
 			int tiempo, String descripcion, String usuario) {
 		
 		String sent = "insert into tabla_tareas values(" +
@@ -168,7 +168,7 @@ public class BaseDeDatos {
 			statement.executeUpdate("create table tabla_contPersonal " +
 				"(nombre string, apell string, email string" +
 				", movil string, imagen blob, domicilio string, tfno_domicilio string" +
-				", fecha_n date, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
+				", fecha_n date, nomLogIn string)");
 			System.out.println("La tabla_contPersonal se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
@@ -211,7 +211,7 @@ public class BaseDeDatos {
 			statement.executeUpdate("create table tabla_contLaboral " +
 					"(nombre string, apell string, email string" +
 					", movil string, imagen blob, empresa string, cargo string" +
-					", tfno_empresa string, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
+					", tfno_empresa string, nomLogIn string)");
 			System.out.println("La tabla_contLaboral se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)

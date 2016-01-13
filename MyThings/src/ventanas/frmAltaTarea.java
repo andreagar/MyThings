@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 
 import javax.swing.JFrame;
@@ -159,7 +161,10 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 				int id = new Random().nextInt(99999999);
 				String usuario = frmLogin.txtUsuario.getText();
 			try{
-				if (tareas.AñadirTarea(id ,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , opc, txtDescripcion.getText(),usuario)){
+				DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
+	    			String fechai = fecha.format(FechaInicio.getDate());
+	    			String fechaf = fecha.format(FechaFin.getDate());
+				if (tareas.AñadirTarea(id ,fechai , fechaf, String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , opc, txtDescripcion.getText(),usuario)){
 					frmAltaTarea.this.dispose();
 					frmTareas objTareas= new frmTareas();
 					objTareas.setVisible(true);

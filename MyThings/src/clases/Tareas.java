@@ -5,8 +5,8 @@ import java.util.Date;
 public class Tareas {
 
 	private int id; //clave primaria
-	private Date fecha_i;
-	private Date fecha_f;
+	private String fecha_i;
+	private String fecha_f;
 	private String importancia;
 	private String localizacion;
 	private int tiempo_v;
@@ -32,16 +32,16 @@ public class Tareas {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getFecha_i() {
+	public String getFecha_i() {
 		return fecha_i;
 	}
-	public void setFecha_i(Date fecha_i) {
+	public void setFecha_i(String fecha_i) {
 		this.fecha_i = fecha_i;
 	}
-	public Date getFecha_f() {
+	public String getFecha_f() {
 		return fecha_f;
 	}
-	public void setFecha_f(Date fecha_f) {
+	public void setFecha_f(String fecha_f) {
 		this.fecha_f = fecha_f;
 	}
 	public String getImportancia() {
