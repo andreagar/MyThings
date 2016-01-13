@@ -9,11 +9,14 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 
 import clases.GestorTareas;
 import clases.Tareas;
@@ -87,6 +90,12 @@ public class frmTareas extends JFrame implements ActionListener {
 		btnAtras.addActionListener(this);
 		contentPane.add(btnAtras);
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 57, 369, 301);
+		contentPane.add(scrollPane);
+		
+		
+		
 		crearTabla();
 		scrollPane.setViewportView(table);
 		
@@ -120,7 +129,7 @@ public class frmTareas extends JFrame implements ActionListener {
 		table=null;
 		
 		listaTareas = new ArrayList<Tareas>();
-		listaTareas = tareas.ArrayTareas(); //DE ESTA FORMA NO ME DA NULL.POINTER.EXCEPTION, PERO LA LISTA ME SALE VACIA
+		listaTareas = tareas.SeleccionarTareas(); //DE ESTA FORMA NO ME DA NULL.POINTER.EXCEPTION, PERO LA LISTA ME SALE VACIA
 		
 		TablaTareasModel tcm=new TablaTareasModel(listaTareas);
 //********************************************************************************************************************		
@@ -132,17 +141,13 @@ public class frmTareas extends JFrame implements ActionListener {
 		tcm.fireTableDataChanged();
 	}
 	
-	class TablaTareasModel extends AbstractTableModel
-    {
-        /**
-		 * 
-		 */
+	class TablaTareasModel extends AbstractTableModel {
+
 		private static final long serialVersionUID = 1L;
-		private String[] columnNames = {"Fecha Inicio", "Fecha Fin", "Importancia", "Localización", "Tiempo viaje", "Descripcion"};
+		private String[] columnNames = new String[]{"Fecha Inicio", "Fecha Fin", "Importancia", "Localización", "Tiempo viaje", "Descripcion"};
         Object[][] data;
-        
-        public TablaTareasModel(ArrayList<Tareas> m)
-        {
+
+        public TablaTareasModel(ArrayList<Tareas> m) {
         	
         	super();
         	
@@ -151,10 +156,8 @@ public class frmTareas extends JFrame implements ActionListener {
     		data=new Object[filas][];
     		cont=0;
     		
-    		
-    		
-    		for (Tareas entry : listaTareas)
-    		{
+    		for (Tareas entry : listaTareas) {
+    			
     		    //System.out.println(entry.getKey() + "/" + entry.getValue());
     			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
     			String fechai = fecha.format(entry.getFecha_i());
@@ -169,17 +172,16 @@ public class frmTareas extends JFrame implements ActionListener {
     			data[cont]=a;
     			cont++;
     		}
-    		
-        	
         }
         
-        public void setData(ArrayList<Tareas> m) 
-        {
-        	int filas = m.size();
+       
+
+		public void setData(ArrayList<Tareas> m) {
+        	
+			int filas = m.size();
     		int cont;
     		data=new Object[filas][];
     		cont=0;
-    		
     		
     		
     		for (Tareas entry : listaTareas)

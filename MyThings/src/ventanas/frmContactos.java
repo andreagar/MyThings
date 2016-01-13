@@ -57,9 +57,9 @@ public class frmContactos extends JFrame implements ActionListener {
 		scrollPane.setBounds(10, 59, 327, 299);
 		contentPane.add(scrollPane);
 		
-		btnAgregarPer = new JButton("Agregar Personal");
+		btnAgregarPer = new JButton("Personal");
 		btnAgregarPer.setBounds(347, 70, 131, 23);
-		btnAgregarPer.setActionCommand("Agregar");
+		btnAgregarPer.setActionCommand("Personal");
 		btnAgregarPer.addActionListener(this);
 		contentPane.add(btnAgregarPer);
 		
@@ -81,9 +81,10 @@ public class frmContactos extends JFrame implements ActionListener {
 		btnAtras.addActionListener(this);
 		contentPane.add(btnAtras);
 		
-		JButton btnAgregarL = new JButton("Agregar Laboral");
-		btnAgregarL.setActionCommand("Agregar");
+		JButton btnAgregarL = new JButton("Laboral");
 		btnAgregarL.setBounds(347, 114, 131, 23);
+		btnAgregarL.setActionCommand("Laboral");
+		btnAgregarL.addActionListener(this);
 		contentPane.add(btnAgregarL);
 		
 	}
@@ -92,29 +93,37 @@ public class frmContactos extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	switch (e.getActionCommand())
-	{
-	case "Agregar Personal": 
-		frmAltaContPersonal objAltaContPersonal = new frmAltaContPersonal();
-		objAltaContPersonal.setVisible(true);
-		break;
+		switch (e.getActionCommand()){
 		
-	case "Agregar Laboral": 
-		frmAltaContLaboral objAltaContLaboral = new frmAltaContLaboral();
-		objAltaContLaboral.setVisible(true);
-		break;
+			case "Personal": 
+				
+//				frmAltaContPersonal objAltaContPersonal = new frmAltaContPersonal();
+//				objAltaContPersonal.setVisible(true);
+//				frmContactos.this.dispose();
+				
+				frmAltaPersonal objAltaPersonal = new frmAltaPersonal();
+				objAltaPersonal.setVisible(true);
+				frmContactos.this.dispose();
+				
+				break;
+				
+			case "Laboral": 
+				frmAltaLaboral objAltaLaboral = new frmAltaLaboral();
+				objAltaLaboral.setVisible(true);
+				frmContactos.this.dispose();
+				break;
+				
+			case "Eliminar": 
+				break;
 		
-	case "Eliminar": 
-		break;
-		
-	case "Modificar":
-		
-		break;	
-	case "Atras":
-		frmPrincipal objPrincipal = new frmPrincipal();
-		objPrincipal.setVisible(true);
-		break;
-	}
-	frmContactos.this.dispose();
+			case "Modificar":
+				
+				break;	
+			case "Atras":
+				frmPrincipal objPrincipal = new frmPrincipal();
+				objPrincipal.setVisible(true);
+				break;
+		}
+		frmContactos.this.dispose();
 	}
 }

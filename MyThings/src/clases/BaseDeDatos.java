@@ -123,9 +123,11 @@ public class BaseDeDatos {
 		try {
 			statement.executeUpdate("create table tabla_tareas " +
 				"(id int, fecha_i date, fecha_f date, importancia string, localizacion string, tiempo_v int" +
-				", descripcion string, nomLogIn string references tabla_usuarios (nomLogIn))");
+				", descripcion string, nomLogIn string)");
+			System.out.println("La tabla_tareas se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
+			System.out.println("La tabla_tareas ya existe.");
 			// e.printStackTrace();  
 		}
 	}	
@@ -146,26 +148,13 @@ public class BaseDeDatos {
 				"'" + usuario + "')";
 		try {
 			statement.executeUpdate(sent);
+			System.out.println("se ha añadido la tarea: "+sent);
 		} catch (SQLException e) {
 			System.out.println( "ERROR EN SENTENCIA SQL: " + sent);
 			e.printStackTrace();
 		}
 	}
 	
-	public static ResultSet SeleccionarTareas(){
-		
-		String usuario = frmLogin.txtUsuario.getText();
-		BaseDeDatos.getConnection();
-		Statement stmt = BaseDeDatos.getStatement();
-		ResultSet consulta = null;
-		try{
-			consulta = stmt.executeQuery("select * from tabla_tareas where "
-					+ "nomLogIn='"+usuario+"'");
-		}catch (SQLException e){
-		}
-		
-		return consulta;
-	}
 	// ------------------------------------
 	// CONTACTOS
 	// ------------------------------------
@@ -179,7 +168,7 @@ public class BaseDeDatos {
 			statement.executeUpdate("create table tabla_contPersonal " +
 				"(nombre string, apell string, email string" +
 				", movil string, imagen blob, domicilio string, tfno_domicilio string" +
-				", fecha_n string, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
+				", fecha_n date, nomLogIn string references tabla_usuarios (nomLogIn), primary key (email))");
 			System.out.println("La tabla_contPersonal se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
@@ -192,7 +181,7 @@ public class BaseDeDatos {
 	/**Añadir una nuevo contacto PERSONAL a la BD.
 	 */
 	public static void insertContactoPersonal (String nombre, String apell, String email, String movil, Blob imagen, 
-			String domicilio, String tfno_domicilio, String fecha_n, String nomLogIn) {
+			String domicilio, String tfno_domicilio, Date fecha_n, String nomLogIn) {
 		
 		String sent = "insert into tabla_contPersonal values(" +
 				"'" + nombre + "', " +

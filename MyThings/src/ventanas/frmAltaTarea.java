@@ -157,10 +157,17 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 			if(opcion==3) opc=45;
 			if(opcion==4) opc=60;
 				int id = new Random().nextInt(99999999);
-					tareas.AñadirTarea(id ,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , opc, txtDescripcion.getText());
-				frmAltaTarea.this.dispose();
-				break;
-			}
-			
+				String usuario = frmLogin.txtUsuario.getText();
+			try{
+				if (tareas.AñadirTarea(id ,FechaInicio.getDate() , FechaFin.getDate(), String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , opc, txtDescripcion.getText(),usuario)){
+					frmAltaTarea.this.dispose();
+					frmTareas objTareas= new frmTareas();
+					objTareas.setVisible(true);
+				} 
+			}catch(Exception e1){
+			}				
+			break;
+		}
+		
 	}
 }

@@ -32,7 +32,6 @@ public class GestorUsuarios {
 				System.out.println("Has entrado como administrador.");
 				
 			} else { //HACEMOS LA CONSULTA
-				BaseDeDatos.getConnection();
 				Statement stmt = BaseDeDatos.getStatement();
 				ResultSet consulta = stmt.executeQuery("select nomLogIn,password from tabla_usuarios where "
 						+ "nomLogIn='"+usuario+"' and password='"+password+"' ");
@@ -63,7 +62,6 @@ public class GestorUsuarios {
 		try{ //COMPROBAR SI EXISTE ESE USUARIO
 			
 			//HACEMOS LA CONSULTA
-			BaseDeDatos.getConnection();
 			Statement stmt = BaseDeDatos.getStatement();
 			ResultSet consulta = stmt.executeQuery("select nomLogIn from tabla_usuarios where nomLogIn='" +nomLI+ "'");
 			
@@ -77,7 +75,6 @@ public class GestorUsuarios {
 		} catch (SQLException e) {
 				e.printStackTrace();
 		}
-
 		return NoExiste;
 	}
 

@@ -2,6 +2,7 @@ package clases;
 
 import java.io.FileInputStream;
 import java.sql.Blob;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,7 +14,7 @@ public class GestorContactos { //modificar los atributos  TODO!
 	 * Si existe, devolveremos un false que hará que salga un mensaje de error.
 	 */
 	public boolean AñadirContactoPersonal (String nombre, String apell, String email, String movil, Blob imagen, 
-			String domicilio, String tfno_domicilio, String fecha_n, String nomLogIn) throws MiExcepcion{
+			String domicilio, String tfno_domicilio, Date fecha_n, String nomLogIn) throws MiExcepcion{
 		
 		boolean NoExiste = true; //NO está en la BD
 
