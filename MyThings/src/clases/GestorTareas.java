@@ -99,7 +99,7 @@ public class GestorTareas {
 					tarea.setFecha_f(consulta.getDate("fecha_f") );
 					tarea.setImportancia(consulta.getString("importancia")); 
 					tarea.setLocalizacion(consulta.getString("localizacion"));
-					tarea.setTiempo_v((consulta.getInt("tiempo__v")));
+					tarea.setTiempo_v((consulta.getInt("tiempo_v")));
 					tarea.setDescripcion(consulta.getString("descripcion"));
 						
 				listaTareas.add(tarea);
