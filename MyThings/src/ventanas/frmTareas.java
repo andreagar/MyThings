@@ -47,6 +47,7 @@ public class frmTareas extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public frmTareas() {
+		
 		setResizable(false);
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(frmTareas.class.getResource("/Imagenes/Beat.png")));
 		setBackground(new Color(0, 153, 51));
@@ -105,27 +106,26 @@ public class frmTareas extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-	switch (e.getActionCommand())
-	{
-	case "Agregar": 
-		frmAltaTarea objAltaTarea = new frmAltaTarea();
-		objAltaTarea.setVisible(true);
-		break;
-	case "Eliminar": 
+		switch (e.getActionCommand()) {
 		
-		break;
-	case "Modificar":
-		
-		break;	
-	case "Atras":
-		frmPrincipal objPrincipal = new frmPrincipal();
-		objPrincipal.setVisible(true);
-	}
-	frmTareas.this.dispose();
+			case "Agregar": 
+				frmAltaTarea objAltaTarea = new frmAltaTarea();
+				objAltaTarea.setVisible(true);
+				break;
+			case "Eliminar": 
+				
+				break;
+			case "Modificar":
+				
+				break;	
+			case "Atras":
+				frmPrincipal objPrincipal = new frmPrincipal();
+				objPrincipal.setVisible(true);
+		}
+		frmTareas.this.dispose();
 	}
 	
-	private void crearTabla()
-	{
+	private void crearTabla() {
 		table=null;
 		
 		listaTareas = new ArrayList<Tareas>();
@@ -183,9 +183,7 @@ public class frmTareas extends JFrame implements ActionListener {
     		data=new Object[filas][];
     		cont=0;
     		
-    		
-    		for (Tareas entry : listaTareas)
-    		{
+    		for (Tareas entry : listaTareas){
     		    //System.out.println(entry.getKey() + "/" + entry.getValue());
 //    			DateFormat fecha=new SimpleDateFormat("dd/MM/yyyy");
 //    			String fechai = fecha.format(entry.getFecha_i());
