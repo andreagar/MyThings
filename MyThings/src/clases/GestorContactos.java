@@ -99,6 +99,7 @@ public class GestorContactos {
 	
 	public boolean ModificarContPersonal (String nombre, String apell, String email, String movil, String imagen, 
 			String domicilio, String tfno_domicilio, String fecha_n, Personal cont){
+		
 		String usuario = frmLogin.txtUsuario.getText();
 		boolean cambiar = false;
 		try{
@@ -108,7 +109,7 @@ public class GestorContactos {
 					+ "and nombre='" + cont.getNombre() + "' "
 					+ "and apell='" + cont.getApellidos() + "' "
 					+ "and movil='" + cont.getNum_m() + "' "
-					+ "and imegen='" + cont.getFoto() + "' "
+					+ "and imagen='" + cont.getFoto() + "' "
 					+ "and domicilio=" + cont.getDomicilio() + " "
 					+ "and tfno_domicilio=" + cont.getNum_d() + " "
 					+ "and fecha_n='" + cont.getNacimiento() + "' "; 
@@ -121,10 +122,10 @@ public class GestorContactos {
 						+ ", apell='" + apell + "' "
 						+ ", email='" + email + "' "
 						+ ", movil='" + movil + "' "
-						+ ", imegen='" + imagen + "' "
+						+ ", imagen='" + imagen + "' "
 						+ ", domicilio=" + domicilio + " "
 						+ ", tfno_domicilio=" + tfno_domicilio + " "
-						+ ", fecha_n='" + fecha_n + "' where email=" + consulta.getInt("email") +" ";
+						+ ", fecha_n='" + fecha_n + "' where email='" + consulta.getString("email") +"' ";
 				System.out.println(query2);
 				cambiar=true;
 				ResultSet cambio = stmt.executeQuery(query2);
@@ -133,4 +134,32 @@ public class GestorContactos {
 		}
 		return cambiar;
 	}
+	
+	public void EliminarContactoPersonal(String nombre, String apell, String email, String movil, String imagen, 
+			String domicilio, String tfno_domicilio, String fecha_n){
+		
+		String usuario = frmLogin.txtUsuario.getText();
+		
+		int tiempoInt = Integer.parseInt(tiempo);
+		
+		try{
+			Statement stmt = BaseDeDatos.getStatement();
+			String query = "delete from tabla_tareas where nomLogIn='" + usuario +"' "
+					+ "and fecha_i='" + fechaI + "' "
+					+ "and fecha_f='" + fechaF + "' "
+					+ "and importancia='" + imp + "' "
+					+ "and localizacion='" + loc + "' "
+					+ "and tiempo_v=" + tiempoInt + " "
+					+ "and descripcion='" + desc + "' ";
+			System.out.println(query);
+			ResultSet consulta = stmt.executeQuery(query);
+			
+			if (consulta.next()){			
+				System.out.println("la tarea se ha eliminado");
+			}else{
+				System.out.println("no se ha eliminado");
+			}
+		}catch (SQLException e){
+		}	
+	}	
 }

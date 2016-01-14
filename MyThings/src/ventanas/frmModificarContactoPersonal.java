@@ -17,6 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import clases.Contacto;
 import clases.GestorContactos;
 import clases.GestorTareas;
 import clases.MiExcepcion;
@@ -63,6 +64,7 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 	private JButton btnGuardar;
 	private JButton btnSubirFoto;
 	private JDateChooser FechaN;
+	private Personal cont1;
 	File fichero;
 	
 	/**
@@ -70,6 +72,7 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 	 * @param cont 
 	 */
 	public frmModificarContactoPersonal(Personal cont) {
+		cont1 = cont;
 		
 		setTitle("MyThings v1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -117,32 +120,34 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 		lblFechaNacimiento.setBounds(10, 305, 114, 14);
 		contentPane.add(lblFechaNacimiento);
 		
-		txtNombre = new JTextField();
+		txtNombre = new JTextField(cont1.getNombre());
 		txtNombre.setBounds(66, 58, 148, 20);
 		contentPane.add(txtNombre);
 		txtNombre.setColumns(10);
 		
-		txtApellidos = new JTextField();
+		txtApellidos = new JTextField(cont1.getApellidos());
 		txtApellidos.setBounds(66, 99, 148, 20);
 		contentPane.add(txtApellidos);
 		txtApellidos.setColumns(10);
 		
-		txtMovil = new JTextField();
+		String mvl = Integer.toString(cont1.getNum_m());
+		txtMovil = new JTextField(mvl);
 		txtMovil.setBounds(66, 139, 86, 20);
 		contentPane.add(txtMovil);
 		txtMovil.setColumns(10);
 		
-		txtEmail = new JTextField();
+		txtEmail = new JTextField(cont1.getEmail());
 		txtEmail.setBounds(55, 179, 148, 20);
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
 		
-		txtDomicilio = new JTextField();
+		txtDomicilio = new JTextField(cont1.getDomicilio());
 		txtDomicilio.setBounds(66, 219, 193, 20);
 		contentPane.add(txtDomicilio);
 		txtDomicilio.setColumns(10);
 		
-		txtTfno_Domi = new JTextField();
+		String tfno = Integer.toString(cont1.getNum_d());
+		txtTfno_Domi = new JTextField(tfno);
 		txtTfno_Domi.setBounds(117, 261, 86, 20);
 		contentPane.add(txtTfno_Domi);
 		txtTfno_Domi.setColumns(10);
@@ -205,19 +210,17 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 		
 		switch (e.getActionCommand()) {
 		
-			case "Guardar": 
+			case "Guardar":
+				
 			try{ String fic = fichero.toString();
 				DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
 				String fechaN = fecha.format(FechaN.getDate());
 				if (contacto.ModificarContPersonal(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(),
-						txtMovil.getText(), fic, txtDomicilio.getText(), txtTfno_Domi.getText(),fechaN), cont)
+						txtMovil.getText(), fic, txtDomicilio.getText(), txtTfno_Domi.getText(),fechaN, cont1))
 				{
-					
-					
 					frmTableContactos objContacto= new frmTableContactos();
 					objContacto.setVisible(true);
 					frmModificarContactoPersonal.this.dispose();
-					
 				} 
 			}catch(Exception e1){
 			}				
