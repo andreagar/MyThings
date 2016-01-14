@@ -41,11 +41,11 @@ public class GestorContactos {
 		return NoExiste;
 	}
 	
-	public boolean AñadirContactoLaboral (String nombre, String apell, String email, String movil, Blob imagen, String empresa,
-			String cargo, String tfno_empresa, String nomLogIn) throws MiExcepcion{
+	public boolean AñadirContactoLaboral (String nombre, String apell, String email, String movil, String imagen, String empresa,
+			String cargo, String tfno_empresa) throws MiExcepcion{
 		
 		boolean NoExiste = true; //NO está en la BD
-
+		String usuario = frmLogin.txtUsuario.getText();
 		try{ //COMPROBAR SI EXISTE ESE USUARIO
 			
 			//HACEMOS LA CONSULTA
@@ -57,7 +57,7 @@ public class GestorContactos {
 				NoExiste = false;
 				System.out.println("El contacto ya existe.");
 			} else {
-				BaseDeDatos.insertContactoLaboral(nombre, apell, email, movil, imagen, empresa, cargo, tfno_empresa, nomLogIn);
+				BaseDeDatos.insertContactoLaboral(nombre, apell, email, movil, imagen, empresa, cargo, tfno_empresa, usuario);
 				System.out.println("Contacto añadido.");
 			}
 		} catch (SQLException e) {
@@ -65,5 +65,35 @@ public class GestorContactos {
 		}
 
 		return NoExiste;
+	}
+	
+	public ResultSet SeleccionarTareas(){
+		
+		String usuario = frmLogin.txtUsuario.getText();
+		ResultSet consulta=null;
+			
+		try{
+			Statement stmt = BaseDeDatos.getStatement();
+			String query = "select * from tabla_contPersonal where nomLogIn = '" + usuario +"'";
+			consulta = stmt.executeQuery(query);
+		return consulta;
+		}catch(Exception e){
+		}
+		return consulta;
+	}
+	
+	public ResultSet SeleccionarTareas1(){
+		
+		String usuario = frmLogin.txtUsuario.getText();
+		ResultSet consulta=null;
+			
+		try{
+			Statement stmt = BaseDeDatos.getStatement();
+			String query = "select * from tabla_contLaboral where nomLogIn = '" + usuario +"'";
+			consulta = stmt.executeQuery(query);
+		return consulta;
+		}catch(Exception e){
+		}
+		return consulta;
 	}
 }

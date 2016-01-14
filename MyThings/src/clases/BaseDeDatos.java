@@ -224,7 +224,7 @@ public class BaseDeDatos {
 	
 	/**Añadir una nuevo contacto LABORAL a la BD.
 	 */
-	public static void insertContactoLaboral (String nombre, String apell, String email, String movil, Blob imagen, 
+	public static void insertContactoLaboral (String nombre, String apell, String email, String movil, String imagen, 
 			String empresa, String cargo, String tfno_empresa, String nomLogIn) {
 		
 		String sent = "insert into tabla_contLaboral values(" +

@@ -24,7 +24,11 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import clases.BaseDeDatos;
+import clases.Contacto;
+import clases.GestorContactos;
 import clases.GestorTareas;
+import clases.MiExcepcion;
+import clases.Personal;
 import clases.Tareas;
 
 import javax.swing.JLabel;
@@ -36,20 +40,25 @@ import java.awt.SystemColor;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.Scrollable;
 
 public class frmTableContactos extends JFrame implements ActionListener {
 
 	private PanelConImagen contentPane;
 	private JScrollPane scrollPane;
+	private JScrollPane scrollPane_1;
 	private JTable tabla;
+	private JTable tabla_1;
 	private JButton btnAtras;
 	ResultSet rs;
-	GestorTareas tareas = new GestorTareas();
+	GestorContactos contacto = new GestorContactos();
 	private JTable jTable1;
+	private JTable jTable2;
 	private JButton btnLaboral;
 	private JButton btnModificar;
 	private JButton btnEliminar;
 	private JButton btnPersonal;
+	private JButton btnVerContacto;
 
 	/**
 	 * Create the frame.
@@ -71,7 +80,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		//contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblTitulo = new JLabel("CONTACTOS");
-		lblTitulo.setBounds(214, 22, 129, 27);
+		lblTitulo.setBounds(198, 22, 129, 27);
 		lblTitulo.setFont(new Font("Serif", Font.PLAIN, 20));
 		contentPane.add(lblTitulo);
 		
@@ -82,23 +91,33 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		contentPane.add(btnAtras);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 57, 390, 301);
+		scrollPane.setBounds(10, 80, 390, 122);
 		contentPane.add(scrollPane);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 236, 390, 122);
+		contentPane.add(scrollPane_1);
 		
 		jTable1 = new JTable();
 		scrollPane.setViewportView(jTable1);
 		
+		jTable2 = new JTable();
+		scrollPane_1.setViewportView(jTable2);
+		
 		crearTabla();
 		scrollPane.setViewportView(tabla);
+		crearTabla1();
+		scrollPane_1.setViewportView(tabla_1);
+		
 		
 		btnPersonal = new JButton("Agregar Personal");
 		btnPersonal.setActionCommand("Agregar Personal");
 		btnPersonal.addActionListener(this);
-		btnPersonal.setBounds(448, 77, 115, 23);
+		btnPersonal.setBounds(448, 128, 115, 23);
 		contentPane.add(btnPersonal);
 		
 		btnLaboral = new JButton("Agregar Laboral");
-		btnLaboral.setBounds(448, 137, 115, 23);
+		btnLaboral.setBounds(448, 162, 115, 23);
 		btnLaboral.setActionCommand("Agregar Laboral");
 		btnLaboral.addActionListener(this);
 		contentPane.add(btnLaboral);
@@ -110,10 +129,25 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		contentPane.add(btnModificar);
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(448, 258, 115, 23);
+		btnEliminar.setBounds(448, 233, 115, 23);
 		btnEliminar.setActionCommand("Eliminar");
 		btnEliminar.addActionListener(this);
 		contentPane.add(btnEliminar);
+		
+		btnVerContacto = new JButton("Ver contacto");
+		btnVerContacto.setBounds(448, 92, 117, 23);
+		btnVerContacto.setActionCommand("Ver contacto");
+		btnVerContacto.addActionListener(this);
+		contentPane.add(btnVerContacto);
+		
+		JLabel lblLaboral = new JLabel("LABORAL:");
+		lblLaboral.setBounds(10, 211, 74, 14);
+		contentPane.add(lblLaboral);
+		
+		JLabel lblPersonal = new JLabel("PERSONAL:");
+		lblPersonal.setBounds(10, 55, 89, 14);
+		contentPane.add(lblPersonal);
+		
 		
 	}
 
@@ -122,11 +156,59 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		switch (e.getActionCommand()) {
 		
+			case "Ver contacto":
+				
+				if (tabla.getSelectedRow()!=-1){
+					
+						int filaE = tabla.getSelectedRow();
+						String nombre = tabla.getValueAt(filaE, 0).toString();
+						String apellidos = tabla.getValueAt(filaE, 1).toString();
+						String correo = tabla.getValueAt(filaE, 2).toString();
+						String movil = tabla.getValueAt(filaE, 3).toString();
+						String imagen = tabla.getValueAt(filaE, 4).toString();
+						String domi = tabla.getValueAt(filaE, 5).toString();
+						String telf_domi = tabla.getValueAt(filaE, 6).toString();
+						String f_naci = tabla.getValueAt(filaE, 7).toString();
+						
+					Personal cont = new Personal();
+						cont.setNombre(nombre);
+						cont.setApellidos(apellidos);
+						cont.setEmail(correo);
+						cont.setNum_m(Integer.parseInt(movil));
+						cont.setFoto(imagen);
+						cont.setDomicilio(domi);
+						cont.setNum_d(Integer.parseInt(telf_domi));
+						cont.setNacimiento(f_naci);
+						
+						frmVerPersonal objVerPersonal = new frmVerPersonal(cont);
+						objVerPersonal.setVisible(true);
+					
+					
+					}
+					
+				else if (tabla_1.getSelectedRow()!=-1){
+					
+					
+						int filaE = tabla_1.getSelectedRow();
+						String nombre = tabla_1.getValueAt(filaE, 0).toString();
+						String apellidos = tabla_1.getValueAt(filaE, 1).toString();
+						String correo = tabla_1.getValueAt(filaE, 2).toString();
+						String movil = tabla_1.getValueAt(filaE, 3).toString();
+						String imagen = tabla_1.getValueAt(filaE, 4).toString();
+						String empresa = tabla_1.getValueAt(filaE, 5).toString();
+						String  cargo = tabla_1.getValueAt(filaE, 6).toString();
+						String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
+					
+					frmVerLaboral objVerLaboral = new frmVerLaboral();
+					objVerLaboral.setVisible(true);
+					}
+	
+				break;
+	
 			case "Agregar Personal": 
 				frmTableContactos.this.dispose();
 				frmAltaPersonal objPersonal = new frmAltaPersonal();
 				objPersonal.setVisible(true);
-				
 				break;
 				
 			case "Agregar Laboral": 
@@ -158,17 +240,44 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		tabla = this.jTable1;
 		tabla.setModel(dtm);
 		
-		dtm.setColumnIdentifiers(new Object[] {"Nombre", "Apellidos"});
+		dtm.setColumnIdentifiers(new Object[] {"Nombre", "Apellidos", "", "", "", "", "", "", ""});
+		
+		//ocultar columnas
+		tabla.getColumnModel().getColumn(2).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(3).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(4).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(5).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(6).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(7).setMaxWidth(0);
+		tabla.getColumnModel().getColumn(8).setMaxWidth(0);
+		
+		tabla.getColumnModel().getColumn(2).setMinWidth(0);
+		tabla.getColumnModel().getColumn(3).setMinWidth(0);
+		tabla.getColumnModel().getColumn(4).setMinWidth(0);
+		tabla.getColumnModel().getColumn(5).setMinWidth(0);
+		tabla.getColumnModel().getColumn(6).setMinWidth(0);
+		tabla.getColumnModel().getColumn(7).setMinWidth(0);
+		tabla.getColumnModel().getColumn(8).setMinWidth(0);
+		
+		tabla.getColumnModel().getColumn(2).setPreferredWidth(0);
+		tabla.getColumnModel().getColumn(3).setPreferredWidth(0);
+		tabla.getColumnModel().getColumn(4).setPreferredWidth(0);
+		tabla.getColumnModel().getColumn(5).setPreferredWidth(0);
+		tabla.getColumnModel().getColumn(6).setPreferredWidth(0);
+		tabla.getColumnModel().getColumn(7).setPreferredWidth(0);
+		tabla.getColumnModel().getColumn(8).setPreferredWidth(0);
 		
 		//para ordenar la JTable pinchando en el nombre de la columna
 		TableRowSorter<TableModel> elQueOrdena = new TableRowSorter<TableModel>(dtm);
 		tabla.setRowSorter(elQueOrdena);
 		
 		BaseDeDatos.getStatement();
-		rs = tareas.SeleccionarTareas();
+		rs = contacto.SeleccionarTareas();
 		try{
 			while(rs.next()){
-				dtm.addRow (new Object[] {rs.getString("nombre"), rs.getString("apell")});
+				dtm.addRow (new Object[] {rs.getString("nombre"), rs.getString("apell"), rs.getString("email"),
+						rs.getString("movil"),rs.getString("imagen"),rs.getString("domicilio"), 
+						rs.getString("tfno_domicilio"), rs.getString("fecha_n"),rs.getString("nomLogIn")});
 			}
 		}catch (Exception e){
 		}
@@ -179,6 +288,39 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		      {
 		         int fila = tabla.rowAtPoint(e.getPoint());
 		         int columna = tabla.columnAtPoint(e.getPoint());
+		         if ((fila > -1) && (columna > -1))
+		            System.out.println(dtm.getValueAt(fila,columna));
+		      }
+		   });
+	}
+	
+	private void crearTabla1() {
+		
+		final DefaultTableModel dtm = new DefaultTableModel();
+		tabla_1 = this.jTable2;
+		tabla_1.setModel(dtm);
+		
+		dtm.setColumnIdentifiers(new Object[] {"Nombre", "Apellidos"});
+		
+		//para ordenar la JTable pinchando en el nombre de la columna
+		TableRowSorter<TableModel> Ordena = new TableRowSorter<TableModel>(dtm);
+		tabla_1.setRowSorter(Ordena);
+		
+		BaseDeDatos.getStatement();
+		rs = contacto.SeleccionarTareas1();
+		try{
+			while(rs.next()){
+				dtm.addRow (new Object[] {rs.getString("nombre"), rs.getString("apell")});
+			}
+		}catch (Exception e){
+		}
+		
+		tabla_1.addMouseListener(new MouseAdapter() 
+		   {
+		      public void mouseClicked(MouseEvent e) 
+		      {
+		         int fila = tabla_1.rowAtPoint(e.getPoint());
+		         int columna = tabla_1.columnAtPoint(e.getPoint());
 		         if ((fila > -1) && (columna > -1))
 		            System.out.println(dtm.getValueAt(fila,columna));
 		      }
