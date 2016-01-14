@@ -73,6 +73,7 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 	 */
 	public frmModificarContactoPersonal(Personal cont) {
 		cont1 = cont;
+		ruta = cont1.getFoto();
 		
 		setTitle("MyThings v1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -214,11 +215,11 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 		
 			case "Guardar":
 				
-			try{ String fic = fichero.toString();
+			try{ 
 				DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
 				String fechaN = fecha.format(FechaN.getDate());
 				if (contacto.ModificarContPersonal(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(),
-						txtMovil.getText(), fic, txtDomicilio.getText(), txtTfno_Domi.getText(),fechaN, cont1))
+						txtMovil.getText(), ruta, txtDomicilio.getText(), txtTfno_Domi.getText(),fechaN, cont1))
 				{
 					frmTableContactos objContacto= new frmTableContactos();
 					objContacto.setVisible(true);

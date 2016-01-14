@@ -108,7 +108,6 @@ public class GestorContactos {
 			String mvl= Integer.toString(cont.getNum_m());
 			String tfno= Integer.toString(cont.getNum_d());
 			
-			
 			String query = "select email from tabla_contPersonal where nomLogIn='" + usuario +"' "
 					+ "and nombre='" + cont.getNombre() + "' "
 					+ "and apell='" + cont.getApellidos() + "' "
@@ -144,26 +143,26 @@ public class GestorContactos {
 		
 		String usuario = frmLogin.txtUsuario.getText();
 		
-		try{
-			Statement stmt = BaseDeDatos.getStatement();
-			String query = "delete from tabla_tareas where nomLogIn='" + usuario +"' "
-					+ "nombre='" + nombre + "' "
-					+ ", apell='" + apell + "' "
-					+ ", email='" + email + "' "
-					+ ", movil='" + movil + "' "
-					+ ", imagen='" + imagen + "' "
-					+ ", domicilio='" + domicilio + "' "
-					+ ", tfno_domicilio='" + tfno_domicilio + "' "
-					+ ", fecha_n='" + fecha_n + "'";
-			System.out.println(query);
-			ResultSet consulta = stmt.executeQuery(query);
-			
-			if (consulta.next()){			
-				System.out.println("El contacto se ha eliminado");
-			}else{
-				System.out.println("No se ha eliminado");
-			}
-		}catch (SQLException e){
+			try{
+				Statement stmt = BaseDeDatos.getStatement();
+				String query = "delete from tabla_contPersonal where nomLogIn='" + usuario +"' "
+						+ ", nombre='" + nombre + "' "
+						+ ", apell='" + apell + "' "
+						+ ", email='" + email + "' "
+						+ ", movil='" + movil + "' "
+						+ ", imagen='" + imagen + "' "
+						+ ", domicilio='" + domicilio + "' "
+						+ ", tfno_domicilio='" + tfno_domicilio + "' "
+						+ ", fecha_n='" + fecha_n + "'";
+				System.out.println(query);
+				ResultSet consulta = stmt.executeQuery(query);
+				
+				if (consulta.next()){			
+					System.out.println("El contacto se ha eliminado");
+				}else{
+					System.out.println("No se ha eliminado");
+				}
+			}catch (SQLException e){
+			}	
 		}	
-	}	
 }
