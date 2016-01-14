@@ -54,6 +54,8 @@ public class frmAltaLaboral extends JFrame implements ActionListener{
 	private JTextField txtCargo;
 	private JLabel lblTfnoEmp;
 	private JTextField txtTfnoEmp;
+	private String ruta="";
+	File fichero;
 	
 	/**
 	 * Create the frame.
@@ -79,7 +81,6 @@ public class frmAltaLaboral extends JFrame implements ActionListener{
 		btnSubirFoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int resultado;
-				File fichero;
 				SubirFoto ventana = new SubirFoto();
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png"); 
 				//filtro para la imagen
@@ -150,11 +151,15 @@ public class frmAltaLaboral extends JFrame implements ActionListener{
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(frmAltaLaboral.class.getResource("/ventanas/img/save.png")));
 		btnGuardar.setBounds(310, 220, 114, 39);
+		btnGuardar.setActionCommand("Guardar");
+		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setIcon(new ImageIcon(frmAltaLaboral.class.getResource("/ventanas/img/cancelar.gif")));
 		btnCancelar.setBounds(310, 280, 114, 39);
+		btnCancelar.setActionCommand("Cancelar");
+		btnCancelar.addActionListener(this);
 		contentPane.add(btnCancelar);
 		
 		txtNombre = new JTextField();
@@ -205,21 +210,23 @@ public class frmAltaLaboral extends JFrame implements ActionListener{
 		switch (e.getActionCommand()) {
 			
 			case "Guardar":
-//				try {
-//					contacto.AñadirContactoLaboral(txtNombre.getText(), txtApellidos.getText(), txtMovil.getText(), txtEmail.getText());
-//				} catch (MiExcepcion e1) {
-//					// TODO Auto-generated catch block
-//					JOptionPane.showMessageDialog(this,e1.YaExiste());
-//				}
-//							
-//				frmAltaLaboral.this.dispose();		
-//				frmContactos objContactos = new frmContactos();
-//				objContactos.setVisible(true);
+				String ruta = fichero.toString();
+				try {
+					contacto.AñadirContactoLaboral(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(), txtMovil.getText(), 
+							ruta, txtEmpresa.getText(), txtCargo.getText(), txtTfnoEmp.getText());
+				} catch (MiExcepcion e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(this,e1.YaExiste());
+				}
+							
+				frmAltaLaboral.this.dispose();		
+				frmTableContactos objContactos = new frmTableContactos();
+				objContactos.setVisible(true);
 				break;
 			
 			case "Cancelar":
 				frmAltaLaboral.this.dispose();
-				frmContactos objContactos2 = new frmContactos();
+				frmTableContactos objContactos2 = new frmTableContactos();
 				objContactos2.setVisible(true);			
 		}
 	}

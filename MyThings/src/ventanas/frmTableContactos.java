@@ -319,8 +319,8 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				String cargo = tabla_1.getValueAt(filaE, 6).toString();
 				String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
 				
-//				contacto.EliminarContactoLaboral(nombre1, apellidos1, correo1, movil1, imagen1, empresa, cargo, tfno_emp);
-//				crearTabla1();
+				//contacto.EliminarContactoLaboral(nombre1, apellidos1, correo1, movil1, imagen1, empresa, cargo, tfno_emp);
+				crearTabla1();
 			}
 				break;
 				

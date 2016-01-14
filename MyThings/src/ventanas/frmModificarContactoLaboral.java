@@ -206,12 +206,12 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 			try{ 
 				DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
 				String fechaN = fecha.format(FechaN.getDate());
-				if (contacto.ModificarContPersonal(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(),
+				if (contacto.ModificarContLaboral(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(),
 						txtMovil.getText(), ruta, txtDomicilio.getText(), txtTfno_Domi.getText(),fechaN, cont1))
 				{
 					frmTableContactos objContacto= new frmTableContactos();
 					objContacto.setVisible(true);
-					frmModificarContactoPersonal.this.dispose();
+					frmModificarContactoLaboral.this.dispose();
 				} 
 			}catch(Exception e1){
 			}				
