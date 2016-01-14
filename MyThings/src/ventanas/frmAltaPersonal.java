@@ -56,6 +56,7 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 	private JTextField txtDomicilio;
 	private JTextField txtTfnoDom;
 	private JDateChooser FechaNac;
+	private String ruta="";
 	
 	/**
 	 * Create the frame.
@@ -107,13 +108,11 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 						
 						//mostrar imagen
 						lblFoto.setIcon(icono);	
-								
+
 					}catch (Exception e){
 						JOptionPane.showMessageDialog(null, "Error abriendo la imagen " + e);
 					}
-				
 				}
-			
 			}
 		});
 		btnSubirFoto.setBounds(310, 140, 114, 23);
@@ -207,10 +206,11 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 			case "Guardar":
 				
 					DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-    				String fechaN = fecha.format(FechaNac.getDate());
+    					String fechaN = fecha.format(FechaNac.getDate());
+    				String ruta = lblFoto.toString();
 					try {
-						contacto.AñadirContactoPersonal(txtNombre.getText(), txtApellidos.getText(), txtMovil.getText(), txtEmail.getText(),
-								lblFoto, txtDomicilio.getText(), txtTfnoDom.getText(), fechaN);
+						contacto.AñadirContactoPersonal(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(), txtMovil.getText(),
+								ruta, txtDomicilio.getText(), txtTfnoDom.getText(), fechaN);
 					} catch (MiExcepcion e1) {
 						// TODO Auto-generated catch block
 						JOptionPane.showMessageDialog(this,e1.YaExiste());
@@ -218,7 +218,6 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 					frmAltaPersonal.this.dispose();		
 					frmContactos objContactos = new frmContactos();
 					objContactos.setVisible(true);
-					
 					break;
 			
 			case "Cancelar":

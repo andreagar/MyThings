@@ -7,7 +7,7 @@ public class Contacto {
 	private String apellidos;
 	private int num_m;
 	private String email; //clave primaria
-	private Image foto;
+	private String foto;
 	
 	/**
 	 * @return the nombre
@@ -60,13 +60,13 @@ public class Contacto {
 	/**
 	 * @return the foto
 	 */
-	public Image getFoto() {
+	public String getFoto() {
 		return foto;
 	}
 	/**
 	 * @param foto the foto to set
 	 */
-	public void setFoto(Image foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 	

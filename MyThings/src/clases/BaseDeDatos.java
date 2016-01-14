@@ -83,7 +83,7 @@ public class BaseDeDatos {
 		try {
 			statement.executeUpdate("create table tabla_usuarios " +
 				"(nomLogIn string, nombreReal string, apellidos string" +
-				", password string, primary key (nomLogIn))");
+				", password string)");
 			System.out.println("La tabla_usuario se ha creado.");
 		} catch (SQLException e) {
 			// Si hay excepción es que la tabla ya existía (lo cual es correcto)
@@ -168,7 +168,7 @@ public class BaseDeDatos {
 		try {
 			statement.executeUpdate("create table tabla_contPersonal " +
 				"(nombre string, apell string, email string" +
-				", movil string, imagen blob, domicilio string, tfno_domicilio string" +
+				", movil string, imagen string, domicilio string, tfno_domicilio string" +
 				", fecha_n string, nomLogIn string)");
 			System.out.println("La tabla_contPersonal se ha creado.");
 		} catch (SQLException e) {
@@ -181,7 +181,7 @@ public class BaseDeDatos {
 	
 	/**Añadir una nuevo contacto PERSONAL a la BD.
 	 */
-	public static void insertContactoPersonal (String nombre, String apell, String email, String movil, Blob imagen, 
+	public static void insertContactoPersonal (String nombre, String apell, String email, String movil, String imagen, 
 			String domicilio, String tfno_domicilio, String fecha_n, String nomLogIn) {
 		
 		String sent = "insert into tabla_contPersonal values(" +
