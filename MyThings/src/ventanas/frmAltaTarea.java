@@ -174,6 +174,5 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 			}				
 			break;
 		}
-		
 	}
 }

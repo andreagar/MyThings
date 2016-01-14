@@ -56,6 +56,8 @@ public class GestorTareas {
 		
 		String usuario = frmLogin.txtUsuario.getText();
 		
+		int tiempoInt = Integer.parseInt(tiempo);
+		
 		try{
 			Statement stmt = BaseDeDatos.getStatement();
 			String query = "delete from tabla_tareas where nomLogIn='" + usuario +"' "
@@ -63,7 +65,7 @@ public class GestorTareas {
 					+ "and fecha_f='" + fechaF + "' "
 					+ "and importancia='" + imp + "' "
 					+ "and localizacion='" + loc + "' "
-					+ "and tiempo_v=" + tiempo + " "
+					+ "and tiempo_v=" + tiempoInt + " "
 					+ "and descripcion'" + desc + "' ";
 			System.out.println(query);
 			ResultSet consulta = stmt.executeQuery(query);
