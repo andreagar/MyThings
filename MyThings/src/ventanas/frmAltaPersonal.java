@@ -57,7 +57,7 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 	private JTextField txtTfnoDom;
 	private JDateChooser FechaNac;
 	private String ruta="";
-	
+	File fichero;
 	/**
 	 * Create the frame.
 	 */
@@ -82,7 +82,7 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 		btnSubirFoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int resultado;
-				File fichero;
+				
 				SubirFoto ventana = new SubirFoto();
 				FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG", "jpg", "png"); 
 				//filtro para la imagen
@@ -213,7 +213,7 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 				
 					DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
     					String fechaN = fecha.format(FechaNac.getDate());
-    				String ruta = lblFoto.toString();
+    				String ruta = fichero.toString();
 					try {
 						contacto.AñadirContactoPersonal(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(), txtMovil.getText(),
 								ruta, txtDomicilio.getText(), txtTfnoDom.getText(), fechaN);

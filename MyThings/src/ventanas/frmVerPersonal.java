@@ -69,9 +69,14 @@ public class frmVerPersonal extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		
 		lblFoto = new JLabel("FOTO");
 		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFoto.setBounds(310, 50, 114, 118);
+		ImageIcon icon = new ImageIcon(cont.getFoto());
+		Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+		lblFoto.setIcon(icono);
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
 		lblFoto.setBorder(border);
 		contentPane.add(lblFoto);
