@@ -166,7 +166,8 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 	    			String fechaf = fecha.format(FechaFin.getDate());
 				if (tareas.AñadirTarea(id ,fechai , fechaf, String.valueOf(Importancia.getSelectedItem()), txtLocalizacion.getText() , opc, txtDescripcion.getText(),usuario)){
 					frmAltaTarea.this.dispose();
-					frmTareas objTareas= new frmTareas();
+					
+					frmTableTareas objTareas= new frmTableTareas();
 					objTareas.setVisible(true);
 				} 
 			}catch(Exception e1){

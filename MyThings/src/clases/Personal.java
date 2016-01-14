@@ -5,7 +5,7 @@ public class Personal extends Contacto{
 
 	private String domicilio;
 	private int num_d;
-	private Date nacimiento;
+	private String nacimiento;
 	/**
 	 * @return the domicilio
 	 */
@@ -33,13 +33,13 @@ public class Personal extends Contacto{
 	/**
 	 * @return the nacimiento
 	 */
-	public Date getNacimiento() {
+	public String getNacimiento() {
 		return nacimiento;
 	}
 	/**
 	 * @param nacimiento the nacimiento to set
 	 */
-	public void setNacimiento(Date nacimiento) {
+	public void setNacimiento(String nacimiento) {
 		this.nacimiento = nacimiento;
 	}
 	

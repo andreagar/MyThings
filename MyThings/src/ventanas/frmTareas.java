@@ -113,7 +113,14 @@ public class frmTareas extends JFrame implements ActionListener {
 				objAltaTarea.setVisible(true);
 				break;
 			case "Eliminar": 
-				
+				int fila = table.getSelectedRow();
+				String fechaI = table.getValueAt(fila, 0).toString();
+				String fechaF = table.getValueAt(fila, 1).toString();
+				String imp = table.getValueAt(fila, 2).toString();
+				String loc = table.getValueAt(fila, 3).toString();
+				String tiempo = table.getValueAt(fila, 4).toString();
+				String desc = table.getValueAt(fila, 5).toString();
+				tareas.EliminarTarea(fechaI, fechaF, imp, loc, tiempo, desc);
 				break;
 			case "Modificar":
 				

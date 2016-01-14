@@ -16,8 +16,6 @@ public class GestorUsuarios {
 	public GestorUsuarios(){}
 	
 	/**Log In del usuario a la aplicación
-	 * Si se entra como el usuario "admin" y con contraseña "admin" (no está en la BD), entra también dentro 
-	 * de la aplicación.
 	 * Comprobamos de si/no existe el usuario, para saberlo hacemos una consulta con el nombre de usuario y password.
 	 * Si no existe, devolveremos un false que hará que salga un mensaje de que ese usuario no está registrado.
 	 */
@@ -26,22 +24,15 @@ public class GestorUsuarios {
 		boolean entrar = false;
 		
 		try{ //consultamos que ese usuario con esa contraseña existan
+			Statement stmt = BaseDeDatos.getStatement();
+			ResultSet consulta = stmt.executeQuery("select nomLogIn,password from tabla_usuarios where "
+					+ "nomLogIn='"+usuario+"' and password='"+password+"' ");
 			
-			if (usuario.equals("admin") && password.equals("admin")){ //PARA ENTRAR SIEMPRE
-				entrar = true;
-				System.out.println("Has entrado como administrador.");
-				
-			} else { //HACEMOS LA CONSULTA
-				Statement stmt = BaseDeDatos.getStatement();
-				ResultSet consulta = stmt.executeQuery("select nomLogIn,password from tabla_usuarios where "
-						+ "nomLogIn='"+usuario+"' and password='"+password+"' ");
-				
-				if(consulta.next()){ //Si al hacer la consulta encuentra un registro identico, asigna 'true' a entrar
-		            entrar=true;
-		            System.out.println("El usuario y contraseña coinciden --> entrar en la app.");
-				} else {
-					System.out.println("El usuario y contraseña fallan.");
-				}
+			if(consulta.next()){ //Si al hacer la consulta encuentra un registro identico, asigna 'true' a entrar
+	            entrar=true;
+	            System.out.println("El usuario y contraseña coinciden --> entrar en la app.");
+			} else {
+				System.out.println("El usuario y contraseña fallan.");
 			}
 		} catch (SQLException e) {
 				e.printStackTrace();

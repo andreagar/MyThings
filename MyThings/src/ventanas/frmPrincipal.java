@@ -74,8 +74,12 @@ public class frmPrincipal extends JFrame implements ActionListener {
 	switch (e.getActionCommand())
 	{
 	case "Tareas": 
-		frmTareas objTareas = new frmTareas();
+//		frmTareas objTareas = new frmTareas();
+//		objTareas.setVisible(true);
+		
+		frmTableTareas objTareas = new frmTableTareas();
 		objTareas.setVisible(true);
+		
 		break;
 	case "Contactos": 
 		frmContactos objContactos = new frmContactos();

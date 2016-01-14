@@ -42,7 +42,7 @@ public class frmLogin extends JFrame implements ActionListener{
 		setResizable(false);
 		this.setTitle("MyThings v1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 504, 379);
+		setBounds(100, 100, 377, 208);
 		contentPane = new PanelConImagen();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
@@ -50,27 +50,27 @@ public class frmLogin extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		
 		JLabel lblUsuario = new JLabel("Usuario:");
-		lblUsuario.setBounds(79, 84, 66, 14);
+		lblUsuario.setBounds(10, 59, 66, 14);
 		contentPane.add(lblUsuario);
 		
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
-		lblContrasea.setBounds(79, 140, 82, 14);
+		lblContrasea.setBounds(10, 92, 82, 14);
 		contentPane.add(lblContrasea);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(169, 81, 152, 20);
+		txtUsuario.setBounds(86, 56, 152, 20);
 		contentPane.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		JLabel lblInicioDeSesin = new JLabel("Inicio de sesi\u00F3n:");
-		lblInicioDeSesin.setBounds(169, 11, 152, 27);
-		lblInicioDeSesin.setFont(new Font("Serif", Font.PLAIN, 20));
+		JLabel lblInicioDeSesin = new JLabel("MyThings");
+		lblInicioDeSesin.setBounds(121, 11, 152, 27);
+		lblInicioDeSesin.setFont(new Font("Verdana", Font.PLAIN, 22));
 		contentPane.add(lblInicioDeSesin);
 		
 		btnLogIn = new JButton("Log in");
 	//	btnLogIn.setMnemonic('L');
 		btnLogIn.setMnemonic(KeyEvent.VK_ENTER);
-		btnLogIn.setBounds(207, 179, 89, 23);
+		btnLogIn.setBounds(74, 131, 89, 23);
 		btnLogIn.setActionCommand("login");
 		btnLogIn.addActionListener(this);
 		contentPane.add(btnLogIn);
@@ -78,12 +78,12 @@ public class frmLogin extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		
 		txtPassword = new JPasswordField();
-		txtPassword.setBounds(171, 137, 150, 17);
+		txtPassword.setBounds(86, 89, 150, 20);
 		contentPane.add(txtPassword);
 		txtPassword.setColumns(10);
 		
 		btnRegistrarme = new JButton("Registrarme");
-		btnRegistrarme.setBounds(338, 305, 126, 23);
+		btnRegistrarme.setBounds(235, 146, 126, 23);
 		btnRegistrarme.setActionCommand("Registrarme");
 		btnRegistrarme.addActionListener(this);
 		contentPane.add(btnRegistrarme);
