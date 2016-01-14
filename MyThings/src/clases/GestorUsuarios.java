@@ -32,10 +32,10 @@ public class GestorUsuarios {
 	            entrar=true;
 	            System.out.println("El usuario y contraseña coinciden --> entrar en la app.");
 			} else {
-				System.out.println("El usuario y contraseña fallan.");
+				throw new Exception() ;
 			}
-		} catch (SQLException e) {
-				e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("El usuario y contraseña fallan.");
 		}
 		
 		return entrar;
