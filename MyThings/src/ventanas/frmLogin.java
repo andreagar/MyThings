@@ -105,7 +105,12 @@ public class frmLogin extends JFrame implements ActionListener{
 					frmLogin.this.dispose();
 					}
 				}catch(MiExcepcion e1){
-						JOptionPane.showMessageDialog(this,e1.NoExiste());
+					frmExcepcion objExcepcion = new frmExcepcion(e1.NoExiste());
+					objExcepcion.setVisible(true);
+//					JOptionPane.showMessageDialog(this,e1.NoExiste());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 				
 				break;

@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -132,14 +133,21 @@ public class frmAltaUsuario extends JFrame implements ActionListener{
 		
 			case "guardar": 
 				try{
-					if (usuario.AñadirUsuario(txtNomLogIn.getText(), txtNomReal.getText(), txtApellidos.getText(), txtPassword.getText())){
-						frmLogin objLogin = new frmLogin();
-						objLogin.setVisible(true);
-						frmAltaUsuario.this.dispose();
+					if ((!txtNomLogIn.getText().equals("")) && (!txtPassword.getText().equals(""))){
+						if (usuario.AñadirUsuario(txtNomLogIn.getText(), txtNomReal.getText(), txtApellidos.getText(), txtPassword.getText())){
+							frmLogin objLogin = new frmLogin();
+							objLogin.setVisible(true);
+							frmAltaUsuario.this.dispose();
+						}
 					}
 					
 				}catch (MiExcepcion e1){
-					JOptionPane.showMessageDialog(this,e1.YaExiste());
+					frmExcepcion objExcepcion = new frmExcepcion(e1.YaExiste());
+					objExcepcion.setVisible(true);
+					//JOptionPane.showMessageDialog(this,e1.YaExiste());
+				} catch (SQLException e4) {
+					// TODO Auto-generated catch block
+					e4.printStackTrace();
 				}
 //				frmLogin objLogin = new frmLogin();
 //				objLogin.setVisible(true);

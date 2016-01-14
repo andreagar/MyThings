@@ -23,6 +23,7 @@ import javax.swing.table.TableRowSorter;
 
 import clases.BaseDeDatos;
 import clases.GestorTareas;
+import clases.MiExcepcion;
 import clases.Tareas;
 
 import javax.swing.JLabel;
@@ -118,6 +119,7 @@ public class frmTableTareas extends JFrame implements ActionListener {
 				frmTableTareas.this.dispose();
 				break;
 			case "Eliminar": 
+				try{
 					int filaE = tabla.getSelectedRow();
 					String fechaI = tabla.getValueAt(filaE, 0).toString();
 					String fechaF = tabla.getValueAt(filaE, 1).toString();
@@ -127,9 +129,17 @@ public class frmTableTareas extends JFrame implements ActionListener {
 					String desc = tabla.getValueAt(filaE, 5).toString();
 				tareas.EliminarTarea(fechaI, fechaF, imp, loc, tiempo, desc);
 				crearTabla();
-				
+				} catch(Exception e2){
+					try {
+						throw new MiExcepcion();
+					} catch (MiExcepcion e1) {
+						frmExcepcion objExcepcion = new frmExcepcion(e1.SinSeleccionar());
+						objExcepcion.setVisible(true);
+					}
+				}
 				break;
 			case "Modificar":
+				try{
 					int filaM = tabla.getSelectedRow();
 					String fecha1 = tabla.getValueAt(filaM, 0).toString();
 					String fecha2 = tabla.getValueAt(filaM, 1).toString();
@@ -148,7 +158,16 @@ public class frmTableTareas extends JFrame implements ActionListener {
 
 					frmModificarTarea objModificarTarea = new frmModificarTarea(tarea);
 					objModificarTarea.setVisible(true);
-					frmTableTareas.this.dispose();				
+					frmTableTareas.this.dispose();	
+				} catch(Exception e2){
+					try {
+						throw new MiExcepcion();
+					} catch (MiExcepcion e1) {
+						frmExcepcion objExcepcion = new frmExcepcion(e1.SinSeleccionar());
+						objExcepcion.setVisible(true);
+					}
+					
+				}
 				break;	
 			case "Atras":
 				frmPrincipal objPrincipal = new frmPrincipal();
