@@ -155,11 +155,15 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(frmAltaPersonal.class.getResource("/ventanas/img/save.png")));
 		btnGuardar.setBounds(310, 220, 131, 39);
+		btnGuardar.setActionCommand("Guardar");
+		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setIcon(new ImageIcon(frmAltaPersonal.class.getResource("/ventanas/img/cancelar.gif")));
 		btnCancelar.setBounds(310, 280, 131, 39);
+		btnCancelar.setActionCommand("Cancelar");
+		btnCancelar.addActionListener(this);
 		contentPane.add(btnCancelar);
 		
 		txtNombre = new JTextField();
@@ -195,6 +199,8 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 		FechaNac = new JDateChooser();
 		FechaNac.setBounds(125, 299, 95, 20);
 		contentPane.add(FechaNac);
+
+		
 	}
 
 	@Override
@@ -216,14 +222,16 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 						JOptionPane.showMessageDialog(this,e1.YaExiste());
 					}
 					frmAltaPersonal.this.dispose();		
-					frmContactos objContactos = new frmContactos();
+					frmTableContactos objContactos = new frmTableContactos();
 					objContactos.setVisible(true);
 					break;
 			
 			case "Cancelar":
+				
+				frmTableContactos objContactos2 = new frmTableContactos();
+				objContactos2.setVisible(true);	
 				frmAltaPersonal.this.dispose();
-				frmContactos objContactos2 = new frmContactos();
-				objContactos2.setVisible(true);			
+				break;
 		}
 	}
 }

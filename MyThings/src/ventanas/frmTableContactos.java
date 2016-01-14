@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -112,6 +114,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		btnEliminar.setActionCommand("Eliminar");
 		btnEliminar.addActionListener(this);
 		contentPane.add(btnEliminar);
+		
 	}
 
 	@Override
@@ -151,7 +154,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 	
 	private void crearTabla() {
 		
-		DefaultTableModel dtm = new DefaultTableModel();
+		final DefaultTableModel dtm = new DefaultTableModel();
 		tabla = this.jTable1;
 		tabla.setModel(dtm);
 		
@@ -169,5 +172,16 @@ public class frmTableContactos extends JFrame implements ActionListener {
 			}
 		}catch (Exception e){
 		}
+		
+		tabla.addMouseListener(new MouseAdapter() 
+		   {
+		      public void mouseClicked(MouseEvent e) 
+		      {
+		         int fila = tabla.rowAtPoint(e.getPoint());
+		         int columna = tabla.columnAtPoint(e.getPoint());
+		         if ((fila > -1) && (columna > -1))
+		            System.out.println(dtm.getValueAt(fila,columna));
+		      }
+		   });
 	}
 }

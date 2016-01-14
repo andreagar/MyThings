@@ -8,15 +8,19 @@ public class MiExcepcion extends Exception{
 	private static final long serialVersionUID = 1L;
 
 	public String YaExiste(){
-		return "El usuario con ese NOMBRE DE USUARIO ya está dado de alta.";
+		return "NOMBRE DE USUARIO no disponible.";
 	}
 	
 	public String NoDatos(){
-		return "No hay datos.";
+		return "No hay datos."; 
+	}
+	
+	public String SinSeleccionar(){
+		return "No se ha seleccionado nada.";
 	}
 	
 	public String NoExiste(){
-		return "El usuario no existe, compruebe que los datos son correctos.";
+		return "El usuario o contraseña no son correctos. Compruebe sus credenciales.";
 	}
 	
 }

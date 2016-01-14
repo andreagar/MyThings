@@ -18,12 +18,13 @@ public class GestorUsuarios {
 	/**Log In del usuario a la aplicación
 	 * Comprobamos de si/no existe el usuario, para saberlo hacemos una consulta con el nombre de usuario y password.
 	 * Si no existe, devolveremos un false que hará que salga un mensaje de que ese usuario no está registrado.
+	 * @throws Exception 
 	 */
-	public boolean Login (String usuario, String password) throws MiExcepcion{
+	public boolean Login (String usuario, String password) throws MiExcepcion, Exception{
 		
 		boolean entrar = false;
 		
-		try{ //consultamos que ese usuario con esa contraseña existan
+		 //consultamos que ese usuario con esa contraseña existan
 			Statement stmt = BaseDeDatos.getStatement();
 			ResultSet consulta = stmt.executeQuery("select nomLogIn,password from tabla_usuarios where "
 					+ "nomLogIn='"+usuario+"' and password='"+password+"' ");
@@ -32,11 +33,9 @@ public class GestorUsuarios {
 	            entrar=true;
 	            System.out.println("El usuario y contraseña coinciden --> entrar en la app.");
 			} else {
-				throw new Exception() ;
+				throw new MiExcepcion() ;
 			}
-		} catch (Exception e) {
-			System.out.println("El usuario y contraseña fallan.");
-		}
+		
 		
 		return entrar;
 	}
@@ -45,12 +44,13 @@ public class GestorUsuarios {
 	/**Añadir un nuevo usuario a la BD
 	 * Primero comprobar si existe el usuario, si no existe lo añadimos a la BD
 	 * Si existe, devolveremos un false que hará que salga un mensaje de error.
+	 * @throws SQLException 
 	 */
-	public boolean AñadirUsuario (String nomLI, String nombreR, String apell, String password) throws MiExcepcion{
+	public boolean AñadirUsuario (String nomLI, String nombreR, String apell, String password) throws MiExcepcion, SQLException{
 		
 		boolean NoExiste = true; //NO está en la BD
 
-		try{ //COMPROBAR SI EXISTE ESE USUARIO
+	 //COMPROBAR SI EXISTE ESE USUARIO
 			
 			//HACEMOS LA CONSULTA
 			Statement stmt = BaseDeDatos.getStatement();
@@ -58,14 +58,12 @@ public class GestorUsuarios {
 			
 			if(consulta.next()){ //Si al hacer la consulta encuentra un registro identico, asigna 'false' a NoExiste
 				NoExiste = false;
-				System.out.println("El usuario ya existe.");
+				throw new MiExcepcion();
 			} else {
 				BaseDeDatos.insertUsuario(nomLI, nombreR, apell, password);
 				System.out.println("Usuario añadido.");
 			}
-		} catch (SQLException e) {
-				e.printStackTrace();
-		}
+		
 		return NoExiste;
 	}
 
