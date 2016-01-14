@@ -96,4 +96,41 @@ public class GestorContactos {
 		}
 		return consulta;
 	}
+	
+	public boolean ModificarContPersonal (String nombre, String apell, String email, String movil, String imagen, 
+			String domicilio, String tfno_domicilio, String fecha_n, Personal cont){
+		String usuario = frmLogin.txtUsuario.getText();
+		boolean cambiar = false;
+		try{
+			Statement stmt = BaseDeDatos.getStatement();
+			
+			String query = "select email from tabla_contPersonal where nomLogIn='" + usuario +"' "
+					+ "and nombre='" + cont.getNombre() + "' "
+					+ "and apell='" + cont.getApellidos() + "' "
+					+ "and movil='" + cont.getNum_m() + "' "
+					+ "and imegen='" + cont.getFoto() + "' "
+					+ "and domicilio=" + cont.getDomicilio() + " "
+					+ "and tfno_domicilio=" + cont.getNum_d() + " "
+					+ "and fecha_n='" + cont.getNacimiento() + "' "; 
+			System.out.println(query);
+			ResultSet consulta = stmt.executeQuery(query);
+			
+			if(consulta.next()){
+				String query2 = "update tabla_contPersonal set "
+						+ "nombre='" + nombre + "' "
+						+ ", apell='" + apell + "' "
+						+ ", email='" + email + "' "
+						+ ", movil='" + movil + "' "
+						+ ", imegen='" + imagen + "' "
+						+ ", domicilio=" + domicilio + " "
+						+ ", tfno_domicilio=" + tfno_domicilio + " "
+						+ ", fecha_n='" + fecha_n + "' where email=" + consulta.getInt("email") +" ";
+				System.out.println(query2);
+				cambiar=true;
+				ResultSet cambio = stmt.executeQuery(query2);
+			}
+		}catch (SQLException e){
+		}
+		return cambiar;
+	}
 }

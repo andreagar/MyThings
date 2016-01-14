@@ -210,7 +210,6 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 		switch (e.getActionCommand()) {
 			
 			case "Guardar":
-				
 					DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
     					String fechaN = fecha.format(FechaNac.getDate());
     				String ruta = fichero.toString();
@@ -227,7 +226,6 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 					break;
 			
 			case "Cancelar":
-				
 				frmTableContactos objContactos2 = new frmTableContactos();
 				objContactos2.setVisible(true);	
 				frmAltaPersonal.this.dispose();
