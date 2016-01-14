@@ -253,15 +253,15 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				
 			else if (tabla_1.getSelectedRow()!=-1){
 				
-				int filaE = tabla_1.getSelectedRow();
-				String nombre1 = tabla_1.getValueAt(filaE, 0).toString();
-				String apellidos1 = tabla_1.getValueAt(filaE, 1).toString();
-				String correo1 = tabla_1.getValueAt(filaE, 2).toString();
-				String movil1 = tabla_1.getValueAt(filaE, 3).toString();
-				String imagen1 = tabla_1.getValueAt(filaE, 4).toString();
-				String empresa = tabla_1.getValueAt(filaE, 5).toString();
-				String cargo = tabla_1.getValueAt(filaE, 6).toString();
-				String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
+				int filaE1 = tabla_1.getSelectedRow();
+				String nombre1 = tabla_1.getValueAt(filaE1, 0).toString();
+				String apellidos1 = tabla_1.getValueAt(filaE1, 1).toString();
+				String correo1 = tabla_1.getValueAt(filaE1, 2).toString();
+				String movil1 = tabla_1.getValueAt(filaE1, 3).toString();
+				String imagen1 = tabla_1.getValueAt(filaE1, 4).toString();
+				String empresa = tabla_1.getValueAt(filaE1, 5).toString();
+				String cargo = tabla_1.getValueAt(filaE1, 6).toString();
+				String tfno_emp = tabla_1.getValueAt(filaE1, 7).toString();
 				
 			Laboral cont1 = new Laboral();
 				cont1.setNombre(nombre1);
@@ -295,29 +295,21 @@ public class frmTableContactos extends JFrame implements ActionListener {
 					
 					contacto.EliminarContactoPersonal(nombre, apellidos, correo, movil, imagen, domi, telf_domi, f_naci);
 					crearTabla();
-	//				} catch(Exception e2){
-	//					try {
-	//						throw new MiExcepcion();
-	//					} catch (MiExcepcion e1) {
-	//						frmExcepcion objExcepcion = new frmExcepcion(e1.SinSeleccionar());
-	//						objExcepcion.setVisible(true);
-	//					}
-	//				}
 				}
 				
 			else if (tabla_1.getSelectedRow()!=-1){
 				
 				int filaE = tabla_1.getSelectedRow();
-				String nombre1 = tabla_1.getValueAt(filaE, 0).toString();
-				String apellidos1 = tabla_1.getValueAt(filaE, 1).toString();
-				String correo1 = tabla_1.getValueAt(filaE, 2).toString();
-				String movil1 = tabla_1.getValueAt(filaE, 3).toString();
-				String imagen1 = tabla_1.getValueAt(filaE, 4).toString();
-				String empresa = tabla_1.getValueAt(filaE, 5).toString();
-				String cargo = tabla_1.getValueAt(filaE, 6).toString();
-				String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
+					String nombre1 = tabla_1.getValueAt(filaE, 0).toString();
+					String apellidos1 = tabla_1.getValueAt(filaE, 1).toString();
+					String correo1 = tabla_1.getValueAt(filaE, 2).toString();
+					String movil1 = tabla_1.getValueAt(filaE, 3).toString();
+					String imagen1 = tabla_1.getValueAt(filaE, 4).toString();
+					String empresa = tabla_1.getValueAt(filaE, 5).toString();
+					String cargo = tabla_1.getValueAt(filaE, 6).toString();
+					String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
 				
-				//contacto.EliminarContactoLaboral(nombre1, apellidos1, correo1, movil1, imagen1, empresa, cargo, tfno_emp);
+				contacto.EliminarContactoLaboral(nombre1, apellidos1, correo1, movil1, imagen1, empresa, cargo, tfno_emp);
 				crearTabla1();
 			}
 				break;

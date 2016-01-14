@@ -36,22 +36,22 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
 	private JLabel lblMovil;
-	private JLabel lblTelfonoDomicilio;
+	private JLabel lblCargo;
 	private JLabel lblEmail;
-	private JLabel lblDomicilio;
-	private JLabel lblFechaNacimiento;
+	private JLabel lblEmpresa;
+	private JLabel lblTfno_empresa;
 	private String ruta="";
 	private JTextField txtNombre;
 	private JTextField txtApellidos;
 	private JTextField txtMovil;
 	private JTextField txtEmail;
-	private JTextField txtDomicilio;
-	private JTextField txtTfno_Domi;
+	private JTextField txtEmpresa;
+	private JTextField txtCargo;
 	private JButton btnGuardar;
 	private JButton btnSubirFoto;
-	private JDateChooser FechaN;
 	private Laboral cont1;
 	File fichero;
+	private JTextField txtTfno_empresa;
 	
 	/**
 	 * Create the frame.
@@ -71,7 +71,7 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 		
 		lblFoto = new JLabel("FOTO");
 		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFoto.setBounds(310, 50, 114, 118);
+		lblFoto.setBounds(316, 23, 114, 118);
 		ImageIcon icon = new ImageIcon(cont.getFoto());
 		Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
 		lblFoto.setIcon(icono);
@@ -91,21 +91,21 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 		lblMovil.setBounds(10, 142, 46, 14);
 		contentPane.add(lblMovil);
 		
-		lblTelfonoDomicilio = new JLabel("Tel\u00E9fono domicilio:");
-		lblTelfonoDomicilio.setBounds(10, 264, 127, 14);
-		contentPane.add(lblTelfonoDomicilio);
+		lblCargo = new JLabel("Cargo: ");
+		lblCargo.setBounds(10, 264, 46, 14);
+		contentPane.add(lblCargo);
 		
 		lblEmail = new JLabel("Email: ");
 		lblEmail.setBounds(10, 182, 46, 14);
 		contentPane.add(lblEmail);
 		
-		lblDomicilio = new JLabel("Domicilio: ");
-		lblDomicilio.setBounds(10, 222, 58, 14);
-		contentPane.add(lblDomicilio);
+		lblEmpresa = new JLabel("Empresa");
+		lblEmpresa.setBounds(10, 222, 58, 14);
+		contentPane.add(lblEmpresa);
 		
-		lblFechaNacimiento = new JLabel("Fecha nacimiento: ");
-		lblFechaNacimiento.setBounds(10, 305, 114, 14);
-		contentPane.add(lblFechaNacimiento);
+		lblTfno_empresa = new JLabel("Telefono empresa: ");
+		lblTfno_empresa.setBounds(10, 305, 114, 14);
+		contentPane.add(lblTfno_empresa);
 		
 		txtNombre = new JTextField(cont1.getNombre());
 		txtNombre.setBounds(66, 58, 148, 20);
@@ -128,16 +128,16 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
 		
-		txtDomicilio = new JTextField(cont1.getDomicilio());
-		txtDomicilio.setBounds(66, 219, 193, 20);
-		contentPane.add(txtDomicilio);
-		txtDomicilio.setColumns(10);
+		txtEmpresa = new JTextField(cont1.getEmpresa());
+		txtEmpresa.setBounds(66, 219, 193, 20);
+		contentPane.add(txtEmpresa);
+		txtEmpresa.setColumns(10);
 		
-		String tfno = Integer.toString(cont1.getNum_d());
-		txtTfno_Domi = new JTextField(tfno);
-		txtTfno_Domi.setBounds(117, 261, 86, 20);
-		contentPane.add(txtTfno_Domi);
-		txtTfno_Domi.setColumns(10);
+		
+		txtCargo = new JTextField(cont1.getCargo());
+		txtCargo.setBounds(66, 261, 193, 20);
+		contentPane.add(txtCargo);
+		txtCargo.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(frmModificarContactoPersonal.class.getResource("/ventanas/img/save.png")));
@@ -185,12 +185,14 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 				}
 			}
 		});
-		btnSubirFoto.setBounds(310, 140, 114, 23);
+		btnSubirFoto.setBounds(316, 164, 114, 23);
 		contentPane.add(btnSubirFoto);
 		
-		FechaN = new JDateChooser();
-		FechaN.setBounds(117, 299, 95, 20);
-		contentPane.add(FechaN);
+		String tfno = Integer.toString(cont1.getNum_e());
+		txtTfno_empresa = new JTextField(tfno);
+		txtTfno_empresa.setColumns(10);
+		txtTfno_empresa.setBounds(107, 302, 96, 20);
+		contentPane.add(txtTfno_empresa);
 
 	}
 
@@ -204,10 +206,8 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 			case "Guardar":
 				
 			try{ 
-				DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-				String fechaN = fecha.format(FechaN.getDate());
 				if (contacto.ModificarContLaboral(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(),
-						txtMovil.getText(), ruta, txtDomicilio.getText(), txtTfno_Domi.getText(),fechaN, cont1))
+						txtMovil.getText(), ruta, txtEmpresa.getText(), txtCargo.getText(), txtTfno_empresa.getText(), cont1))
 				{
 					frmTableContactos objContacto= new frmTableContactos();
 					objContacto.setVisible(true);

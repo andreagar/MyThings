@@ -138,6 +138,47 @@ public class GestorContactos {
 		return cambiar;
 	}
 	
+	public boolean ModificarContLaboral (String nombre, String apell, String email, String movil, String imagen, 
+			String empresa, String cargo, String tfno_empresa, Laboral cont){
+		
+		String usuario = frmLogin.txtUsuario.getText();
+		boolean cambiar = false;
+		try{
+			Statement stmt = BaseDeDatos.getStatement();
+			
+			String mvl= Integer.toString(cont.getNum_m());
+			String tfno= Integer.toString(cont.getNum_e());
+			
+			String query = "select email from tabla_contLaboral where nomLogIn='" + usuario +"' "
+					+ "and nombre='" + cont.getNombre() + "' "
+					+ "and apell='" + cont.getApellidos() + "' "
+					+ "and movil='" + mvl + "' "
+					+ "and imagen='" + cont.getFoto() + "' "
+					+ "and empresa='" + cont.getEmpresa() + "' "
+					+ "and cargo='" + tfno + "' "
+					+ "and tfno_empresa='" + tfno + "' "; 
+			System.out.println(query);
+			ResultSet consulta = stmt.executeQuery(query);
+			
+			if(consulta.next()){
+				String query2 = "update tabla_contLaboral set "
+						+ "nombre='" + nombre + "' "
+						+ ", apell='" + apell + "' "
+						+ ", email='" + email + "' "
+						+ ", movil='" + movil + "' "
+						+ ", imagen='" + imagen + "' "
+						+ ", empresa='" + empresa + "' "
+						+ ", cargo='" + cargo + "' "
+						+ ", tfno_empresa='" + tfno_empresa + "' where email='" + consulta.getString("email") +"' ";
+				System.out.println(query2);
+				cambiar=true;
+				ResultSet cambio = stmt.executeQuery(query2);
+			}
+		}catch (SQLException e){
+		}
+		return cambiar;
+	}
+	
 	public void EliminarContactoPersonal(String nombre, String apell, String email, String movil, String imagen, 
 			String domicilio, String tfno_domicilio, String fecha_n){
 		
