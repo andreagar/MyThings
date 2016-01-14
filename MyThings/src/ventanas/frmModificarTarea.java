@@ -64,7 +64,7 @@ public class frmModificarTarea extends JFrame implements ActionListener{
 		btnGuardar = new JButton("Guardar");
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnGuardar, -10, SpringLayout.SOUTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.EAST, btnGuardar, -10, SpringLayout.EAST, contentPane);
-		btnGuardar.setActionCommand("guardar");
+		btnGuardar.setActionCommand("Guardar");
 		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
 		

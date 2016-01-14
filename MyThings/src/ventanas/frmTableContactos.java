@@ -283,6 +283,45 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				
 			case "Eliminar":
 				
+				if (tabla.getSelectedRow()!=-1){
+					
+					int filaE = tabla.getSelectedRow();
+					String nombre = tabla.getValueAt(filaE, 0).toString();
+					String apellidos = tabla.getValueAt(filaE, 1).toString();
+					String correo = tabla.getValueAt(filaE, 2).toString();
+					String movil = tabla.getValueAt(filaE, 3).toString();
+					String imagen = tabla.getValueAt(filaE, 4).toString();
+					String domi = tabla.getValueAt(filaE, 5).toString();
+					String telf_domi = tabla.getValueAt(filaE, 6).toString();
+					String f_naci = tabla.getValueAt(filaE, 7).toString();
+					
+					contacto.EliminarContactoPersonal(nombre, apellidos, correo, movil, imagen, domi, telf_domi, f_naci);
+					crearTabla();
+	//				} catch(Exception e2){
+	//					try {
+	//						throw new MiExcepcion();
+	//					} catch (MiExcepcion e1) {
+	//						frmExcepcion objExcepcion = new frmExcepcion(e1.SinSeleccionar());
+	//						objExcepcion.setVisible(true);
+	//					}
+	//				}
+				}
+				
+			else if (tabla_1.getSelectedRow()!=-1){
+				
+				int filaE = tabla_1.getSelectedRow();
+				String nombre1 = tabla_1.getValueAt(filaE, 0).toString();
+				String apellidos1 = tabla_1.getValueAt(filaE, 1).toString();
+				String correo1 = tabla_1.getValueAt(filaE, 2).toString();
+				String movil1 = tabla_1.getValueAt(filaE, 3).toString();
+				String imagen1 = tabla_1.getValueAt(filaE, 4).toString();
+				String empresa = tabla_1.getValueAt(filaE, 5).toString();
+				String cargo = tabla_1.getValueAt(filaE, 6).toString();
+				String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
+				
+//				contacto.EliminarContactoLaboral(nombre1, apellidos1, correo1, movil1, imagen1, empresa, cargo, tfno_emp);
+//				crearTabla1();
+			}
 				break;
 				
 			case "Atras":

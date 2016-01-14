@@ -155,6 +155,8 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(frmModificarContactoPersonal.class.getResource("/ventanas/img/save.png")));
 		btnGuardar.setBounds(310, 283, 120, 41);
+		btnGuardar.setActionCommand("Guardar");
+		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
 		
 		btnSubirFoto = new JButton("Subir foto");

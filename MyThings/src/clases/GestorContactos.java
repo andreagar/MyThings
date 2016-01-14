@@ -105,13 +105,17 @@ public class GestorContactos {
 		try{
 			Statement stmt = BaseDeDatos.getStatement();
 			
+			String mvl= Integer.toString(cont.getNum_m());
+			String tfno= Integer.toString(cont.getNum_d());
+			
+			
 			String query = "select email from tabla_contPersonal where nomLogIn='" + usuario +"' "
 					+ "and nombre='" + cont.getNombre() + "' "
 					+ "and apell='" + cont.getApellidos() + "' "
-					+ "and movil='" + cont.getNum_m() + "' "
+					+ "and movil='" + mvl + "' "
 					+ "and imagen='" + cont.getFoto() + "' "
-					+ "and domicilio=" + cont.getDomicilio() + " "
-					+ "and tfno_domicilio=" + cont.getNum_d() + " "
+					+ "and domicilio='" + cont.getDomicilio() + "' "
+					+ "and tfno_domicilio='" + tfno + "' "
 					+ "and fecha_n='" + cont.getNacimiento() + "' "; 
 			System.out.println(query);
 			ResultSet consulta = stmt.executeQuery(query);
@@ -123,8 +127,8 @@ public class GestorContactos {
 						+ ", email='" + email + "' "
 						+ ", movil='" + movil + "' "
 						+ ", imagen='" + imagen + "' "
-						+ ", domicilio=" + domicilio + " "
-						+ ", tfno_domicilio=" + tfno_domicilio + " "
+						+ ", domicilio='" + domicilio + "' "
+						+ ", tfno_domicilio='" + tfno_domicilio + "' "
 						+ ", fecha_n='" + fecha_n + "' where email='" + consulta.getString("email") +"' ";
 				System.out.println(query2);
 				cambiar=true;
@@ -140,24 +144,24 @@ public class GestorContactos {
 		
 		String usuario = frmLogin.txtUsuario.getText();
 		
-		int tiempoInt = Integer.parseInt(tiempo);
-		
 		try{
 			Statement stmt = BaseDeDatos.getStatement();
 			String query = "delete from tabla_tareas where nomLogIn='" + usuario +"' "
-					+ "and fecha_i='" + fechaI + "' "
-					+ "and fecha_f='" + fechaF + "' "
-					+ "and importancia='" + imp + "' "
-					+ "and localizacion='" + loc + "' "
-					+ "and tiempo_v=" + tiempoInt + " "
-					+ "and descripcion='" + desc + "' ";
+					+ "nombre='" + nombre + "' "
+					+ ", apell='" + apell + "' "
+					+ ", email='" + email + "' "
+					+ ", movil='" + movil + "' "
+					+ ", imagen='" + imagen + "' "
+					+ ", domicilio='" + domicilio + "' "
+					+ ", tfno_domicilio='" + tfno_domicilio + "' "
+					+ ", fecha_n='" + fecha_n + "'";
 			System.out.println(query);
 			ResultSet consulta = stmt.executeQuery(query);
 			
 			if (consulta.next()){			
-				System.out.println("la tarea se ha eliminado");
+				System.out.println("El contacto se ha eliminado");
 			}else{
-				System.out.println("no se ha eliminado");
+				System.out.println("No se ha eliminado");
 			}
 		}catch (SQLException e){
 		}	
