@@ -118,23 +118,45 @@ public class frmTableTareas extends JFrame implements ActionListener {
 				frmTableTareas.this.dispose();
 				break;
 			case "Eliminar": 
-					int fila = tabla.getSelectedRow();
-					String fechaI = tabla.getValueAt(fila, 0).toString();
-					String fechaF = tabla.getValueAt(fila, 1).toString();
-					String imp = tabla.getValueAt(fila, 2).toString();
-					String loc = tabla.getValueAt(fila, 3).toString();
-					String tiempo = tabla.getValueAt(fila, 4).toString();
-					String desc = tabla.getValueAt(fila, 5).toString();
+					int filaE = tabla.getSelectedRow();
+					String fechaI = tabla.getValueAt(filaE, 0).toString();
+					String fechaF = tabla.getValueAt(filaE, 1).toString();
+					String imp = tabla.getValueAt(filaE, 2).toString();
+					String loc = tabla.getValueAt(filaE, 3).toString();
+					String tiempo = tabla.getValueAt(filaE, 4).toString();
+					String desc = tabla.getValueAt(filaE, 5).toString();
 				tareas.EliminarTarea(fechaI, fechaF, imp, loc, tiempo, desc);
+				crearTabla();
+				
 				break;
 			case "Modificar":
-				
+					int filaM = tabla.getSelectedRow();
+					String fecha1 = tabla.getValueAt(filaM, 0).toString();
+					String fecha2 = tabla.getValueAt(filaM, 1).toString();
+					String impor = tabla.getValueAt(filaM, 2).toString();
+					String local = tabla.getValueAt(filaM, 3).toString();
+					String tiempoV = tabla.getValueAt(filaM, 4).toString();
+					String descrip = tabla.getValueAt(filaM, 5).toString();
+					
+					Tareas tarea = new Tareas();
+						tarea.setFecha_i(fecha1);
+						tarea.setFecha_f(fecha2);
+						tarea.setImportancia(impor);
+						tarea.setLocalizacion(local);
+						tarea.setTiempo_v(Integer.parseInt(tiempoV));
+						tarea.setDescripcion(descrip);
+
+					frmModificarTarea objModificarTarea = new frmModificarTarea(tarea);
+					objModificarTarea.setVisible(true);
+					frmTableTareas.this.dispose();				
 				break;	
 			case "Atras":
 				frmPrincipal objPrincipal = new frmPrincipal();
 				objPrincipal.setVisible(true);
+				frmTableTareas.this.dispose();
+				break;
 		}
-		frmTableTareas.this.dispose();
+		
 	}
 	
 	private void crearTabla() {

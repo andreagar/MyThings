@@ -48,8 +48,38 @@ public class GestorTareas {
 	}
 	
 	
-	public void ModificarTarea (){
-		
+	public boolean ModificarTarea (String fechaI, String fechaF, String imp, String loc, int tiempo, String desc, Tareas tarea){
+		String usuario = frmLogin.txtUsuario.getText();
+		boolean cambiar = false;
+		try{
+			Statement stmt = BaseDeDatos.getStatement();
+			
+			String query = "select id from tabla_tareas where nomLogIn='" + usuario +"' "
+					+ "and fecha_i='" + tarea.getFecha_i() + "' "
+					+ "and fecha_f='" + tarea.getFecha_f() + "' "
+					+ "and importancia='" + tarea.getImportancia() + "' "
+					+ "and localizacion='" + tarea.getLocalizacion() + "' "
+					+ "and tiempo_v=" + tarea.getTiempo_v() + " "
+					+ "and descripcion='" + tarea.getDescripcion() + "' "; 
+			System.out.println(query);
+			ResultSet consulta = stmt.executeQuery(query);
+			
+			if(consulta.next()){
+				String query2 = "update tabla_tareas set "
+						+ "fecha_i='" + fechaI + "' "
+						+ ", fecha_f='" + fechaF + "' "
+						+ ", importancia='" + imp + "' "
+						+ ", localizacion='" + loc + "' "
+						+ ", tiempo_v=" + tiempo + " "
+						+ ", descripcion='" + desc + "' where id=" + consulta.getInt("id") +" ";
+				System.out.println(query2);
+				cambiar=true;
+				ResultSet cambio = stmt.executeQuery(query2);
+				
+			}
+		}catch (SQLException e){
+		}
+		return cambiar;
 	}
 	
 	public void EliminarTarea(String fechaI, String fechaF, String imp, String loc, String tiempo, String desc){
@@ -66,7 +96,7 @@ public class GestorTareas {
 					+ "and importancia='" + imp + "' "
 					+ "and localizacion='" + loc + "' "
 					+ "and tiempo_v=" + tiempoInt + " "
-					+ "and descripcion'" + desc + "' ";
+					+ "and descripcion='" + desc + "' ";
 			System.out.println(query);
 			ResultSet consulta = stmt.executeQuery(query);
 			
