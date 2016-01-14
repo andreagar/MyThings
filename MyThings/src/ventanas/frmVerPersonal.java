@@ -105,41 +105,43 @@ public class frmVerPersonal extends JFrame implements ActionListener{
 		contentPane.add(lblFechaNacimiento);
 		
 		
-		lblVernombre = new JLabel("VerNombre");
+		lblVernombre = new JLabel(cont.getNombre());
 		lblVernombre.setBounds(65, 61, 127, 14);
-		lblVernombre.setText(cont.getNombre());
+		//lblVernombre.setText(cont.getNombre());
 		contentPane.add(lblVernombre);
 		
-		lblVerapell = new JLabel("VerApell");
-		lblVerapell.setBounds(64, 102, 146, 14);
-		lblVerapell.setText(cont.getApellidos());
+		lblVerapell = new JLabel(cont.getApellidos());
+		lblVerapell.setBounds(80, 102, 146, 14);
+		//lblVerapell.setText(cont.getApellidos());
 		contentPane.add(lblVerapell);
 		
-		lblVermovil = new JLabel("VerMovil");
-		lblVermovil.setBounds(51, 142, 86, 14);
 		String mvl = Integer.toString(cont.getNum_m());
-		lblVermovil.setText(mvl);
+		lblVermovil = new JLabel(mvl);
+		lblVermovil.setBounds(51, 142, 86, 14);
+		
+		//lblVermovil.setText(mvl);
 		contentPane.add(lblVermovil);
 		
-		lblVeremail = new JLabel("VerEmail");
+		lblVeremail = new JLabel(cont.getEmail());
 		lblVeremail.setBounds(51, 182, 127, 14);
-		lblVeremail.setText(cont.getEmail());
+		//lblVeremail.setText(cont.getEmail());
 		contentPane.add(lblVeremail);
 		
-		lblVerdomicilio = new JLabel("VerDomicilio");
+		lblVerdomicilio = new JLabel(cont.getDomicilio());
 		lblVerdomicilio.setBounds(78, 222, 225, 14);
-		lblVerdomicilio.setText(cont.getDomicilio());
+		//lblVerdomicilio.setText(cont.getDomicilio());
 		contentPane.add(lblVerdomicilio);
 		
-		lblVertfnodomicilio = new JLabel("VerTfnoDomicilio");
-		lblVertfnodomicilio.setBounds(129, 264, 114, 14);
 		String tfno = Integer.toString(cont.getNum_d());
-		lblVertfnodomicilio.setText(tfno);
+		lblVertfnodomicilio = new JLabel(tfno);
+		lblVertfnodomicilio.setBounds(129, 264, 114, 14);
+		
+	//	lblVertfnodomicilio.setText(tfno);
 		contentPane.add(lblVertfnodomicilio);
 		
-		lblVerfechan = new JLabel("VerFechaN");
+		lblVerfechan = new JLabel(cont.getNacimiento());
 		lblVerfechan.setBounds(115, 305, 128, 14);
-		lblVeremail.setText(cont.getNacimiento());
+	//	lblVeremail.setText(cont.getNacimiento());
 		contentPane.add(lblVerfechan);
 	}
 
