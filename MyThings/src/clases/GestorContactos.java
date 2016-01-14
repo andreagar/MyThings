@@ -164,5 +164,33 @@ public class GestorContactos {
 				}
 			}catch (SQLException e){
 			}	
-		}	
+	}	
+	
+	public void EliminarContactoLaboral(String nombre, String apell, String email, String movil, String imagen, 
+			String empresa, String cargo, String tfno_empresa){
+		
+		String usuario = frmLogin.txtUsuario.getText();
+		
+			try{
+				Statement stmt = BaseDeDatos.getStatement();
+				String query = "delete from tabla_contLaboral where nomLogIn='" + usuario +"' "
+						+ "and nombre='" + nombre + "' "
+						+ "and apell='" + apell + "' "
+						+ "and email='" + email + "' "
+						+ "and movil='" + movil + "' "
+						+ "and imagen='" + imagen + "' "
+						+ "and empresa='" + empresa + "' "
+						+ "and cargo='" + cargo + "' "
+						+ "and tfno_empresa='" + tfno_empresa + "'";
+				System.out.println(query);
+				ResultSet consulta = stmt.executeQuery(query);
+				
+				if (consulta.next()){			
+					System.out.println("El contacto se ha eliminado");
+				}else{
+					System.out.println("No se ha eliminado");
+				}
+			}catch (SQLException e){
+			}	
+	}	
 }

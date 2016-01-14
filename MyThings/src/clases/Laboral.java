@@ -3,8 +3,8 @@ package clases;
 public class Laboral extends Contacto{
 
 	private String empresa;
-	private int num_e;
 	private String cargo;
+	private int num_e;
 	/**
 	 * @return the empresa
 	 */

@@ -187,15 +187,15 @@ public class frmTableContactos extends JFrame implements ActionListener {
 					
 				else if (tabla_1.getSelectedRow()!=-1){
 					
-					int filaE = tabla_1.getSelectedRow();
-					String nombre1 = tabla_1.getValueAt(filaE, 0).toString();
-					String apellidos1 = tabla_1.getValueAt(filaE, 1).toString();
-					String correo1 = tabla_1.getValueAt(filaE, 2).toString();
-					String movil1 = tabla_1.getValueAt(filaE, 3).toString();
-					String imagen1 = tabla_1.getValueAt(filaE, 4).toString();
-					String empresa = tabla_1.getValueAt(filaE, 5).toString();
-					String cargo = tabla_1.getValueAt(filaE, 6).toString();
-					String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
+					int filaE1 = tabla_1.getSelectedRow();
+					String nombre1 = tabla_1.getValueAt(filaE1, 0).toString();
+					String apellidos1 = tabla_1.getValueAt(filaE1, 1).toString();
+					String correo1 = tabla_1.getValueAt(filaE1, 2).toString();
+					String movil1 = tabla_1.getValueAt(filaE1, 3).toString();
+					String imagen1 = tabla_1.getValueAt(filaE1, 4).toString();
+					String empresa = tabla_1.getValueAt(filaE1, 5).toString();
+					String cargo = tabla_1.getValueAt(filaE1, 6).toString();
+					String tfno_emp = tabla_1.getValueAt(filaE1, 7).toString();
 					
 				Laboral cont1 = new Laboral();
 					cont1.setNombre(nombre1);
@@ -210,7 +210,6 @@ public class frmTableContactos extends JFrame implements ActionListener {
 					frmVerLaboral objVerLaboral = new frmVerLaboral(cont1);
 					objVerLaboral.setVisible(true);
 					}
-	
 				break;
 	
 			case "Agregar Personal": 
@@ -253,7 +252,6 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				}
 				
 			else if (tabla_1.getSelectedRow()!=-1){
-				
 				
 				int filaE = tabla_1.getSelectedRow();
 				String nombre1 = tabla_1.getValueAt(filaE, 0).toString();
@@ -423,7 +421,9 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		rs = contacto.SeleccionarTareas1();
 		try{
 			while(rs.next()){
-				dtm.addRow (new Object[] {rs.getString("nombre"), rs.getString("apell")});
+				dtm.addRow (new Object[] {rs.getString("nombre"), rs.getString("apell"), rs.getString("email"),
+						rs.getString("movil"), rs.getString("imagen"), rs.getString("empresa"), rs.getString("cargo"), 
+						rs.getString("tfno_empresa"),rs.getString("nomLogIn") });
 			}
 		}catch (Exception e){
 		}
