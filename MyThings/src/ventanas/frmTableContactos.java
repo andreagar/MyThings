@@ -197,17 +197,17 @@ public class frmTableContactos extends JFrame implements ActionListener {
 					String cargo = tabla_1.getValueAt(filaE, 6).toString();
 					String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
 					
-				Laboral cont = new Laboral();
-					cont.setNombre(nombre1);
-					cont.setApellidos(apellidos1);
-					cont.setEmail(correo1);
-					cont.setNum_m(Integer.parseInt(movil1));
-					cont.setFoto(imagen1);
-					cont.setEmpresa(empresa);
-					cont.setCargo(cargo);
-					cont.setNum_e(Integer.parseInt(tfno_emp));
+				Laboral cont1 = new Laboral();
+					cont1.setNombre(nombre1);
+					cont1.setApellidos(apellidos1);
+					cont1.setEmail(correo1);
+					cont1.setNum_m(Integer.parseInt(movil1));
+					cont1.setFoto(imagen1);
+					cont1.setEmpresa(empresa);
+					cont1.setCargo(cargo);
+					cont1.setNum_e(Integer.parseInt(tfno_emp));
 					
-					frmVerLaboral objVerLaboral = new frmVerLaboral(cont);
+					frmVerLaboral objVerLaboral = new frmVerLaboral(cont1);
 					objVerLaboral.setVisible(true);
 					}
 	
@@ -380,17 +380,6 @@ public class frmTableContactos extends JFrame implements ActionListener {
 			}
 		}catch (Exception e){
 		}
-		
-		tabla.addMouseListener(new MouseAdapter() 
-		   {
-		      public void mouseClicked(MouseEvent e) 
-		      {
-		         int fila = tabla.rowAtPoint(e.getPoint());
-		         int columna = tabla.columnAtPoint(e.getPoint());
-		         if ((fila > -1) && (columna > -1))
-		            System.out.println(dtm.getValueAt(fila,columna));
-		      }
-		   });
 	}
 	
 	private void crearTabla1() {
@@ -399,7 +388,32 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		tabla_1 = this.jTable2;
 		tabla_1.setModel(dtm);
 		
-		dtm.setColumnIdentifiers(new Object[] {"Nombre", "Apellidos"});
+		dtm.setColumnIdentifiers(new Object[] {"Nombre", "Apellidos", "", "", "", "", "", "", ""});
+		
+		//ocultar columnas
+		tabla_1.getColumnModel().getColumn(2).setMaxWidth(0);
+		tabla_1.getColumnModel().getColumn(3).setMaxWidth(0);
+		tabla_1.getColumnModel().getColumn(4).setMaxWidth(0);
+		tabla_1.getColumnModel().getColumn(5).setMaxWidth(0);
+		tabla_1.getColumnModel().getColumn(6).setMaxWidth(0);
+		tabla_1.getColumnModel().getColumn(7).setMaxWidth(0);
+		tabla_1.getColumnModel().getColumn(8).setMaxWidth(0);
+		
+		tabla_1.getColumnModel().getColumn(2).setMinWidth(0);
+		tabla_1.getColumnModel().getColumn(3).setMinWidth(0);
+		tabla_1.getColumnModel().getColumn(4).setMinWidth(0);
+		tabla_1.getColumnModel().getColumn(5).setMinWidth(0);
+		tabla_1.getColumnModel().getColumn(6).setMinWidth(0);
+		tabla_1.getColumnModel().getColumn(7).setMinWidth(0);
+		tabla_1.getColumnModel().getColumn(8).setMinWidth(0);
+		
+		tabla_1.getColumnModel().getColumn(2).setPreferredWidth(0);
+		tabla_1.getColumnModel().getColumn(3).setPreferredWidth(0);
+		tabla_1.getColumnModel().getColumn(4).setPreferredWidth(0);
+		tabla_1.getColumnModel().getColumn(5).setPreferredWidth(0);
+		tabla_1.getColumnModel().getColumn(6).setPreferredWidth(0);
+		tabla_1.getColumnModel().getColumn(7).setPreferredWidth(0);
+		tabla_1.getColumnModel().getColumn(8).setPreferredWidth(0);
 		
 		//para ordenar la JTable pinchando en el nombre de la columna
 		TableRowSorter<TableModel> Ordena = new TableRowSorter<TableModel>(dtm);
@@ -413,16 +427,5 @@ public class frmTableContactos extends JFrame implements ActionListener {
 			}
 		}catch (Exception e){
 		}
-		
-		tabla_1.addMouseListener(new MouseAdapter() 
-		   {
-		      public void mouseClicked(MouseEvent e) 
-		      {
-		         int fila = tabla_1.rowAtPoint(e.getPoint());
-		         int columna = tabla_1.columnAtPoint(e.getPoint());
-		         if ((fila > -1) && (columna > -1))
-		            System.out.println(dtm.getValueAt(fila,columna));
-		      }
-		   });
 	}
 }

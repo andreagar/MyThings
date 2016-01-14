@@ -211,7 +211,7 @@ public class BaseDeDatos {
 		try {
 			statement.executeUpdate("create table tabla_contLaboral " +
 					"(nombre string, apell string, email string" +
-					", movil string, imagen blob, empresa string, cargo string" +
+					", movil string, imagen string, empresa string, cargo string" +
 					", tfno_empresa string, nomLogIn string)");
 			System.out.println("La tabla_contLaboral se ha creado.");
 		} catch (SQLException e) {

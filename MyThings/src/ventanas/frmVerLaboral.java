@@ -42,23 +42,23 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 	private JLabel lblNombre;
 	private JLabel lblApellidos;
 	private JLabel lblMovil;
-	private JLabel lblTelfonoDomicilio;
+	private JLabel lblCargo;
 	private JLabel lblEmail;
-	private JLabel lblDomicilio;
-	private JLabel lblFechaNacimiento;
+	private JLabel lblEmpresa;
+	private JLabel lblTfno_empresa;
 	private String ruta="";
 	private JLabel lblVernombre;
 	private JLabel lblVerapell;
 	private JLabel lblVermovil;
 	private JLabel lblVeremail;
-	private JLabel lblVerdomicilio;
-	private JLabel lblVertfnodomicilio;
-	private JLabel lblVerfechan;
+	private JLabel lblVerEmpresa;
+	private JLabel lblVerCargo;
+	private JLabel lblVerTfno_empresa;
 	
 	/**
 	 * Create the frame.
 	 */
-	public frmVerLaboral() {
+	public frmVerLaboral(Laboral cont) {
 		
 		setTitle("MyThings v1.0");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,9 +71,19 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 		lblFoto = new JLabel("FOTO");
 		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFoto.setBounds(310, 50, 114, 118);
+		ImageIcon icon = new ImageIcon(cont.getFoto());
+		Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+		lblFoto.setIcon(icono);
 		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
 		lblFoto.setBorder(border);
 		contentPane.add(lblFoto);
+		
+//		lblFoto = new JLabel("FOTO");
+//		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblFoto.setBounds(310, 50, 114, 118);
+//		Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
+//		lblFoto.setBorder(border);
+//		contentPane.add(lblFoto);
 		
 		lblNombre = new JLabel("Nombre: ");
 		lblNombre.setBounds(10, 61, 58, 14);
@@ -87,86 +97,55 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 		lblMovil.setBounds(10, 142, 46, 14);
 		contentPane.add(lblMovil);
 		
-		lblTelfonoDomicilio = new JLabel("Tel\u00E9fono domicilio:");
-		lblTelfonoDomicilio.setBounds(10, 264, 127, 14);
-		contentPane.add(lblTelfonoDomicilio);
+		lblCargo = new JLabel("Cargo:");
+		lblCargo.setBounds(10, 264, 127, 14);
+		contentPane.add(lblCargo);
 		
 		lblEmail = new JLabel("Email: ");
 		lblEmail.setBounds(10, 182, 46, 14);
 		contentPane.add(lblEmail);
 		
-		lblDomicilio = new JLabel("Domicilio: ");
-		lblDomicilio.setBounds(10, 222, 58, 14);
-		contentPane.add(lblDomicilio);
+		lblEmpresa = new JLabel("Empresa:");
+		lblEmpresa.setBounds(10, 222, 58, 14);
+		contentPane.add(lblEmpresa);
 		
-		lblFechaNacimiento = new JLabel("Fecha nacimiento: ");
-		lblFechaNacimiento.setBounds(10, 305, 114, 14);
-		contentPane.add(lblFechaNacimiento);
+		lblTfno_empresa = new JLabel("Telefono empresa:");
+		lblTfno_empresa.setBounds(10, 305, 114, 14);
+		contentPane.add(lblTfno_empresa);
 		
-		lblVernombre = new JLabel("VerNombre");
+		lblVernombre = new JLabel(cont.getNombre());
 		lblVernombre.setBounds(65, 61, 127, 14);
 		contentPane.add(lblVernombre);
 		
-		lblVerapell = new JLabel("VerApell");
+		lblVerapell = new JLabel(cont.getApellidos());
 		lblVerapell.setBounds(64, 102, 146, 14);
 		contentPane.add(lblVerapell);
 		
-		lblVermovil = new JLabel("VerMovil");
+		String mvl = Integer.toString(cont.getNum_m());
+		lblVermovil = new JLabel(mvl);
 		lblVermovil.setBounds(51, 142, 86, 14);
 		contentPane.add(lblVermovil);
 		
-		lblVeremail = new JLabel("VerEmail");
+		lblVeremail = new JLabel(cont.getEmail());
 		lblVeremail.setBounds(51, 182, 127, 14);
 		contentPane.add(lblVeremail);
 		
-		lblVerdomicilio = new JLabel("VerDomicilio");
-		lblVerdomicilio.setBounds(78, 222, 225, 14);
-		contentPane.add(lblVerdomicilio);
+		lblVerEmpresa = new JLabel(cont.getEmpresa());
+		lblVerEmpresa.setBounds(78, 222, 225, 14);
+		contentPane.add(lblVerEmpresa);
 		
-		lblVertfnodomicilio = new JLabel("VerTfnoDomicilio");
-		lblVertfnodomicilio.setBounds(129, 264, 114, 14);
-		contentPane.add(lblVertfnodomicilio);
+		lblVerCargo = new JLabel(cont.getCargo());
+		lblVerCargo.setBounds(78, 264, 114, 14);
+		contentPane.add(lblVerCargo);
 		
-		lblVerfechan = new JLabel("VerFechaN");
-		lblVerfechan.setBounds(115, 305, 128, 14);
-		contentPane.add(lblVerfechan);
-
-		
-	}
-
-	public frmVerLaboral(Laboral cont) {
-		// TODO Auto-generated constructor stub
+		String tfno = Integer.toString(cont.getNum_e());
+		lblVerTfno_empresa = new JLabel(tfno);
+		lblVerTfno_empresa.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblVerTfno_empresa.setBounds(115, 305, 128, 14);
+		contentPane.add(lblVerTfno_empresa);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		GestorContactos contacto = new GestorContactos();
-		switch (e.getActionCommand()) {
-			
-			case "Guardar":
-				
-					DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
-    					String fechaN = fecha.format(FechaNac.getDate());
-    				String ruta = lblFoto.toString();
-					try {
-						contacto.AñadirContactoPersonal(txtNombre.getText(), txtApellidos.getText(), txtEmail.getText(), txtMovil.getText(),
-								ruta, txtDomicilio.getText(), txtTfnoDom.getText(), fechaN);
-					} catch (MiExcepcion e1) {
-						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(this,e1.YaExiste());
-					}
-					frmVerLaboral.this.dispose();		
-					frmTableContactos objContactos = new frmTableContactos();
-					objContactos.setVisible(true);
-					break;
-			
-			case "Cancelar":
-				
-				frmTableContactos objContactos2 = new frmTableContactos();
-				objContactos2.setVisible(true);	
-				frmVerLaboral.this.dispose();
-				break;
-		}
 	}
 }
