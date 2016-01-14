@@ -265,18 +265,18 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				String cargo = tabla_1.getValueAt(filaE, 6).toString();
 				String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
 				
-			Laboral cont = new Laboral();
-				cont.setNombre(nombre1);
-				cont.setApellidos(apellidos1);
-				cont.setEmail(correo1);
-				cont.setNum_m(Integer.parseInt(movil1));
-				cont.setFoto(imagen1);
-				cont.setEmpresa(empresa);
-				cont.setCargo(cargo);
-				cont.setNum_e(Integer.parseInt(tfno_emp));
+			Laboral cont1 = new Laboral();
+				cont1.setNombre(nombre1);
+				cont1.setApellidos(apellidos1);
+				cont1.setEmail(correo1);
+				cont1.setNum_m(Integer.parseInt(movil1));
+				cont1.setFoto(imagen1);
+				cont1.setEmpresa(empresa);
+				cont1.setCargo(cargo);
+				cont1.setNum_e(Integer.parseInt(tfno_emp));
 				
-//				frmModificarContactoLaboral objModificarLaboral = new frmModificarContactoLaboral(cont);
-//				objModificarLaboral.setVisible(true);
+				frmModificarContactoLaboral objModificarLaboral = new frmModificarContactoLaboral(cont1);
+				objModificarLaboral.setVisible(true);
 				}
 
 			break;	

@@ -146,14 +146,14 @@ public class GestorContactos {
 			try{
 				Statement stmt = BaseDeDatos.getStatement();
 				String query = "delete from tabla_contPersonal where nomLogIn='" + usuario +"' "
-						+ ", nombre='" + nombre + "' "
-						+ ", apell='" + apell + "' "
-						+ ", email='" + email + "' "
-						+ ", movil='" + movil + "' "
-						+ ", imagen='" + imagen + "' "
-						+ ", domicilio='" + domicilio + "' "
-						+ ", tfno_domicilio='" + tfno_domicilio + "' "
-						+ ", fecha_n='" + fecha_n + "'";
+						+ "and nombre='" + nombre + "' "
+						+ "and apell='" + apell + "' "
+						+ "and email='" + email + "' "
+						+ "and movil='" + movil + "' "
+						+ "and imagen='" + imagen + "' "
+						+ "and domicilio='" + domicilio + "' "
+						+ "and tfno_domicilio='" + tfno_domicilio + "' "
+						+ "and fecha_n='" + fecha_n + "'";
 				System.out.println(query);
 				ResultSet consulta = stmt.executeQuery(query);
 				

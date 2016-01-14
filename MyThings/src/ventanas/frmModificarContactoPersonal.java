@@ -184,7 +184,9 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 												
 						Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
 						//ajustar el tamaño de la imagen al label donde la vamos a mostrar	
-								
+						
+						ruta = fichero.toString();
+						
 						//antes de mostrar la imagen, eliminar cualquier texto que haya en el label para que no interfiera
 						lblFoto.setText(null);
 						
