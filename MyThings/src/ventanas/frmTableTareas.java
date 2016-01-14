@@ -175,7 +175,6 @@ public class frmTableTareas extends JFrame implements ActionListener {
 				frmTableTareas.this.dispose();
 				break;
 		}
-		
 	}
 	
 	private void crearTabla() {

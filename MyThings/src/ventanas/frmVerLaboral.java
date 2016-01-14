@@ -30,6 +30,7 @@ import javax.swing.JTextField;
 import com.toedter.calendar.JDateChooser;
 
 import clases.GestorContactos;
+import clases.Laboral;
 import clases.MiExcepcion;
 
 public class frmVerLaboral extends JFrame implements ActionListener{
@@ -131,6 +132,10 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 		contentPane.add(lblVerfechan);
 
 		
+	}
+
+	public frmVerLaboral(Laboral cont) {
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override

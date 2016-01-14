@@ -27,6 +27,7 @@ import clases.BaseDeDatos;
 import clases.Contacto;
 import clases.GestorContactos;
 import clases.GestorTareas;
+import clases.Laboral;
 import clases.MiExcepcion;
 import clases.Personal;
 import clases.Tareas;
@@ -189,17 +190,27 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				else if (tabla_1.getSelectedRow()!=-1){
 					
 					
-						int filaE = tabla_1.getSelectedRow();
-						String nombre = tabla_1.getValueAt(filaE, 0).toString();
-						String apellidos = tabla_1.getValueAt(filaE, 1).toString();
-						String correo = tabla_1.getValueAt(filaE, 2).toString();
-						String movil = tabla_1.getValueAt(filaE, 3).toString();
-						String imagen = tabla_1.getValueAt(filaE, 4).toString();
-						String empresa = tabla_1.getValueAt(filaE, 5).toString();
-						String  cargo = tabla_1.getValueAt(filaE, 6).toString();
-						String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
+					int filaE = tabla_1.getSelectedRow();
+					String nombre1 = tabla_1.getValueAt(filaE, 0).toString();
+					String apellidos1 = tabla_1.getValueAt(filaE, 1).toString();
+					String correo1 = tabla_1.getValueAt(filaE, 2).toString();
+					String movil1 = tabla_1.getValueAt(filaE, 3).toString();
+					String imagen1 = tabla_1.getValueAt(filaE, 4).toString();
+					String empresa = tabla_1.getValueAt(filaE, 5).toString();
+					String cargo = tabla_1.getValueAt(filaE, 6).toString();
+					String tfno_emp = tabla_1.getValueAt(filaE, 7).toString();
 					
-					frmVerLaboral objVerLaboral = new frmVerLaboral();
+				Laboral cont = new Laboral();
+					cont.setNombre(nombre1);
+					cont.setApellidos(apellidos1);
+					cont.setEmail(correo1);
+					cont.setNum_m(Integer.parseInt(movil1));
+					cont.setFoto(imagen1);
+					cont.setEmpresa(empresa);
+					cont.setCargo(cargo);
+					cont.setNum_e(Integer.parseInt(tfno_emp));
+					
+					frmVerLaboral objVerLaboral = new frmVerLaboral(cont);
 					objVerLaboral.setVisible(true);
 					}
 	
