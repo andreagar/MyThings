@@ -169,7 +169,7 @@ public class frmModificarTarea extends JFrame implements ActionListener{
 		
 		switch (e.getActionCommand()) {
 		
-			case "guardar": 
+			case "Guardar": 
 				int opcion = TiempoViaje.getSelectedIndex();
 				int opc = 0; //no me deja hacer un cast de TIEMPOVIAJE ni con int ni con Integer, asi que...
 			if(opcion==0) opc=0;
