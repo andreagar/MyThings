@@ -29,10 +29,10 @@ public class GestorTareasTest {
 			
 			GestorUsuarios user = new GestorUsuarios();
 			
-			//user.AñadirUsuario("yo", "yo", "yo", "yo");
+			user.AñadirUsuario("yo", "yo", "yo", "yo");
 			
 			user.Login("yo", "yo");
-			
+		
 			gestor.AñadirTarea(1, "11/11/11", "12/12/12","Alta" , "Donosti", 15, "playa", "a");
 			
 			Statement stmt = BaseDeDatos.getStatement();
@@ -45,7 +45,6 @@ public class GestorTareasTest {
 				tarea.setDescripcion("playa");
 			
 			gestor.ModificarTarea("12/11/13", "10/11/13", "Media", "Bilbo", 0, "bbk", tarea);
-			
 			String fI = "";
 			String fF = "";
 			String importancia = "";

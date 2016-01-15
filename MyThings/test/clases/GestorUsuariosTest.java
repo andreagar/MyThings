@@ -3,6 +3,7 @@ package clases;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
+import java.nio.file.Files;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,7 +28,15 @@ public class GestorUsuariosTest {
 		@Test 
 		public void testAñadirUsuario() throws MiExcepcion, SQLException{
 					
-			gestor.AñadirUsuario("pepe3", "Pepe", "Bett", "pepito");
+			try {
+				gestor.AñadirUsuario("pepe3", "Pepe", "Bett", "pepito");
+			} catch (MiExcepcion e1) {
+				// TODO Auto-generated catch block
+				System.out.println("miexcepcion");
+			}
+			catch (SQLException e2){
+				e2.printStackTrace();
+			}
 			
 			Statement stmt = BaseDeDatos.getStatement();
 			String user = "";
@@ -38,14 +47,20 @@ public class GestorUsuariosTest {
 				if(consulta.next()){
 					user = consulta.getString("nomLogIn");
 					contra = consulta.getString("password");
-				}
+					
+					try{ //para eliminar el contacto de esta prueba ya que sino lo añade realmente a la BD
+					stmt.executeUpdate("delete from tabla_usuarios where nomLogIn='pepe3' ");
+					}catch(SQLException e){
+						e.printStackTrace();
+					}
+					}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			assertEquals("pepe3", user);
 			assertEquals("pepito", contra);
-		}	
+		}
 		
 //	@Test public void Login() throws MiExcepcion{
 //		gestor.AñadirUsuario("pepe3", "Pepe", "Bett", "pepito");
@@ -58,5 +73,4 @@ public class GestorUsuariosTest {
 	public void tearDown(){
 		BaseDeDatos.finConexion();
 	}
-	
 }
