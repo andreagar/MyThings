@@ -23,21 +23,58 @@ public class GestorTareasTest {
 		tarea = new Tareas();
 	}
 	
-	//Chequeo añadir un usuario
+	//Chequeo de modificar una tarea
 		@Test 
-		public void testModificarTarea() throws MiExcepcion, SQLException{
+		public void testModificarTarea() throws Exception{
+			
+			GestorUsuarios user = new GestorUsuarios();
+			
+			//user.AñadirUsuario("yo", "yo", "yo", "yo");
+			
+			user.Login("yo", "yo");
 			
 			gestor.AñadirTarea(1, "11/11/11", "12/12/12","Alta" , "Donosti", 15, "playa", "a");
 			
-			tarea.setId(1);
-			tarea.setFecha_i("11/11/11");
-			tarea.setFecha_f("12/12/12");
-			tarea.setImportancia("Alta");
-			tarea.setLocalizacion("Donosti");
-			tarea.setTiempo_v(15);
-			tarea.setDescripcion("playa");
+			Statement stmt = BaseDeDatos.getStatement();
+				tarea.setId(1);
+				tarea.setFecha_i("11/11/11");
+				tarea.setFecha_f("12/12/12");
+				tarea.setImportancia("Alta");
+				tarea.setLocalizacion("Donosti");
+				tarea.setTiempo_v(15);
+				tarea.setDescripcion("playa");
 			
 			gestor.ModificarTarea("12/11/13", "10/11/13", "Media", "Bilbo", 0, "bbk", tarea);
+			
+			String fI = "";
+			String fF = "";
+			String importancia = "";
+			String localizacion = "";
+			String tiempo = "";
+			String descripcion = "";
+			
+			try {
+				ResultSet consulta = stmt.executeQuery("select fecha_i,fecha_f,importancia, localizacion, tiempo_v, descripcion   from tabla_usuarios where nomLogIn='pepe3' and password='pepito' ");
+				if(consulta.next()){
+					fI = consulta.getString("fecha_i");
+					fF = consulta.getString("fecha_f");
+					importancia = consulta.getString("importancia");
+					localizacion = consulta.getString("localizacion");
+					tiempo = consulta.getString("tiempo_v");
+					descripcion = consulta.getString("descripcion");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			assertEquals("12/11/13", fI);
+			assertEquals("10/11/13", fF);
+			assertEquals("Media", importancia);
+			assertEquals("Bilbo", localizacion);
+			assertEquals("0", tiempo);
+			assertEquals("bbk",	descripcion);
+			
 		}	
 	
 	@After
