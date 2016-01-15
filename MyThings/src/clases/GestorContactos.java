@@ -155,7 +155,7 @@ public class GestorContactos {
 					+ "and movil='" + mvl + "' "
 					+ "and imagen='" + cont.getFoto() + "' "
 					+ "and empresa='" + cont.getEmpresa() + "' "
-					+ "and cargo='" + tfno + "' "
+					+ "and cargo='" + cont.getCargo() + "' "
 					+ "and tfno_empresa='" + tfno + "' "; 
 			System.out.println(query);
 			ResultSet consulta = stmt.executeQuery(query);

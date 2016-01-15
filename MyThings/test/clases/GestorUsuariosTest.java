@@ -25,7 +25,7 @@ public class GestorUsuariosTest {
 	
 	//Chequeo añadir un usuario
 		@Test 
-		public void testAñadirUsuario() throws MiExcepcion{
+		public void testAñadirUsuario() throws MiExcepcion, SQLException{
 					
 			gestor.AñadirUsuario("pepe3", "Pepe", "Bett", "pepito");
 			
@@ -45,7 +45,7 @@ public class GestorUsuariosTest {
 			}
 			assertEquals("pepe3", user);
 			assertEquals("pepito", contra);
-		}
+		}	
 		
 //	@Test public void Login() throws MiExcepcion{
 //		gestor.AñadirUsuario("pepe3", "Pepe", "Bett", "pepito");
