@@ -43,7 +43,6 @@ public class frmAltaLaboral extends JFrame implements ActionListener{
 	private JLabel lblCargo;
 	private JLabel lblEmail;
 	private JLabel lblEmpresa;
-	private JLabel lblNewLabel;
 	private JButton btnGuardar;
 	private JButton btnCancelar;
 	private JTextField txtNombre;
@@ -142,22 +141,16 @@ public class frmAltaLaboral extends JFrame implements ActionListener{
 		lblEmpresa.setBounds(10, 222, 58, 14);
 		contentPane.add(lblEmpresa);
 		
-		lblNewLabel = new JLabel("CONTACTO LABORAL");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setBounds(82, 11, 154, 28);
-		contentPane.add(lblNewLabel);
-		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(frmAltaLaboral.class.getResource("/ventanas/img/save.png")));
-		btnGuardar.setBounds(310, 220, 114, 39);
+		btnGuardar.setBounds(285, 220, 139, 39);
 		btnGuardar.setActionCommand("Guardar");
 		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.setIcon(new ImageIcon(frmAltaLaboral.class.getResource("/ventanas/img/cancelar.gif")));
-		btnCancelar.setBounds(310, 280, 114, 39);
+		btnCancelar.setBounds(285, 280, 139, 39);
 		btnCancelar.setActionCommand("Cancelar");
 		btnCancelar.addActionListener(this);
 		contentPane.add(btnCancelar);
@@ -200,6 +193,12 @@ public class frmAltaLaboral extends JFrame implements ActionListener{
 		txtTfnoEmp.setColumns(10);
 		txtTfnoEmp.setBounds(106, 299, 102, 20);
 		contentPane.add(txtTfnoEmp);
+		
+		JLabel lblContactoLaboral = new JLabel("CONTACTO LABORAL");
+		lblContactoLaboral.setHorizontalAlignment(SwingConstants.CENTER);
+		lblContactoLaboral.setFont(new Font("Verdana", Font.BOLD, 17));
+		lblContactoLaboral.setBounds(32, 11, 232, 28);
+		contentPane.add(lblContactoLaboral);
 	}
 
 	@Override

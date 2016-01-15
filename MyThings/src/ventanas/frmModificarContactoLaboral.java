@@ -50,6 +50,7 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 	private JButton btnGuardar;
 	private JButton btnSubirFoto;
 	private Laboral cont1;
+	private JButton btnAtrs;
 	File fichero;
 	private JTextField txtTfno_empresa;
 	
@@ -141,7 +142,7 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(frmModificarContactoPersonal.class.getResource("/ventanas/img/save.png")));
-		btnGuardar.setBounds(310, 283, 120, 41);
+		btnGuardar.setBounds(316, 222, 120, 41);
 		btnGuardar.setActionCommand("Guardar");
 		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
@@ -193,6 +194,12 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 		txtTfno_empresa.setColumns(10);
 		txtTfno_empresa.setBounds(107, 302, 96, 20);
 		contentPane.add(txtTfno_empresa);
+		
+		btnAtrs = new JButton("Atr\u00E1s");
+		btnAtrs.setBounds(327, 301, 89, 23);
+		btnAtrs.setActionCommand("atras");
+		btnAtrs.addActionListener(this);
+		contentPane.add(btnAtrs);
 
 	}
 
@@ -215,6 +222,12 @@ public class frmModificarContactoLaboral extends JFrame implements ActionListene
 				} 
 			}catch(Exception e1){
 			}				
+			break;
+			case "atras":
+				frmModificarContactoLaboral.this.dispose();
+			
+				frmTableContactos objTableCont= new frmTableContactos();
+				objTableCont.setVisible(true);
 			break;
 		}
 	}

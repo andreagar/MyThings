@@ -103,23 +103,23 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 		contentPane.add(lblCargo);
 		
 		lblEmail = new JLabel("Email: ");
-		lblEmail.setBounds(10, 182, 46, 14);
+		lblEmail.setBounds(10, 182, 58, 14);
 		contentPane.add(lblEmail);
 		
 		lblEmpresa = new JLabel("Empresa:");
-		lblEmpresa.setBounds(10, 222, 58, 14);
+		lblEmpresa.setBounds(10, 222, 75, 14);
 		contentPane.add(lblEmpresa);
 		
 		lblTfno_empresa = new JLabel("Telefono empresa:");
-		lblTfno_empresa.setBounds(10, 305, 114, 14);
+		lblTfno_empresa.setBounds(10, 305, 139, 14);
 		contentPane.add(lblTfno_empresa);
 		
 		lblVernombre = new JLabel(cont.getNombre());
-		lblVernombre.setBounds(65, 61, 127, 14);
+		lblVernombre.setBounds(77, 61, 127, 14);
 		contentPane.add(lblVernombre);
 		
 		lblVerapell = new JLabel(cont.getApellidos());
-		lblVerapell.setBounds(64, 102, 146, 14);
+		lblVerapell.setBounds(76, 102, 146, 14);
 		contentPane.add(lblVerapell);
 		
 		String mvl = Integer.toString(cont.getNum_m());
@@ -128,21 +128,21 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 		contentPane.add(lblVermovil);
 		
 		lblVeremail = new JLabel(cont.getEmail());
-		lblVeremail.setBounds(51, 182, 127, 14);
+		lblVeremail.setBounds(79, 182, 127, 14);
 		contentPane.add(lblVeremail);
 		
 		lblVerEmpresa = new JLabel(cont.getEmpresa());
-		lblVerEmpresa.setBounds(78, 222, 225, 14);
+		lblVerEmpresa.setBounds(106, 222, 225, 14);
 		contentPane.add(lblVerEmpresa);
 		
 		lblVerCargo = new JLabel(cont.getCargo());
-		lblVerCargo.setBounds(78, 264, 114, 14);
+		lblVerCargo.setBounds(106, 264, 114, 14);
 		contentPane.add(lblVerCargo);
 		
 		String tfno = Integer.toString(cont.getNum_e());
 		lblVerTfno_empresa = new JLabel(tfno);
 		lblVerTfno_empresa.setHorizontalAlignment(SwingConstants.LEFT);
-		lblVerTfno_empresa.setBounds(115, 305, 86, 14);
+		lblVerTfno_empresa.setBounds(159, 305, 86, 14);
 		contentPane.add(lblVerTfno_empresa);
 		
 		btnAtrs = new JButton("Atr\u00E1s");

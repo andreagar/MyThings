@@ -92,11 +92,11 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		contentPane.add(btnAtras);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 80, 477, 142);
+		scrollPane.setBounds(10, 80, 419, 142);
 		contentPane.add(scrollPane);
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 260, 477, 136);
+		scrollPane_1.setBounds(10, 260, 419, 136);
 		contentPane.add(scrollPane_1);
 		
 		jTable1 = new JTable();
@@ -114,29 +114,29 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		btnPersonal = new JButton("Agregar Personal");
 		btnPersonal.setActionCommand("Agregar Personal");
 		btnPersonal.addActionListener(this);
-		btnPersonal.setBounds(499, 128, 115, 23);
+		btnPersonal.setBounds(468, 128, 146, 23);
 		contentPane.add(btnPersonal);
 		
 		btnLaboral = new JButton("Agregar Laboral");
-		btnLaboral.setBounds(499, 162, 115, 23);
+		btnLaboral.setBounds(468, 162, 146, 23);
 		btnLaboral.setActionCommand("Agregar Laboral");
 		btnLaboral.addActionListener(this);
 		contentPane.add(btnLaboral);
 		
 		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(499, 199, 115, 23);
+		btnModificar.setBounds(468, 199, 146, 23);
 		btnModificar.setActionCommand("Modificar");
 		btnModificar.addActionListener(this);
 		contentPane.add(btnModificar);
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(499, 233, 115, 23);
+		btnEliminar.setBounds(468, 233, 146, 23);
 		btnEliminar.setActionCommand("Eliminar");
 		btnEliminar.addActionListener(this);
 		contentPane.add(btnEliminar);
 		
 		btnVerContacto = new JButton("Ver contacto");
-		btnVerContacto.setBounds(497, 94, 117, 23);
+		btnVerContacto.setBounds(466, 94, 148, 23);
 		btnVerContacto.setActionCommand("Ver contacto");
 		btnVerContacto.addActionListener(this);
 		contentPane.add(btnVerContacto);
@@ -214,6 +214,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 					frmExcepcion objExcepcion = new frmExcepcion(e8.SinSeleccionar());
 					objExcepcion.setVisible(true);
 				}
+				frmTableContactos.this.dispose();
 				break;
 	
 			case "Agregar Personal": 
@@ -285,7 +286,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 					frmExcepcion objExcepcion = new frmExcepcion(e9.SinSeleccionar());
 					objExcepcion.setVisible(true);
 				}
-
+				frmTableContactos.this.dispose();
 			break;	
 				
 			case "Eliminar":

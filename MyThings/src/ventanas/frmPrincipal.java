@@ -32,7 +32,7 @@ public class frmPrincipal extends JFrame implements ActionListener {
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(frmPrincipal.class.getResource("/Imagenes/Beat.png")));
 		setBackground(new Color(175, 238, 238));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 494, 397);
+		setBounds(100, 100, 431, 230);
 		contentPane = new PanelConImagen();
 		this.setTitle("MyThings v1.0");
 		contentPane.setForeground(Color.WHITE);
@@ -43,24 +43,24 @@ public class frmPrincipal extends JFrame implements ActionListener {
 		contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblTitulo = new JLabel("Seleccione la opci\u00F3n que desee:");
-		lblTitulo.setBounds(100, 24, 290, 27);
+		lblTitulo.setBounds(66, 23, 290, 27);
 		lblTitulo.setFont(new Font("Serif", Font.PLAIN, 20));
 		contentPane.add(lblTitulo);
 		
 		btnTareas = new JButton("Tareas");
-		btnTareas.setBounds(193, 101, 89, 23);
+		btnTareas.setBounds(171, 74, 89, 23);
 		btnTareas.setActionCommand("Tareas");
 		btnTareas.addActionListener(this);
 		contentPane.add(btnTareas);
 		
 		btnContactos = new JButton("Contactos");
-		btnContactos.setBounds(178, 168, 116, 23);
+		btnContactos.setBounds(157, 108, 116, 23);
 		btnContactos.setActionCommand("Contactos");
 		btnContactos.addActionListener(this);
 		contentPane.add(btnContactos);
 		
 		btnCerrarSesion = new JButton("Cerrar sesi\u00F3n");
-		btnCerrarSesion.setBounds(178, 335, 116, 23);
+		btnCerrarSesion.setBounds(279, 168, 116, 23);
 		btnCerrarSesion.setActionCommand("CerrarSesion");
 		btnCerrarSesion.addActionListener(this);
 		contentPane.add(btnCerrarSesion);

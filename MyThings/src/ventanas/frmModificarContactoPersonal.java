@@ -66,6 +66,7 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 	private JDateChooser FechaN;
 	private Personal cont1;
 	File fichero;
+	private JButton btnAtrs;
 	
 	/**
 	 * Create the frame.
@@ -85,7 +86,7 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 		
 		lblFoto = new JLabel("FOTO");
 		lblFoto.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFoto.setBounds(310, 50, 114, 118);
+		lblFoto.setBounds(316, 50, 114, 118);
 		ImageIcon icon = new ImageIcon(cont.getFoto());
 		Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
 		lblFoto.setIcon(icono);
@@ -155,7 +156,7 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setIcon(new ImageIcon(frmModificarContactoPersonal.class.getResource("/ventanas/img/save.png")));
-		btnGuardar.setBounds(310, 283, 120, 41);
+		btnGuardar.setBounds(310, 237, 120, 41);
 		btnGuardar.setActionCommand("Guardar");
 		btnGuardar.addActionListener(this);
 		contentPane.add(btnGuardar);
@@ -199,12 +200,18 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 				}
 			}
 		});
-		btnSubirFoto.setBounds(310, 140, 114, 23);
+		btnSubirFoto.setBounds(316, 178, 114, 23);
 		contentPane.add(btnSubirFoto);
 		
 		FechaN = new JDateChooser();
 		FechaN.setBounds(117, 299, 95, 20);
 		contentPane.add(FechaN);
+		
+		btnAtrs = new JButton("Atr\u00E1s");
+		btnAtrs.setBounds(329, 312, 89, 23);
+		btnAtrs.setActionCommand("atras");
+		btnAtrs.addActionListener(this);
+		contentPane.add(btnAtrs);
 
 	}
 
@@ -229,6 +236,13 @@ public class frmModificarContactoPersonal extends JFrame implements ActionListen
 				} 
 			}catch(Exception e1){
 			}				
+			break;
+			
+			case "atras":
+				frmModificarContactoPersonal.this.dispose();
+			
+				frmTableContactos objTableCont= new frmTableContactos();
+				objTableCont.setVisible(true);
 			break;
 		}
 	}
