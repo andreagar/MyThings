@@ -47,6 +47,7 @@ public class frmVerPersonal extends JFrame implements ActionListener{
 	private JLabel lblDomicilio;
 	private JLabel lblFechaNacimiento;
 	private String ruta="";
+	private JButton btnAtrs;
 	private JLabel lblVernombre;
 	private JLabel lblVerapell;
 	private JLabel lblVermovil;
@@ -148,10 +149,25 @@ public class frmVerPersonal extends JFrame implements ActionListener{
 		lblVerfechan.setBounds(115, 305, 128, 14);
 	//	lblVeremail.setText(cont.getNacimiento());
 		contentPane.add(lblVerfechan);
+		
+		btnAtrs = new JButton("Atr\u00E1s");
+		btnAtrs.setBounds(335, 301, 89, 23);
+		btnAtrs.setActionCommand("atras");
+		btnAtrs.addActionListener(this);
+		contentPane.add(btnAtrs);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+switch (e.getActionCommand()) {
+		
+		case "atras":
+			
+			frmTableContactos objTableContactos = new frmTableContactos();
+			objTableContactos.setVisible(true);
+			frmVerPersonal.this.dispose();
+			break;
+	}
 	}
 }

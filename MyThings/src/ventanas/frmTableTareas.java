@@ -58,7 +58,7 @@ public class frmTableTareas extends JFrame implements ActionListener {
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(frmTareas.class.getResource("/Imagenes/Beat.png")));
 		setBackground(new Color(0, 153, 51));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 594, 397);
+		setBounds(100, 100, 626, 428);
 		contentPane = new PanelConImagen();
 		this.setTitle("MyThings v1.0");
 		contentPane.setForeground(Color.WHITE);
@@ -66,7 +66,7 @@ public class frmTableTareas extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
+		contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblTitulo = new JLabel("TAREAS");
 		lblTitulo.setBounds(214, 22, 89, 27);
@@ -74,31 +74,31 @@ public class frmTableTareas extends JFrame implements ActionListener {
 		contentPane.add(lblTitulo);
 		
 		btnAgregar = new JButton("Agregar");
-		btnAgregar.setBounds(476, 81, 89, 23);
+		btnAgregar.setBounds(521, 82, 89, 23);
 		btnAgregar.setActionCommand("Agregar");
 		btnAgregar.addActionListener(this);
 		contentPane.add(btnAgregar);
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(476, 132, 89, 23);
+		btnEliminar.setBounds(521, 131, 89, 23);
 		btnEliminar.setActionCommand("Eliminar");
 		btnEliminar.addActionListener(this);
 		contentPane.add(btnEliminar);
 		
 		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(476, 183, 89, 23);
+		btnModificar.setBounds(521, 183, 89, 23);
 		btnModificar.setActionCommand("Modificar");
 		btnModificar.addActionListener(this);
 		contentPane.add(btnModificar);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(476, 335, 89, 23);
+		btnAtras.setBounds(521, 335, 89, 23);
 		btnAtras.setActionCommand("Atras");
 		btnAtras.addActionListener(this);
 		contentPane.add(btnAtras);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 57, 456, 301);
+		scrollPane.setBounds(10, 57, 501, 332);
 		contentPane.add(scrollPane);
 		
 		jTable1 = new JTable();

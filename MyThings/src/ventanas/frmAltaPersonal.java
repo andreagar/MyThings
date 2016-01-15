@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
+import java.awt.SystemColor;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -68,6 +69,7 @@ public class frmAltaPersonal extends JFrame implements ActionListener{
 		setBounds(100, 100, 468, 384);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		

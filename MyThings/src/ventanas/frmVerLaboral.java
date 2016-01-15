@@ -49,6 +49,7 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 	private String ruta="";
 	private JLabel lblVernombre;
 	private JLabel lblVerapell;
+	private JButton btnAtrs;
 	private JLabel lblVermovil;
 	private JLabel lblVeremail;
 	private JLabel lblVerEmpresa;
@@ -140,12 +141,28 @@ public class frmVerLaboral extends JFrame implements ActionListener{
 		
 		String tfno = Integer.toString(cont.getNum_e());
 		lblVerTfno_empresa = new JLabel(tfno);
-		lblVerTfno_empresa.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblVerTfno_empresa.setBounds(115, 305, 128, 14);
+		lblVerTfno_empresa.setHorizontalAlignment(SwingConstants.LEFT);
+		lblVerTfno_empresa.setBounds(115, 305, 86, 14);
 		contentPane.add(lblVerTfno_empresa);
+		
+		btnAtrs = new JButton("Atr\u00E1s");
+		btnAtrs.setBounds(335, 301, 89, 23);
+		btnAtrs.setActionCommand("atras");
+		btnAtrs.addActionListener(this);
+		contentPane.add(btnAtrs);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		switch (e.getActionCommand()) {
+		
+		case "atras":
+			
+			frmTableContactos objTableContactos = new frmTableContactos();
+			objTableContactos.setVisible(true);
+			frmVerLaboral.this.dispose();
+			break;
 	}
+}
 }

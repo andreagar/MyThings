@@ -70,7 +70,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		//setIconImage(Toolkit.getDefaultToolkit().getImage(frmTareas.class.getResource("/Imagenes/Beat.png")));
 		setBackground(new Color(0, 153, 51));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 594, 397);
+		setBounds(100, 100, 630, 435);
 		contentPane = new PanelConImagen();
 		this.setTitle("MyThings v1.0");
 		contentPane.setForeground(Color.WHITE);
@@ -78,7 +78,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
+		contentPane.setBackgroundImage(contentPane.createImage("/Imagenes/fondo.jpg").getImage());
 		
 		JLabel lblTitulo = new JLabel("CONTACTOS");
 		lblTitulo.setBounds(198, 22, 129, 27);
@@ -86,17 +86,17 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		contentPane.add(lblTitulo);
 		
 		btnAtras = new JButton("Atr\u00E1s");
-		btnAtras.setBounds(476, 335, 89, 23);
+		btnAtras.setBounds(525, 335, 89, 23);
 		btnAtras.setActionCommand("Atras");
 		btnAtras.addActionListener(this);
 		contentPane.add(btnAtras);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 80, 390, 122);
+		scrollPane.setBounds(10, 80, 477, 142);
 		contentPane.add(scrollPane);
 		
 		scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(10, 236, 390, 122);
+		scrollPane_1.setBounds(10, 260, 477, 136);
 		contentPane.add(scrollPane_1);
 		
 		jTable1 = new JTable();
@@ -114,35 +114,35 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		btnPersonal = new JButton("Agregar Personal");
 		btnPersonal.setActionCommand("Agregar Personal");
 		btnPersonal.addActionListener(this);
-		btnPersonal.setBounds(448, 128, 115, 23);
+		btnPersonal.setBounds(499, 128, 115, 23);
 		contentPane.add(btnPersonal);
 		
 		btnLaboral = new JButton("Agregar Laboral");
-		btnLaboral.setBounds(448, 162, 115, 23);
+		btnLaboral.setBounds(499, 162, 115, 23);
 		btnLaboral.setActionCommand("Agregar Laboral");
 		btnLaboral.addActionListener(this);
 		contentPane.add(btnLaboral);
 		
 		btnModificar = new JButton("Modificar");
-		btnModificar.setBounds(448, 196, 115, 23);
+		btnModificar.setBounds(499, 199, 115, 23);
 		btnModificar.setActionCommand("Modificar");
 		btnModificar.addActionListener(this);
 		contentPane.add(btnModificar);
 		
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(448, 233, 115, 23);
+		btnEliminar.setBounds(499, 233, 115, 23);
 		btnEliminar.setActionCommand("Eliminar");
 		btnEliminar.addActionListener(this);
 		contentPane.add(btnEliminar);
 		
 		btnVerContacto = new JButton("Ver contacto");
-		btnVerContacto.setBounds(448, 92, 117, 23);
+		btnVerContacto.setBounds(497, 94, 117, 23);
 		btnVerContacto.setActionCommand("Ver contacto");
 		btnVerContacto.addActionListener(this);
 		contentPane.add(btnVerContacto);
 		
 		JLabel lblLaboral = new JLabel("LABORAL:");
-		lblLaboral.setBounds(10, 211, 74, 14);
+		lblLaboral.setBounds(10, 235, 74, 14);
 		contentPane.add(lblLaboral);
 		
 		JLabel lblPersonal = new JLabel("PERSONAL:");
@@ -158,7 +158,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 		switch (e.getActionCommand()) {
 		
 			case "Ver contacto":
-				
+				try{
 				if (tabla.getSelectedRow()!=-1){
 					
 						int filaE = tabla.getSelectedRow();
@@ -209,7 +209,11 @@ public class frmTableContactos extends JFrame implements ActionListener {
 					
 					frmVerLaboral objVerLaboral = new frmVerLaboral(cont1);
 					objVerLaboral.setVisible(true);
-					}
+					} else throw new MiExcepcion();
+				} catch(MiExcepcion e8){
+					frmExcepcion objExcepcion = new frmExcepcion(e8.SinSeleccionar());
+					objExcepcion.setVisible(true);
+				}
 				break;
 	
 			case "Agregar Personal": 
@@ -225,6 +229,7 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				break;
 				
 			case "Modificar":
+				try{
 				if (tabla.getSelectedRow()!=-1){
 					
 					int filaE = tabla.getSelectedRow();
@@ -275,12 +280,16 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				
 				frmModificarContactoLaboral objModificarLaboral = new frmModificarContactoLaboral(cont1);
 				objModificarLaboral.setVisible(true);
+				} else throw new MiExcepcion();
+				}catch(MiExcepcion e9){
+					frmExcepcion objExcepcion = new frmExcepcion(e9.SinSeleccionar());
+					objExcepcion.setVisible(true);
 				}
 
 			break;	
 				
 			case "Eliminar":
-				
+				try{
 				if (tabla.getSelectedRow()!=-1){
 					
 					int filaE = tabla.getSelectedRow();
@@ -311,7 +320,12 @@ public class frmTableContactos extends JFrame implements ActionListener {
 				
 				contacto.EliminarContactoLaboral(nombre1, apellidos1, correo1, movil1, imagen1, empresa, cargo, tfno_emp);
 				crearTabla1();
-			}
+			}else throw new MiExcepcion();
+				} catch (MiExcepcion e1) {
+						frmExcepcion objExcepcion = new frmExcepcion(e1.SinSeleccionar());
+						objExcepcion.setVisible(true);
+					}
+				
 				break;
 				
 			case "Atras":

@@ -41,6 +41,7 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 	private JComboBox Importancia;
 	private JTextPane txtDescripcion;
 	private JComboBox TiempoViaje;
+	private JButton btnCancelar;
 
 
 	/**
@@ -140,6 +141,13 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 		Importancia.addActionListener(this);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, Importancia, 0, SpringLayout.SOUTH, lblImportancia);
 		contentPane.add(Importancia);
+		
+		btnCancelar = new JButton("Cancelar");
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnCancelar, 0, SpringLayout.SOUTH, btnGuardar);
+		sl_contentPane.putConstraint(SpringLayout.EAST, btnCancelar, -14, SpringLayout.WEST, btnGuardar);
+		btnCancelar.setActionCommand("Cancelar");
+		btnCancelar.addActionListener(this);
+		contentPane.add(btnCancelar);
 	}
 
 
@@ -171,7 +179,14 @@ public class frmAltaTarea extends JFrame implements ActionListener{
 					objTareas.setVisible(true);
 				} 
 			}catch(Exception e1){
-			}				
+			}
+			break;
+			case "Cancelar":
+				frmAltaTarea.this.dispose();
+				
+				frmTableTareas objTareas= new frmTableTareas();
+				objTareas.setVisible(true);
+				
 			break;
 		}
 	}
